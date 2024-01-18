@@ -1,0 +1,13 @@
+[merge]
+# Windows users, set the tool to unityyamlmergewin
+# MacOS users, set the tool to unityyamlmergemac
+# tool = unityyamlmergewin
+# tool = unityyamlmergemac
+
+[mergetool "unityyamlmergewin"]
+trustExitCode = false
+cmd = 'C:\Program Files\Unity\Editor\Data\Tools\UnityYAMLMerge.exe' merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"
+
+[mergetool "unityyamlmergemac"]
+trustExitCode = false
+cmd = '/Applications/Unity/Unity.app/Contents/Tools/UnityYAMLMerge' merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"
