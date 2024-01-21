@@ -1,4 +1,4 @@
-﻿/* A component for linearly interpolating (easing) a UI object to a 2D position over time. */
+/* A component for linearly interpolating (easing) a UI object to a 2D position over time. */
 
 using System.Collections;
 using System.Collections.Generic;

@@ -9,6 +9,8 @@ public class Collector : MonoBehaviour
 
     // Sound Effects.
     public AudioClip rupeeCollectionSoundEffect;
+    public AudioClip heartCollectionSoundEffect;
+    public AudioClip keyCollectionSoundEffect;
 
     private void Start ()
     {
@@ -34,7 +36,7 @@ public class Collector : MonoBehaviour
             {
                 inventory.AddRupees(1);
 
-                Debug.Log("rupees: " + inventory.GetRupees());
+                Debug.Log("Rupees: " + inventory.GetRupees());
             }
 
             // Make Rupee disappear.
@@ -42,6 +44,38 @@ public class Collector : MonoBehaviour
 
             // Play Rupee collection clip.
             AudioSource.PlayClipAtPoint (rupeeCollectionSoundEffect, Camera.main.transform.position);
+        }
+        else if (go.CompareTag ("Heart"))
+        {
+            // Make sure game object has an inventory.
+            if (inventory != null)
+            {
+                inventory.AddHearts(1);
+
+                Debug.Log("Hearts: " + inventory.GetHearts());
+            }
+
+            // Make Rupee disappear.
+            Destroy(go);
+
+            // Play Rupee collection clip.
+            AudioSource.PlayClipAtPoint(heartCollectionSoundEffect, Camera.main.transform.position);
+        }
+        else if (go.CompareTag ("Key"))
+        {
+            // Make sure game object has an inventory.
+            if (inventory != null)
+            {
+                inventory.AddKeys(1);
+
+                Debug.Log("Keys: " + inventory.GetKeys());
+            }
+
+            // Make Rupee disappear.
+            Destroy(go);
+
+            // Play Rupee collection clip.
+            AudioSource.PlayClipAtPoint(keyCollectionSoundEffect, Camera.main.transform.position);
         }
     }
 }
