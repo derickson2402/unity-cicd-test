@@ -7,6 +7,7 @@ public class GridMovement : MonoBehaviour
     /* Inspector Tunables */
     public float ease_factor = 0.1f;
     public LayerMask collisionLayer;
+    public float gridSize = 0.5f;
 
     /* Private Data */
     private BoxCollider boxCollider;
@@ -24,15 +25,25 @@ public class GridMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        desiredPosition = SnapToGrid(desiredPosition);
         transform.position += (desiredPosition - transform.position) * ease_factor;
     }
 
-    public bool Move (Vector2 currentInput)
+    private Vector2 SnapToGrid(Vector2 current)
     {
-        Vector2 start = transform.position;
-        //desiredPosition = start;
+        return new Vector2(Mathf.Round(current.x / gridSize) * gridSize, Mathf.Round(current.y / gridSize) * gridSize);
+    }
 
-        Vector2 end = start + 0.125 * (currentInput / 0.125);
+    //xInput/yInput will be 1, 0, or -1 to indicate movement direction
+    public bool Move (Vector2 input, float movementSpeed)
+    {
+        int xInput = (int)input.x;
+        int yInput = (int)input.y;
+        Vector2 start = transform.position;
+
+        Vector2 end = start;
+        end.x += xInput * movementSpeed;
+        end.y += yInput * movementSpeed;
 
         //disabling to prevent hitting our own collider
         boxCollider.enabled = false;
