@@ -7,6 +7,7 @@ public class ArrowKeyMovement : MonoBehaviour
 
     // Inspector field for movement speed.
     public float movementSpeed = 4.0f;
+    public GridMovement movementScript;
 
     // RigidBody representing player.
     Rigidbody rb;
@@ -22,10 +23,30 @@ public class ArrowKeyMovement : MonoBehaviour
     void Update ()
     {
         // Grab current values of arrow keys.
-        Vector2 currentInput = GetInput ();
+        //bool up = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
+        //bool down = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
+        //bool left = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A);
+        //bool right = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D);
+
+        //int yDir = 0;
+        //if (up) { yDir++; }
+        //if (down) { yDir--; }
+        //int xDir = 0;
+        //if (left) { xDir--; }
+        //if (right) { xDir++; }
+
+        //if (yDir != 0 || xDir != 0)
+        //{
+        //    movementScript.Move (xDir, yDir, 0.125f * movementSpeed);
+        //}
 
         // Set Rigidbody's velocity to currentInput.
-        rb.velocity = currentInput * movementSpeed;
+        Vector2 currentInput = GetInput();
+        if (currentInput != Vector2.zero)
+        {
+            movementScript.Move(currentInput, movementSpeed);
+            //rb.velocity = currentInput * movementSpeed;
+        }
     }
 
     Vector2 GetInput ()
