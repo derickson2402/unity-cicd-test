@@ -25,8 +25,11 @@ public class GridMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        desiredPosition = SnapToGrid(desiredPosition);
-        transform.position += (desiredPosition - transform.position) * ease_factor;
+        //desiredPosition = SnapToGrid(desiredPosition);
+        if ((desiredPosition - transform.position).magnitude > float.Epsilon)
+        {
+            transform.position += (desiredPosition - transform.position) * ease_factor;
+        }
     }
 
     private Vector2 SnapToGrid(Vector2 current)
@@ -44,6 +47,7 @@ public class GridMovement : MonoBehaviour
         Vector2 end = start;
         end.x += xInput * movementSpeed;
         end.y += yInput * movementSpeed;
+        end = SnapToGrid(end);
 
         //disabling to prevent hitting our own collider
         boxCollider.enabled = false;
