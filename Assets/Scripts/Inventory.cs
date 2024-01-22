@@ -8,10 +8,10 @@ public class Inventory : MonoBehaviour
     public TextField rupeeCountText;
     public TextField keyCountText;
     public TextField bombCountText;
-    public TextField heartCountText;
+
 
     int rupeeCount = 0;
-    int heartCount = 0;
+    //int heartCount = 0;
     int keyCount = 0;
     int bombCount = 0;
 
@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
         rupeeCountText.Write("x " + rupeeCount.ToString());
     }
 
-
+    /*
     public void AddHearts(int num)
     {
         heartCount += num;
@@ -49,7 +49,7 @@ public class Inventory : MonoBehaviour
         heartCount -= num;
         heartCountText.Write ("x " + heartCount.ToString ());
     }
-
+    */
 
     public void AddKeys(int num)
     {

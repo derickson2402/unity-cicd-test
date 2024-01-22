@@ -7,6 +7,8 @@ public class Collector : MonoBehaviour
     // Represents player inventory.
     Inventory inventory;
 
+    HPManager hp;
+
     // Sound Effects.
     public AudioClip rupeeCollectionSoundEffect;
     public AudioClip heartCollectionSoundEffect;
@@ -17,6 +19,8 @@ public class Collector : MonoBehaviour
     {
         // Grab a reference to the Inventory component in this gameobject.
         inventory = GetComponent<Inventory> ();
+
+        hp  = GetComponent<HPManager> ();
 
         // Make sure game object has an inventory.
         if (inventory == null)
@@ -51,9 +55,9 @@ public class Collector : MonoBehaviour
             // Make sure game object has an inventory.
             if (inventory != null)
             {
-                inventory.AddHearts(1);
+                hp.AddHP(1);
 
-                Debug.Log("Hearts x" + inventory.GetHearts());
+                Debug.Log("Hearts x" + hp.GetHP ());
             }
 
             // Make Rupee disappear.
