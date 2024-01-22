@@ -37,7 +37,7 @@ public class Collector : MonoBehaviour
             {
                 inventory.AddRupees(1);
 
-                Debug.Log("Rupees: " + inventory.GetRupees());
+                Debug.Log("Rupees x" + inventory.GetRupees());
             }
 
             // Make Rupee disappear.
@@ -53,7 +53,7 @@ public class Collector : MonoBehaviour
             {
                 inventory.AddHearts(1);
 
-                Debug.Log("Hearts: " + inventory.GetHearts());
+                Debug.Log("Hearts x" + inventory.GetHearts());
             }
 
             // Make Rupee disappear.
@@ -69,7 +69,7 @@ public class Collector : MonoBehaviour
             {
                 inventory.AddKeys (1);
 
-                Debug.Log("Keys: " + inventory.GetKeys ());
+                Debug.Log("Keys x" + inventory.GetKeys ());
             }
 
             // Make Rupee disappear.
@@ -85,7 +85,7 @@ public class Collector : MonoBehaviour
             {
                 inventory.AddBombs (1);
 
-                Debug.Log("Keys: " + inventory.GetBombs ());
+                Debug.Log("Keys x" + inventory.GetBombs ());
             }
 
             // Make Rupee disappear.
