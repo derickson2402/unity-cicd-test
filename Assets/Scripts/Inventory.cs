@@ -11,6 +11,8 @@ public class Inventory : MonoBehaviour
 
     int keyCount = 0;
 
+    int bombCount = 0;
+
     public void AddRupees (int num)
     {
         rupeeCount += num;
@@ -41,5 +43,15 @@ public class Inventory : MonoBehaviour
     public int GetKeys()
     {
         return keyCount;
+    }
+
+    public void AddBombs(int num)
+    {
+        bombCount += num;
+    }
+
+    public int GetBombs()
+    {
+        return bombCount;
     }
 }
