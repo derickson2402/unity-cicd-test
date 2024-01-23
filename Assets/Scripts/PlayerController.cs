@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : GenericHealth
 {
     //public fields for UI
     public TextField rupeeCountText;
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
     //hp variables
     private bool godMode = false;
-    private double hp = 3;
+    private double hp;
     private double maxHP = 3;
 
     //inventory variables
@@ -35,8 +35,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        //hp = 3;
-        heartCountText.Write(hp.ToString());
+        ModifyHP(maxHP);
         directionFacing = Vector2.down;
     }
 

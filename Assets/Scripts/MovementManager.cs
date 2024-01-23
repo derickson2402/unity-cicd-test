@@ -221,7 +221,7 @@ public class MovementManager : GenericMovement
 
         Vector3 doorFramePosition = doorPosition + (1f * playerMovement);
         StartCoroutine(CoroutineHelper.MoveObjectOverTime(transform, transform.position, doorFramePosition, 1f));
-        Debug.Log("Player moved into doorframe");
+        Debug.Log("Player moved into door frame");
         Debug.Log(transform.position);
 
         Vector3 newCameraPosition = mainCamera.transform.position + cameraMovement;
