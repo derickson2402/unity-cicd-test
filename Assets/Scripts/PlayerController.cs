@@ -198,5 +198,25 @@ public class PlayerController : MonoBehaviour
             // Play Rupee collection clip.
             AudioSource.PlayClipAtPoint(bombCollectionSoundEffect, Camera.main.transform.position);
         }
+        else if (go.CompareTag("LockedDoor"))
+        {
+            if (keyCount > 0)
+            {
+                ModifyKeys(-1);
+
+                SpriteRenderer[] sprites = go.GetComponentsInChildren<SpriteRenderer>();
+
+                Debug.Log("Size: " +  sprites.Length);
+
+                foreach (SpriteRenderer sprite in sprites)
+                {
+                    sprite.enabled = true;
+                }
+
+                go.GetComponent<BoxCollider>().enabled = false;
+
+                Debug.Log("Unlocking Door");
+            }
+        }
     }
 }
