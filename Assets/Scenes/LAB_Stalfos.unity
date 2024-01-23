@@ -4906,7 +4906,7 @@ GameObject:
   - component: {fileID: 621129634}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5100,6 +5100,7 @@ MonoBehaviour:
   heartCollectionSoundEffect: {fileID: 8300000, guid: 28bb18d1fb7dd894e9653f23a2cab493, type: 3}
   keyCollectionSoundEffect: {fileID: 8300000, guid: 28bb18d1fb7dd894e9653f23a2cab493, type: 3}
   bombCollectionSoundEffect: {fileID: 8300000, guid: 9eceb2fec6e06314886dcf24c09d9d2f, type: 3}
+  damageSoundEffect: {fileID: 0}
   directionFacing: {x: 0, y: 0}
 --- !u!1001 &630354683
 PrefabInstance:

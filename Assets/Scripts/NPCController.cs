@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NPCController : GenericHealth
 {
+    public double attackDamage;
+
     [SerializeField] private GameObject heartPrefab;
     [SerializeField] private GameObject rupeePrefab;
     [SerializeField] private GameObject bombPrefab;

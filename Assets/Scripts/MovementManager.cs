@@ -191,53 +191,61 @@ public class MovementManager : GenericMovement
         if (other.tag == "West_Door")
         {
             Debug.Log("starting West transition");
-            RoomTransition(other.transform.position, new Vector3(-1f, 0, 0), new Vector3(-16f, 0, 0));
+            //RoomTransition(other.transform.position, new Vector3(-1f, 0, 0), new Vector3(-16f, 0, 0));
+            StartCoroutine(RoomTransition(other.transform.position,
+                new Vector3(-1f, 0, 0),
+                new Vector3(-16, 0, 0)));
         }
         else if (other.tag == "East_Door")
         {
             Debug.Log("starting East transition");
-            RoomTransition(other.transform.position, new Vector3(1f, 0, 0), new Vector3(16, 0, 0));
+            //RoomTransition(other.transform.position, new Vector3(1f, 0, 0), new Vector3(16, 0, 0));
+            StartCoroutine(RoomTransition(other.transform.position,
+                new Vector3(1f, 0, 0),
+                new Vector3(16, 0, 0)));
         }
         else if (other.tag == "North_Door")
         {
             Debug.Log("starting North transition");
-            RoomTransition(other.transform.position, new Vector3(0, 1f, 0), new Vector3(0, 16, 0));
+            //RoomTransition(other.transform.position, new Vector3(0, 1f, 0), new Vector3(0, 16, 0));
+            StartCoroutine(RoomTransition(other.transform.position,
+                new Vector3(0, 1f, 0),
+                new Vector3(0, 16, 0)));
         }
         else if (other.tag == "South_Door")
         {
             Debug.Log("starting South transition");
-            RoomTransition(other.transform.position, new Vector3(0, -1f, 0), new Vector3(0, -16, 0));
+            //RoomTransition(other.transform.position, new Vector3(0, -1f, 0), new Vector3(0, -16, 0));
+            StartCoroutine(RoomTransition(other.transform.position, 
+                new Vector3(0, -1f, 0),
+                new Vector3(0, -16, 0)));
         }
     }
 
-    void RoomTransition(Vector3 doorPosition, Vector3 playerMovement, Vector3 cameraMovement)
+    IEnumerator RoomTransition(Vector3 doorPosition, Vector3 playerMovement, Vector3 cameraMovement)
     {
         rb.velocity = Vector3.zero;
-        rb.gameObject.SetActive(false);
+        rb.detectCollisions = false;
         boxCollider.enabled = false;
         inputManager.controlEnabled = false;
-        Debug.Log("Player control removed");
-        Debug.Log(transform.position);
+        Debug.Log("Player control removed\n" + transform.position.ToString());
 
         Vector3 doorFramePosition = doorPosition + (1f * playerMovement);
-        StartCoroutine(CoroutineHelper.MoveObjectOverTime(transform, transform.position, doorFramePosition, 1f));
-        Debug.Log("Player moved into door frame");
-        Debug.Log(transform.position);
+        yield return StartCoroutine(CoroutineHelper.MoveObjectOverTime(transform, transform.position, doorFramePosition, 1f));
+        Debug.Log("Player moved into door frame\n" + transform.position.ToString());
 
         Vector3 newCameraPosition = mainCamera.transform.position + cameraMovement;
-        StartCoroutine(CoroutineHelper.MoveObjectOverTime(mainCamera.transform, mainCamera.transform.position, newCameraPosition, 2.5f));
-        Debug.Log("Camera moved into new room");
-        Debug.Log(transform.position);
+        yield return StartCoroutine(CoroutineHelper.MoveObjectOverTime(mainCamera.transform, mainCamera.transform.position, newCameraPosition, 2.5f));
+        Debug.Log("Camera moved into new room\n" + transform.position.ToString());
 
         Vector3 outerDoorPosition = doorPosition + (1f * playerMovement);
-        StartCoroutine(CoroutineHelper.MoveObjectOverTime(transform, transform.position, outerDoorPosition, 1f));
-        Debug.Log("Player moved into new room");
-        Debug.Log(transform.position);
+        yield return StartCoroutine(CoroutineHelper.MoveObjectOverTime(transform, transform.position, outerDoorPosition, 1f));
+        Debug.Log("Player moved into new room\n" + transform.position.ToString());
 
-        rb.gameObject.SetActive(true);
+        rb.detectCollisions = true;
         boxCollider.enabled = true;
         inputManager.controlEnabled = true;
-        Debug.Log("Player control returned");
-        Debug.Log(transform.position);
+        Debug.Log("Player control returned\n" + transform.position.ToString());
+        yield return null;
     }
 }

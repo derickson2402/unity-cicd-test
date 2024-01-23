@@ -11,11 +11,13 @@ public class PlayerController : GenericHealth
     [SerializeField] protected TextField bombCountText;
     [SerializeField] protected TextField heartCountText;
 
-    // Sound Effects for pickups
+    // Sound Effects
     [SerializeField] protected AudioClip rupeeCollectionSoundEffect;
     [SerializeField] protected AudioClip heartCollectionSoundEffect;
     [SerializeField] protected AudioClip keyCollectionSoundEffect;
     [SerializeField] protected AudioClip bombCollectionSoundEffect;
+    [SerializeField] protected AudioClip damageSoundEffect;
+    [SerializeField] protected AudioClip deathSoundEffect;
 
     //public fields for movement
     public Vector2 directionFacing;
@@ -45,6 +47,22 @@ public class PlayerController : GenericHealth
     private void OnTriggerEnter(Collider other)
     {
         CheckForPickups(other);
+        CheckForEnemy(other);
+    }
+
+    //-------------------
+    //  Enemy Functions
+    //-------------------
+    private void CheckForEnemy(Collider other)
+    {
+        // Grab game object that this component belongs to.
+        GameObject go = other.gameObject;
+
+        // Specialize behavior based on tag.
+        if (go.CompareTag("Enemy"))
+        {
+            ModifyHP(other.GetComponent<NPCController>().attackDamage);
+        }
     }
 
     //----------------
@@ -69,10 +87,12 @@ public class PlayerController : GenericHealth
             if (hp + num > double.Epsilon)
             {
                 hp += num;
+                AudioSource.PlayClipAtPoint(damageSoundEffect, Camera.main.transform.position);
             }
             else
             {
                 GameOver();
+                AudioSource.PlayClipAtPoint(deathSoundEffect, Camera.main.transform.position);
             }
         }
         heartCountText.Write(hp.ToString());
