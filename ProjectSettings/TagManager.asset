@@ -8,6 +8,7 @@ TagManager:
   - Heart
   - Key
   - Bomb
+  - Weapon
   layers:
   - Default
   - TransparentFX
