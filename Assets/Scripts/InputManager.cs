@@ -7,12 +7,14 @@ public class InputManager : MonoBehaviour
     public bool controlEnabled = true;
     private MovementManager mover;
     private Rigidbody rb;
+    private PlayerController player;
 
     // Start is called before the first frame update
     void Start()
     {
         mover = GetComponent<MovementManager>();
         rb = GetComponent<Rigidbody>();
+        player = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -22,7 +24,13 @@ public class InputManager : MonoBehaviour
         Vector2 currentInput = GetMovementInput();
         if (currentInput != Vector2.zero)
         {
-            mover.OldMove(currentInput);
+            mover.Move(currentInput);
+            //mover.Move2(currentInput);
+        }
+
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            player.ActivateCheats();
         }
     }
 

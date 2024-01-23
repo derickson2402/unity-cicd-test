@@ -17,19 +17,27 @@ public class PlayerController : MonoBehaviour
     public AudioClip keyCollectionSoundEffect;
     public AudioClip bombCollectionSoundEffect;
 
+    //public fields for movement
+    public Vector2 directionFacing;
+
     //hp variables
-    int hp = 3;
-    int maxHP = 3;
+    private bool godMode = false;
+    private double hp = 3;
+    private double maxHP = 3;
 
     //inventory variables
-    int rupeeCount = 0;
-    int keyCount = 0;
-    int bombCount = 0;
+    private int rupeeCount = 0;
+    private int maxRupees = 255;
+    private int keyCount = 0;
+    private int maxKeys = 255;
+    private int bombCount = 0;
+    private int maxBombs = 8;
 
     void Start()
     {
         //hp = 3;
         heartCountText.Write(hp.ToString());
+        directionFacing = Vector2.down;
     }
 
     void Update()
@@ -45,7 +53,8 @@ public class PlayerController : MonoBehaviour
     //----------------
     //  HP functions
     //----------------
-    public void ModifyHP(int num)
+
+    public void ModifyHP(double num)
     {
         if (num > 0)
         {
@@ -58,9 +67,9 @@ public class PlayerController : MonoBehaviour
                 hp = maxHP;
             }
         }
-        else
+        else if (!godMode)
         {
-            if (hp + num > 0)
+            if (hp + num > double.Epsilon)
             {
                 hp += num;
             }
@@ -84,7 +93,14 @@ public class PlayerController : MonoBehaviour
     {
         if (num > 0)
         {
-            rupeeCount += num;
+            if (rupeeCount + num <= maxRupees)
+            {
+                rupeeCount += num;
+            }
+            else
+            {
+                rupeeCount = maxRupees;
+            }
         }
         else
         {
@@ -104,7 +120,14 @@ public class PlayerController : MonoBehaviour
     {
         if (num > 0)
         {
-            keyCount += num;
+            if (keyCount + num <= maxKeys)
+            {
+                keyCount += num;
+            }
+            else
+            {
+                keyCount = maxKeys;
+            }
         }
         else
         {
@@ -125,7 +148,14 @@ public class PlayerController : MonoBehaviour
     {
         if (num > 0)
         {
-            bombCount += num;
+            if (bombCount + num <= maxBombs)
+            {
+                bombCount += num;
+            }
+            else
+            {
+                bombCount = maxBombs;
+            }
         }
         else
         {
@@ -198,5 +228,19 @@ public class PlayerController : MonoBehaviour
             // Play Rupee collection clip.
             AudioSource.PlayClipAtPoint(bombCollectionSoundEffect, Camera.main.transform.position);
         }
+    }
+
+    //-----------------------
+    //  Debug/Cheat functions
+    //-----------------------
+
+    public void ActivateCheats()
+    {
+        Debug.Log("Activating God Mode");
+        godMode = true;
+        ModifyHP(maxHP);
+        ModifyRupees(maxRupees);
+        ModifyKeys(maxKeys);
+        ModifyBombs(maxBombs);
     }
 }
