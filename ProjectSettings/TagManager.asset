@@ -9,6 +9,10 @@ TagManager:
   - Key
   - Bomb
   - Weapon
+  - West_Door
+  - East_Door
+  - North_Door
+  - South_Door
   layers:
   - Default
   - TransparentFX

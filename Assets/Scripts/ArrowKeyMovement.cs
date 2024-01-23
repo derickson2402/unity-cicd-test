@@ -7,6 +7,7 @@ public class ArrowKeyMovement : MonoBehaviour
 
     // Inspector field for movement speed.
     public float movementSpeed = 4.0f;
+    public bool controlEnabled = true;
     public GridMovement movementScript;
 
     // RigidBody representing player.

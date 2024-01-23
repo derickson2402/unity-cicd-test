@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GridMovement : MonoBehaviour
 {
     /* Inspector Tunables */
-    public float ease_factor = 0.1f;
+    public float easeFactor = 0.1f;
     public LayerMask collisionLayer;
     public float gridSize = 0.5f;
 
@@ -28,9 +29,24 @@ public class GridMovement : MonoBehaviour
         //desiredPosition = SnapToGrid(desiredPosition);
         if ((desiredPosition - transform.position).magnitude > float.Epsilon)
         {
-            transform.position += (desiredPosition - transform.position) * ease_factor;
+            transform.position += (desiredPosition - transform.position) * easeFactor;
+            //rb.MovePosition(desiredPosition);
+            //StartCoroutine(MoveObjectOverTime(desiredPosition));
         }
     }
+
+    //IEnumerator MoveObjectOverTime(Vector3 desiredPosition)
+    //{
+    //    float initialTime = Time.time;
+    //    float progress = (Time.time - initialTime) / moveTime;
+    //    while (progress < 1.0f)
+    //    {
+    //        progress = (Time.time - initialTime) / moveTime;
+    //        Vector3 newPosition = Vector3.Lerp(transform.position, desiredPosition, progress);
+    //        rb.MovePosition(newPosition);
+    //        yield return null;
+    //    }
+    //}
 
     private Vector2 SnapToGrid(Vector2 current)
     {
