@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public bool controlEnabled;
+    public bool controlEnabled = true;
     private MovementManager mover;
     private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        controlEnabled = true;
         mover = GetComponent<MovementManager>();
         rb = GetComponent<Rigidbody>();
     }
