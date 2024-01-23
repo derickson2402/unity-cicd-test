@@ -13,6 +13,7 @@ TagManager:
   - East_Door
   - North_Door
   - South_Door
+  - Enemy
   layers:
   - Default
   - TransparentFX
