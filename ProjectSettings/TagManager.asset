@@ -14,6 +14,7 @@ TagManager:
   - North_Door
   - South_Door
   - Enemy
+  - LockedDoor
   layers:
   - Default
   - TransparentFX
