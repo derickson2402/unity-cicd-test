@@ -113,7 +113,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!65 &7414446811954800988
 BoxCollider:
@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 2
+  attackDamage: 0
   heartPrefab: {fileID: 3635032482316830075, guid: c2582efe209fc0d4d879594b68b8fcb0, type: 3}
   rupeePrefab: {fileID: 41561333699444045, guid: d9a084f9d726f8742b6e900a2de86b60, type: 3}
   bombPrefab: {fileID: 3757479195128016249, guid: 44d7abe612abfb6419083b48331f03f4, type: 3}

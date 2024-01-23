@@ -15,6 +15,8 @@ TagManager:
   - South_Door
   - Enemy
   - LockedDoor
+  - Horizontal_Door
+  - Vertical_Door
   layers:
   - Default
   - TransparentFX
@@ -51,4 +53,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1706663927
+    locked: 0
+  - name: Midground
+    uniqueID: 120015055
+    locked: 0
+  - name: Foreground
+    uniqueID: 744461643
+    locked: 0
+  - name: Top Cover
+    uniqueID: 3412663943
     locked: 0

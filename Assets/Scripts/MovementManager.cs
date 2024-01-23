@@ -188,59 +188,70 @@ public class MovementManager : GenericMovement
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "West_Door")
+        Vector3 difference = (transform.position - other.transform.position);
+        if (other.tag == "Horizontal_Door")
         {
-            Debug.Log("starting West transition");
-            //RoomTransition(other.transform.position, new Vector3(-1f, 0, 0), new Vector3(-16f, 0, 0));
-            StartCoroutine(RoomTransition(other.transform.position,
-                new Vector3(-1f, 0, 0),
-                new Vector3(-16, 0, 0)));
+            if (difference.x > 0)
+            {
+                Debug.Log("starting West transition");
+                //RoomTransition(other.transform.position, new Vector3(-1f, 0, 0), new Vector3(-16f, 0, 0));
+                StartCoroutine(RoomTransition(other.transform.position,
+                    new Vector3(-1f, 0, 0),
+                    new Vector3(-16, 0, 0)));
+            }
+            else
+            {
+                Debug.Log("starting East transition");
+                //RoomTransition(other.transform.position, new Vector3(1f, 0, 0), new Vector3(16, 0, 0));
+                StartCoroutine(RoomTransition(other.transform.position,
+                    new Vector3(1f, 0, 0),
+                    new Vector3(16, 0, 0)));
+            }
         }
-        else if (other.tag == "East_Door")
+        else if (other.tag == "Vertical_Door")
         {
-            Debug.Log("starting East transition");
-            //RoomTransition(other.transform.position, new Vector3(1f, 0, 0), new Vector3(16, 0, 0));
-            StartCoroutine(RoomTransition(other.transform.position,
-                new Vector3(1f, 0, 0),
-                new Vector3(16, 0, 0)));
-        }
-        else if (other.tag == "North_Door")
-        {
-            Debug.Log("starting North transition");
-            //RoomTransition(other.transform.position, new Vector3(0, 1f, 0), new Vector3(0, 16, 0));
-            StartCoroutine(RoomTransition(other.transform.position,
-                new Vector3(0, 1f, 0),
-                new Vector3(0, 16, 0)));
-        }
-        else if (other.tag == "South_Door")
-        {
-            Debug.Log("starting South transition");
-            //RoomTransition(other.transform.position, new Vector3(0, -1f, 0), new Vector3(0, -16, 0));
-            StartCoroutine(RoomTransition(other.transform.position, 
-                new Vector3(0, -1f, 0),
-                new Vector3(0, -16, 0)));
+            if (difference.y > 0)
+            {
+                Debug.Log("starting South transition");
+                //RoomTransition(other.transform.position, new Vector3(0, -1f, 0), new Vector3(0, -16, 0));
+                StartCoroutine(RoomTransition(other.transform.position,
+                    new Vector3(0, -1f, 0),
+                    new Vector3(0, -11, 0)));
+            }
+            else
+            {
+
+                Debug.Log("starting North transition");
+                //RoomTransition(other.transform.position, new Vector3(0, 1f, 0), new Vector3(0, 16, 0));
+                StartCoroutine(RoomTransition(other.transform.position,
+                    new Vector3(0, 1f, 0),
+                    new Vector3(0, 11, 0)));
+            }
         }
     }
 
     IEnumerator RoomTransition(Vector3 doorPosition, Vector3 playerMovement, Vector3 cameraMovement)
     {
+        //float roundedX = Mathf.Round(transform.position.x);
         rb.velocity = Vector3.zero;
         rb.detectCollisions = false;
         boxCollider.enabled = false;
         inputManager.controlEnabled = false;
-        Debug.Log("Player control removed\n" + transform.position.ToString());
+        Debug.Log("Player control removed\nPlayer:" + transform.position.ToString() + "\nDoor?: " + doorPosition.ToString());
 
-        Vector3 doorFramePosition = doorPosition + (1f * playerMovement);
-        yield return StartCoroutine(CoroutineHelper.MoveObjectOverTime(transform, transform.position, doorFramePosition, 1f));
+        //Vector3 doorFramePosition = doorPosition + (0.5f * playerMovement);
+        yield return StartCoroutine(CoroutineHelper.MoveObjectOverTime(transform, transform.position, doorPosition, 1f));
         Debug.Log("Player moved into door frame\n" + transform.position.ToString());
 
         Vector3 newCameraPosition = mainCamera.transform.position + cameraMovement;
         yield return StartCoroutine(CoroutineHelper.MoveObjectOverTime(mainCamera.transform, mainCamera.transform.position, newCameraPosition, 2.5f));
         Debug.Log("Camera moved into new room\n" + transform.position.ToString());
 
-        Vector3 outerDoorPosition = doorPosition + (1f * playerMovement);
+        Vector3 outerDoorPosition = doorPosition + (3f * playerMovement);
         yield return StartCoroutine(CoroutineHelper.MoveObjectOverTime(transform, transform.position, outerDoorPosition, 1f));
         Debug.Log("Player moved into new room\n" + transform.position.ToString());
+
+        yield return new WaitForSeconds(2);
 
         rb.detectCollisions = true;
         boxCollider.enabled = true;

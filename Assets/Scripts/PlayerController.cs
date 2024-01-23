@@ -250,7 +250,6 @@ public class PlayerController : GenericHealth
             if (keyCount > 0)
             {
                 ModifyKeys(-1);
-
                 SpriteRenderer[] sprites = go.GetComponentsInChildren<SpriteRenderer>();
 
                 Debug.Log("Size: " +  sprites.Length);
@@ -260,8 +259,7 @@ public class PlayerController : GenericHealth
                     sprite.enabled = true;
                 }
 
-                go.GetComponent<BoxCollider>().enabled = false;
-
+                go.tag = "Vertical_Door";
                 Debug.Log("Unlocking Door");
             }
         }
@@ -273,11 +271,19 @@ public class PlayerController : GenericHealth
 
     public void ActivateCheats()
     {
-        Debug.Log("Activating God Mode");
-        godMode = true;
-        ModifyHP(maxHP);
-        ModifyRupees(maxRupees);
-        ModifyKeys(maxKeys);
-        ModifyBombs(maxBombs);
+        if (!godMode)
+        {
+            Debug.Log("Activating God Mode");
+            godMode = true;
+            ModifyHP(maxHP);
+            ModifyRupees(maxRupees);
+            ModifyKeys(maxKeys);
+            ModifyBombs(maxBombs);
+        }
+        else
+        {
+            Debug.Log("Deactivating God Mode");
+            godMode = false;
+        }
     }
 }
