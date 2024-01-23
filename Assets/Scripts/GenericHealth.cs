@@ -6,8 +6,8 @@ using UnityEngine;
 public class GenericHealth : MonoBehaviour
 {
     //hp variables
-    public double maxHP = 3;
-    private double hp;
+    [SerializeField] protected double maxHP = 3;
+    protected double hp;
 
     void Start()
     {

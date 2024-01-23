@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3221,6 +3221,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6535598022464079231, guid: b0e84b88ece50d34994faaa815e304f5, type: 3}
   m_PrefabInstance: {fileID: 1284083286}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &460055662
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 522914441871167163, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: m_Name
+      value: Stalfos
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261089739604898080, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261089739604898080, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261089739604898080, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261089739604898080, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261089739604898080, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261089739604898080, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261089739604898080, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261089739604898080, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261089739604898080, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7261089739604898080, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
 --- !u!1001 &476255093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5002,13 +5059,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82bdef513b6286b49a21acbd74c5ed96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 961739752}
   movementSpeed: 0.28
   easeFactor: 0.1
   collisionLayer:
     serializedVersion: 2
     m_Bits: 1
   gridSize: 0.5
+  mainCamera: {fileID: 961739752}
 --- !u!114 &621129635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5034,6 +5091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3262aa6b5af37e459c1809dd5df72c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHP: 3
   rupeeCountText: {fileID: 2122274603}
   keyCountText: {fileID: 1784165754}
   bombCountText: {fileID: 1205897073}
@@ -5042,6 +5100,7 @@ MonoBehaviour:
   heartCollectionSoundEffect: {fileID: 8300000, guid: 28bb18d1fb7dd894e9653f23a2cab493, type: 3}
   keyCollectionSoundEffect: {fileID: 8300000, guid: 28bb18d1fb7dd894e9653f23a2cab493, type: 3}
   bombCollectionSoundEffect: {fileID: 8300000, guid: 9eceb2fec6e06314886dcf24c09d9d2f, type: 3}
+  directionFacing: {x: 0, y: 0}
 --- !u!1001 &630354683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15531,3 +15590,4 @@ SceneRoots:
   - {fileID: 621129627}
   - {fileID: 2064521799}
   - {fileID: 1276383493}
+  - {fileID: 460055662}

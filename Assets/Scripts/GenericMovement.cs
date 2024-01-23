@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GenericMovement : MonoBehaviour
 {
-    public float movementSpeed = 0.28f;
-    public float easeFactor = 0.1f;
-    public LayerMask collisionLayer;
-    public float gridSize = 0.5f;
+    [SerializeField] protected float movementSpeed = 0.28f;
+    [SerializeField] protected float easeFactor = 0.1f;
+    [SerializeField] protected LayerMask collisionLayer;
+    [SerializeField] protected float gridSize = 0.5f;
 
     protected BoxCollider boxCollider;
     protected Rigidbody rb;

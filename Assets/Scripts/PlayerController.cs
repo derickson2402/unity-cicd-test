@@ -5,25 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : GenericHealth
 {
-    //public fields for UI
-    public TextField rupeeCountText;
-    public TextField keyCountText;
-    public TextField bombCountText;
-    public TextField heartCountText;
+    //fields for UI
+    [SerializeField] protected TextField rupeeCountText;
+    [SerializeField] protected TextField keyCountText;
+    [SerializeField] protected TextField bombCountText;
+    [SerializeField] protected TextField heartCountText;
 
     // Sound Effects for pickups
-    public AudioClip rupeeCollectionSoundEffect;
-    public AudioClip heartCollectionSoundEffect;
-    public AudioClip keyCollectionSoundEffect;
-    public AudioClip bombCollectionSoundEffect;
+    [SerializeField] protected AudioClip rupeeCollectionSoundEffect;
+    [SerializeField] protected AudioClip heartCollectionSoundEffect;
+    [SerializeField] protected AudioClip keyCollectionSoundEffect;
+    [SerializeField] protected AudioClip bombCollectionSoundEffect;
 
     //public fields for movement
     public Vector2 directionFacing;
 
     //hp variables
     private bool godMode = false;
-    private double hp;
-    private double maxHP = 3;
 
     //inventory variables
     private int rupeeCount = 0;
@@ -53,7 +51,7 @@ public class PlayerController : GenericHealth
     //  HP functions
     //----------------
 
-    public void ModifyHP(double num)
+    public override void ModifyHP(double num)
     {
         if (num > 0)
         {

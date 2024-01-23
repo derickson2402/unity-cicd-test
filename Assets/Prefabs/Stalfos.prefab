@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4230544938628868366}
   - component: {fileID: 5898871329382514706}
   - component: {fileID: 7414446811954800988}
-  - component: {fileID: 2986704273853855450}
+  - component: {fileID: 5081859690894173543}
+  - component: {fileID: 2914594022130949357}
   m_Layer: 0
   m_Name: Stalfos
   m_TagString: Enemy
@@ -135,7 +136,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.83852196, y: 1, z: 0.2}
   m_Center: {x: -0.031805992, y: 0, z: 0}
---- !u!114 &2986704273853855450
+--- !u!114 &5081859690894173543
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +145,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 522914441871167163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d9a2a33f4add624bb5b80bb44a26247, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a1fb392f0db4ad498de98cdcc6d9a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 2
+  maxHP: 2
+  heartPrefab: {fileID: 3635032482316830075, guid: c2582efe209fc0d4d879594b68b8fcb0, type: 3}
+  rupeePrefab: {fileID: 41561333699444045, guid: d9a084f9d726f8742b6e900a2de86b60, type: 3}
+  bombPrefab: {fileID: 3757479195128016249, guid: 44d7abe612abfb6419083b48331f03f4, type: 3}
+--- !u!114 &2914594022130949357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522914441871167163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e130f230a029a084f869da843ea2fafb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 0.4
+  easeFactor: 0.1
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  gridSize: 0.5
