@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7414446811954800988}
   - component: {fileID: 5081859690894173543}
   - component: {fileID: 2914594022130949357}
+  - component: {fileID: 5988803650690637642}
+  - component: {fileID: 2271309892045936658}
   m_Layer: 0
   m_Name: Stalfos
   m_TagString: Enemy
@@ -170,3 +172,34 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   gridSize: 0.5
+--- !u!114 &5988803650690637642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522914441871167163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a427afb93374c1fa06f13c8295a379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 4
+  affectedByPlayer: 1
+  affectedByEnemy: 0
+  iFrames: 10
+--- !u!114 &2271309892045936658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522914441871167163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ee757018f634e80bff43bec9c298b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageHP: 2
+  affectPlayer: 1
+  affectEnemy: 0

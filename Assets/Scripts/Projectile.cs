@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
 
     public float flySpeed = 1.0f;   // Speed the projectile should move at
-    public int damageAmount = 1;    // Damage (in half-hearts) the projectile will do on impact
+    public float damageAmount = 1;    // Damage (in half-hearts) the projectile will do on impact
 
     private bool inFlight;          // Is the projectile flying through the air?
     private Vector3 moveVec;        // Movement vector describing the projectiles motion (0 vector if not inFlight)
@@ -43,7 +43,7 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<IsDamagable>().Damage(damageAmount);
+            collision.gameObject.GetComponent<TakesDamage>().Damage(damageAmount);
         }
         Destroy(gameObject);
     }
