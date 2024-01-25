@@ -152,10 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1fb392f0db4ad498de98cdcc6d9a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 0
-  heartPrefab: {fileID: 3635032482316830075, guid: c2582efe209fc0d4d879594b68b8fcb0, type: 3}
-  rupeePrefab: {fileID: 41561333699444045, guid: d9a084f9d726f8742b6e900a2de86b60, type: 3}
-  bombPrefab: {fileID: 3757479195128016249, guid: 44d7abe612abfb6419083b48331f03f4, type: 3}
 --- !u!114 &2914594022130949357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,10 +183,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 2
-  affectedByPlayer: 1
-  affectedByEnemy: 0
+  invincible: 0
+  isEnemy: 1
   iFrames: 10
-  curHP: 0
   damageSoundEffect: {fileID: 0}
   deathSoundEffect: {fileID: 0}
 --- !u!114 &7298099287942196844
@@ -221,6 +216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frames: 60
+  sprite: {fileID: 0}
+  curFrame: 0
 --- !u!114 &6381753220583550855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00772ac332cedf2459608d839ec5137d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartDropRate: 0
-  bombDropRate: 0
-  rupeeDropRate: 0
+  dropFreq: 0
+  heartRatio: 1
+  bombRatio: 1
+  rupeeRatio: 1

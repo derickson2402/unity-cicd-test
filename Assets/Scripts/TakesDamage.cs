@@ -57,6 +57,12 @@ public class TakesDamage : MonoBehaviour
             // We have died
             Destroy(gameObject);
             AudioSource.PlayClipAtPoint(deathSoundEffect, Camera.main.transform.position);
+            // Check if we need to drop an object
+            DropsItemOnDeath itemDrop = GetComponent<DropsItemOnDeath>();
+            if (itemDrop != null)
+            {
+                itemDrop.Drop();
+            }
             // TODO: allow configuration of special thing to do on death
         } else {
             AudioSource.PlayClipAtPoint(damageSoundEffect, Camera.main.transform.position);

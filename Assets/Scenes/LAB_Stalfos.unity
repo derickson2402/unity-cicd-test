@@ -1902,11 +1902,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2914594022130949357, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5081859690894173543, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5988803650690637642, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
       propertyPath: isEnemy
@@ -1920,6 +1920,18 @@ PrefabInstance:
       propertyPath: damageSoundEffect
       value: 
       objectReference: {fileID: 8300000, guid: 85e35dc53d2044249abde32101625874, type: 3}
+    - target: {fileID: 6381753220583550855, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: dropFreq
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381753220583550855, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: bombRatio
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381753220583550855, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: heartRatio
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7261089739604898080, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19

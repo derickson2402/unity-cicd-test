@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCController : GenericHealth
+public class NPCController : MonoBehaviour
 {
     private GenericMovement mover;
     private Rigidbody rb;
@@ -13,14 +13,8 @@ public class NPCController : GenericHealth
     {
         mover = GetComponent<GenericMovement>();
         rb = GetComponent<Rigidbody>();
-        hp = maxHP;
         currentMovement = StartCoroutine(RandomMovement());
     }
-
-    //void Update()
-    //{
-    //    StartCoroutine(RandomMovement());
-    //}
 
     // Called to generate movement for NPC
     private IEnumerator RandomMovement()
