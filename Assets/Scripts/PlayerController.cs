@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(TakesDamage))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : GenericHealth
 {
     //fields for UI
     [SerializeField] protected TextField rupeeCountText;
@@ -17,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected AudioClip heartCollectionSoundEffect;
     [SerializeField] protected AudioClip keyCollectionSoundEffect;
     [SerializeField] protected AudioClip bombCollectionSoundEffect;
+    [SerializeField] protected AudioClip damageSoundEffect;
+    [SerializeField] protected AudioClip deathSoundEffect;
 
     //public fields for movement
     public Vector2 directionFacing;
@@ -34,19 +35,71 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        ModifyHP(maxHP);
         directionFacing = Vector2.down;
     }
 
-    private void Update()
+    void Update()
     {
-        // Update UI with health information
-        TakesDamage health = GetComponent<TakesDamage>();
-        heartCountText.Write(health.GetHP().ToString());
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         CheckForPickups(other);
+        CheckForEnemy(other);
+    }
+
+    //-------------------
+    //  Enemy Functions
+    //-------------------
+    private void CheckForEnemy(Collider other)
+    {
+        // Grab game object that this component belongs to.
+        GameObject go = other.gameObject;
+
+        // Specialize behavior based on tag.
+        if (go.CompareTag("Enemy"))
+        {
+            ModifyHP(other.GetComponent<NPCController>().attackDamage);
+        }
+    }
+
+    //----------------
+    //  HP functions
+    //----------------
+
+    public override void ModifyHP(double num)
+    {
+        if (num > 0)
+        {
+            if (hp + num <= maxHP)
+            {
+                hp += num;
+            }
+            else
+            {
+                hp = maxHP;
+            }
+        }
+        else if (!godMode)
+        {
+            if (hp + num > double.Epsilon)
+            {
+                hp += num;
+                AudioSource.PlayClipAtPoint(damageSoundEffect, Camera.main.transform.position);
+            }
+            else
+            {
+                GameOver();
+                AudioSource.PlayClipAtPoint(deathSoundEffect, Camera.main.transform.position);
+            }
+        }
+        heartCountText.Write(hp.ToString());
+    }
+    private void GameOver()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     //-----------------------
@@ -156,6 +209,17 @@ public class PlayerController : MonoBehaviour
             // Play Rupee collection clip.
             AudioSource.PlayClipAtPoint(rupeeCollectionSoundEffect, Camera.main.transform.position);
         }
+        else if (go.CompareTag("Heart"))
+        {
+            ModifyHP(1);
+            Debug.Log("Hearts x" + hp);
+
+            // Make Rupee disappear.
+            Destroy(go);
+
+            // Play Rupee collection clip.
+            AudioSource.PlayClipAtPoint(heartCollectionSoundEffect, Camera.main.transform.position);
+        }
         else if (go.CompareTag("Key"))
         {
             ModifyKeys(1);
@@ -186,7 +250,6 @@ public class PlayerController : MonoBehaviour
             if (keyCount > 0)
             {
                 ModifyKeys(-1);
-
                 SpriteRenderer[] sprites = go.GetComponentsInChildren<SpriteRenderer>();
 
                 Debug.Log("Size: " +  sprites.Length);
@@ -196,8 +259,7 @@ public class PlayerController : MonoBehaviour
                     sprite.enabled = true;
                 }
 
-                go.GetComponent<BoxCollider>().enabled = false;
-
+                go.tag = "Vertical_Door";
                 Debug.Log("Unlocking Door");
             }
         }
@@ -209,11 +271,19 @@ public class PlayerController : MonoBehaviour
 
     public void ActivateCheats()
     {
-        Debug.Log("Activating God Mode");
-        godMode = true;
-        ModifyRupees(maxRupees);
-        ModifyKeys(maxKeys);
-        ModifyBombs(maxBombs);
-        GetComponent<TakesDamage>().invincible = true;
+        if (!godMode)
+        {
+            Debug.Log("Activating God Mode");
+            godMode = true;
+            ModifyHP(maxHP);
+            ModifyRupees(maxRupees);
+            ModifyKeys(maxKeys);
+            ModifyBombs(maxBombs);
+        }
+        else
+        {
+            Debug.Log("Deactivating God Mode");
+            godMode = false;
+        }
     }
 }
