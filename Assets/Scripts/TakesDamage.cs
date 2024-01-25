@@ -5,12 +5,14 @@ using UnityEngine;
 public class TakesDamage : MonoBehaviour
 {
     public float maxHP;             // Max # of health object can have
-    public bool affectedByPlayer;   // Should this take damage from players?
-    public bool affectedByEnemy;    // Should this take damage from enemies?
+    public bool isEnemy;            // Is this object considered an enemy or a player (used by DealsDamage)
     public int iFrames;             // Number of invincibility frames after taking damage
+    public float curHP;             // Current number of hit points left
+    [SerializeField] protected AudioClip damageSoundEffect;
+    [SerializeField] protected AudioClip deathSoundEffect;
+
     // TODO: allow configuration of special thing to do on death
 
-    private float curHP;    // Current number of hit points left
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +28,10 @@ public class TakesDamage : MonoBehaviour
         {
             // We have died
             Destroy(gameObject);
+            AudioSource.PlayClipAtPoint(deathSoundEffect, Camera.main.transform.position);
             // TODO: allow configuration of special thing to do on death
+        } else {
+            AudioSource.PlayClipAtPoint(damageSoundEffect, Camera.main.transform.position);
         }
     }
 

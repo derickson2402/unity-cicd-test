@@ -8,16 +8,21 @@ public class DealsDamage : MonoBehaviour
     public bool affectPlayer;   // Should this deal damage to players?
     public bool affectEnemy;    // Should this deal damage to enemies?
 
-    public void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        bool collidedWithEnemy = false;
-        //GameObject collisionTakesDamageObj = collision.gameObject.GetComponent<TakesDamage>();
-        //if (collisionTakesDamageObj != null) {
-        //    bool otherIsEnemy = collisionTakesDamageObj.isEnemy;
-        //    if ((otherIsEnemy && affectEnemy) || (!otherIsEnemy && affectPlayer))
-        //    {
-        //        collisionTakesDamageObj.Damage(damageHP);
-        //    }
-        //}
+        // Deal damage to the collided object
+        TakesDamage other = collision.gameObject.GetComponent<TakesDamage>();
+        if (other != null)
+        {
+            if ((other.isEnemy && affectEnemy) || (!other.isEnemy && affectPlayer)) {
+                other.Damage(damageHP);
+            }
+        }
+
+        // Check if we are a projectile, in which case we should delete ourselves on impact
+        if (GetComponent<Projectile>() != null) {
+            Debug.Log("Projectile destroyed");
+            Destroy(gameObject);
+        }
     }
 }

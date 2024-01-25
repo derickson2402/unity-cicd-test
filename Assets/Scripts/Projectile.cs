@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(DealsDamage))]
 public class Projectile : MonoBehaviour
 {
 
     public float flySpeed = 1.0f;   // Speed the projectile should move at
-    public float damageAmount = 1;    // Damage (in half-hearts) the projectile will do on impact
-
     private bool inFlight;          // Is the projectile flying through the air?
     private Vector3 moveVec;        // Movement vector describing the projectiles motion (0 vector if not inFlight)
     private Rigidbody rb;           // Rigid body member of the projectile
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         inFlight = false;
         moveVec = Vector3.zero;
@@ -31,20 +30,10 @@ public class Projectile : MonoBehaviour
         } else
         {
             inFlight = true;
-            // Calculate the movement vector in the given diretion at the given speed
+            // Calculate the movement vector in the given direction at the given speed
             moveVec = direction.normalized * flySpeed;
             rb.velocity = moveVec;
             Debug.Log("Projectile fired in direction" + moveVec);
         }
-    }
-
-    // On collision, destroy ourselves. If we hit an enemy, damage them
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            collision.gameObject.GetComponent<TakesDamage>().Damage(damageAmount);
-        }
-        Destroy(gameObject);
     }
 }

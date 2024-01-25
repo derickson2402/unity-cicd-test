@@ -16,8 +16,6 @@ public class PlayerController : GenericHealth
     [SerializeField] protected AudioClip heartCollectionSoundEffect;
     [SerializeField] protected AudioClip keyCollectionSoundEffect;
     [SerializeField] protected AudioClip bombCollectionSoundEffect;
-    [SerializeField] protected AudioClip damageSoundEffect;
-    [SerializeField] protected AudioClip deathSoundEffect;
 
     //public fields for movement
     public Vector2 directionFacing;
@@ -39,67 +37,9 @@ public class PlayerController : GenericHealth
         directionFacing = Vector2.down;
     }
 
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         CheckForPickups(other);
-        CheckForEnemy(other);
-    }
-
-    //-------------------
-    //  Enemy Functions
-    //-------------------
-    private void CheckForEnemy(Collider other)
-    {
-        // Grab game object that this component belongs to.
-        GameObject go = other.gameObject;
-
-        // Specialize behavior based on tag.
-        if (go.CompareTag("Enemy"))
-        {
-            ModifyHP(other.GetComponent<NPCController>().attackDamage);
-        }
-    }
-
-    //----------------
-    //  HP functions
-    //----------------
-
-    public override void ModifyHP(double num)
-    {
-        if (num > 0)
-        {
-            if (hp + num <= maxHP)
-            {
-                hp += num;
-            }
-            else
-            {
-                hp = maxHP;
-            }
-        }
-        else if (!godMode)
-        {
-            if (hp + num > double.Epsilon)
-            {
-                hp += num;
-                AudioSource.PlayClipAtPoint(damageSoundEffect, Camera.main.transform.position);
-            }
-            else
-            {
-                GameOver();
-                AudioSource.PlayClipAtPoint(deathSoundEffect, Camera.main.transform.position);
-            }
-        }
-        heartCountText.Write(hp.ToString());
-    }
-    private void GameOver()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     //-----------------------

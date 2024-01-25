@@ -15,7 +15,9 @@ GameObject:
   - component: {fileID: 5081859690894173543}
   - component: {fileID: 2914594022130949357}
   - component: {fileID: 5988803650690637642}
-  - component: {fileID: 2271309892045936658}
+  - component: {fileID: 7298099287942196844}
+  - component: {fileID: 7000562906464284719}
+  - component: {fileID: 6381753220583550855}
   m_Layer: 0
   m_Name: Stalfos
   m_TagString: Enemy
@@ -136,8 +138,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.83852196, y: 1, z: 0.2}
-  m_Center: {x: -0.031805992, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5081859690894173543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1fb392f0db4ad498de98cdcc6d9a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 2
+  attackDamage: 0
   heartPrefab: {fileID: 3635032482316830075, guid: c2582efe209fc0d4d879594b68b8fcb0, type: 3}
   rupeePrefab: {fileID: 41561333699444045, guid: d9a084f9d726f8742b6e900a2de86b60, type: 3}
   bombPrefab: {fileID: 3757479195128016249, guid: 44d7abe612abfb6419083b48331f03f4, type: 3}
@@ -184,11 +186,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a427afb93374c1fa06f13c8295a379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 4
+  maxHP: 2
   affectedByPlayer: 1
   affectedByEnemy: 0
   iFrames: 10
---- !u!114 &2271309892045936658
+  curHP: 0
+  damageSoundEffect: {fileID: 0}
+  deathSoundEffect: {fileID: 0}
+--- !u!114 &7298099287942196844
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,9 +202,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 522914441871167163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28ee757018f634e80bff43bec9c298b3, type: 3}
+  m_Script: {fileID: 11500000, guid: ac5e2a7adb5b85f4db5e405134bec2aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageHP: 2
+  damageHP: 0.5
   affectPlayer: 1
   affectEnemy: 0
+--- !u!114 &7000562906464284719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522914441871167163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 684e3b7d0c874b1458643441c4a10cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frames: 60
+--- !u!114 &6381753220583550855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522914441871167163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00772ac332cedf2459608d839ec5137d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartDropRate: 0
+  bombDropRate: 0
+  rupeeDropRate: 0
