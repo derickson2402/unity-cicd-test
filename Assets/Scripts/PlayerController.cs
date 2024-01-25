@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : GenericHealth
+[RequireComponent(typeof(TakesDamage))]
+public class PlayerController : MonoBehaviour
 {
     //fields for UI
     [SerializeField] protected TextField rupeeCountText;
@@ -33,8 +34,14 @@ public class PlayerController : GenericHealth
 
     void Start()
     {
-        ModifyHP(maxHP);
         directionFacing = Vector2.down;
+    }
+
+    private void Update()
+    {
+        // Update UI with health information
+        TakesDamage health = GetComponent<TakesDamage>();
+        heartCountText.Write(health.GetHP().ToString());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -149,17 +156,6 @@ public class PlayerController : GenericHealth
             // Play Rupee collection clip.
             AudioSource.PlayClipAtPoint(rupeeCollectionSoundEffect, Camera.main.transform.position);
         }
-        else if (go.CompareTag("Heart"))
-        {
-            ModifyHP(1);
-            Debug.Log("Hearts x" + hp);
-
-            // Make Rupee disappear.
-            Destroy(go);
-
-            // Play Rupee collection clip.
-            AudioSource.PlayClipAtPoint(heartCollectionSoundEffect, Camera.main.transform.position);
-        }
         else if (go.CompareTag("Key"))
         {
             ModifyKeys(1);
@@ -215,7 +211,6 @@ public class PlayerController : GenericHealth
     {
         Debug.Log("Activating God Mode");
         godMode = true;
-        ModifyHP(maxHP);
         ModifyRupees(maxRupees);
         ModifyKeys(maxKeys);
         ModifyBombs(maxBombs);
