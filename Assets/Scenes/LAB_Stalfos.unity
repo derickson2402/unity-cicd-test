@@ -1909,6 +1909,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5988803650690637642, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: isEnemy
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988803650690637642, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
       propertyPath: deathSoundEffect
       value: 
       objectReference: {fileID: 8300000, guid: eadd9ddd6caf28f478d3fe5144e381c6, type: 3}
@@ -4920,6 +4924,7 @@ GameObject:
   - component: {fileID: 621129636}
   - component: {fileID: 621129635}
   - component: {fileID: 621129634}
+  - component: {fileID: 621129637}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5107,6 +5112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3262aa6b5af37e459c1809dd5df72c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHP: 3
   rupeeCountText: {fileID: 2122274603}
   keyCountText: {fileID: 1784165754}
   bombCountText: {fileID: 1205897073}
@@ -5115,10 +5121,25 @@ MonoBehaviour:
   heartCollectionSoundEffect: {fileID: 8300000, guid: 28bb18d1fb7dd894e9653f23a2cab493, type: 3}
   keyCollectionSoundEffect: {fileID: 8300000, guid: 28bb18d1fb7dd894e9653f23a2cab493, type: 3}
   bombCollectionSoundEffect: {fileID: 8300000, guid: 9eceb2fec6e06314886dcf24c09d9d2f, type: 3}
-  damageSoundEffect: {fileID: 0}
-  deathSoundEffect: {fileID: 0}
-  maxHP: 3
   directionFacing: {x: 0, y: 0}
+--- !u!114 &621129637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621129625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a427afb93374c1fa06f13c8295a379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 3
+  invincible: 0
+  isEnemy: 0
+  iFrames: 30
+  damageSoundEffect: {fileID: 8300000, guid: aa41d0b3506539c43ad3eb4ef4a59ed0, type: 3}
+  deathSoundEffect: {fileID: 8300000, guid: d5435988321a753458efd8416062bb07, type: 3}
 --- !u!1001 &630354683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10893,6 +10914,10 @@ PrefabInstance:
       value: -0.16679096
       objectReference: {fileID: 0}
     - target: {fileID: 4257588124249359182, guid: 961cd858afef8ee4599588db1c737b9d, type: 3}
+      propertyPath: flySpeed
+      value: 2.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257588124249359182, guid: 961cd858afef8ee4599588db1c737b9d, type: 3}
       propertyPath: inFlight
       value: 1
       objectReference: {fileID: 0}
@@ -10900,13 +10925,18 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 0.0000001
       objectReference: {fileID: 0}
+    - target: {fileID: 7147284017560431836, guid: 961cd858afef8ee4599588db1c737b9d, type: 3}
+      propertyPath: damageHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147284017560431836, guid: 961cd858afef8ee4599588db1c737b9d, type: 3}
+      propertyPath: affectEnemy
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2869750458757562414, guid: 961cd858afef8ee4599588db1c737b9d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1924940247}
     - targetCorrespondingSourceObject: {fileID: 2869750458757562414, guid: 961cd858afef8ee4599588db1c737b9d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1924940246}
@@ -13997,21 +14027,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3caa95eca5f6647bb5ce53f2adb607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1924940247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924940240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac5e2a7adb5b85f4db5e405134bec2aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageHP: 1
-  affectPlayer: 0
-  affectEnemy: 1
 --- !u!4 &1926937308 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6535598022464079231, guid: b0e84b88ece50d34994faaa815e304f5, type: 3}
