@@ -214,5 +214,6 @@ public class PlayerController : MonoBehaviour
         ModifyRupees(maxRupees);
         ModifyKeys(maxKeys);
         ModifyBombs(maxBombs);
+        GetComponent<TakesDamage>().invincible = true;
     }
 }
