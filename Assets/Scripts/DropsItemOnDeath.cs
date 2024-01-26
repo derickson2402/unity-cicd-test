@@ -20,7 +20,7 @@ public class DropsItemOnDeath : MonoBehaviour
     }
 
     // Randomly drop an object based on given parameters
-    public void Drop()
+    public void OnDestroy()
     {
         Debug.Log("Dropping item");
         // Determine whether we drop anything at all

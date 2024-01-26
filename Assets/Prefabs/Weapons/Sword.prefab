@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7877351968269698901}
   - component: {fileID: 5050969779419050003}
   - component: {fileID: 3746156184734557750}
-  - component: {fileID: 4257588124249359182}
+  - component: {fileID: 5278937283722435218}
+  - component: {fileID: 2258032491713988256}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Weapon
@@ -135,7 +136,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.20124435, y: 0.6571953, z: 0.2}
   m_Center: {x: -0.0009326935, y: -0.14826834, z: 0}
---- !u!114 &4257588124249359182
+--- !u!114 &5278937283722435218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,8 +145,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2869750458757562414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a709243a6d74a8458868a84bc939293, type: 3}
+  m_Script: {fileID: 11500000, guid: ac5e2a7adb5b85f4db5e405134bec2aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flySpeed: 1
-  damageAmount: 1
+  damageHP: 2
+  affectPlayer: 0
+  affectEnemy: 1
+--- !u!114 &2258032491713988256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2869750458757562414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c397e40e22adcba4d9a6ea8e4bad4e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flySpeed: 2

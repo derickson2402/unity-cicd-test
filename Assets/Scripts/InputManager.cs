@@ -32,6 +32,15 @@ public class InputManager : MonoBehaviour
         {
             player.ActivateCheats();
         }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            GetComponent<WeaponInterface>().useWeaponA();
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            GetComponent<WeaponInterface>().useWeaponA();
+        }
     }
 
     Vector2 GetMovementInput()

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4591708540588532010}
   - component: {fileID: 7163417431876909910}
   - component: {fileID: 1992576672297029314}
+  - component: {fileID: 4869903085959527208}
   m_Layer: 0
   m_Name: Link
   m_TagString: Player
@@ -231,3 +232,19 @@ MonoBehaviour:
   iFrames: 30
   damageSoundEffect: {fileID: 8300000, guid: aa41d0b3506539c43ad3eb4ef4a59ed0, type: 3}
   deathSoundEffect: {fileID: 8300000, guid: d5435988321a753458efd8416062bb07, type: 3}
+--- !u!114 &4869903085959527208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434397218435722383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724dbcfb4f3623a40801d30062f02ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponAPrefab: {fileID: 0}
+  weaponAUsesAmmo: 0
+  weaponBPrefab: {fileID: 0}
+  weaponBUsesAmmo: 0

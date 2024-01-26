@@ -15,9 +15,6 @@ public class TakesDamage : MonoBehaviour
     private int curIFrames;         // Number of frames invincibility has been active for
     private bool iFrameActive;     // Are invincibility frames active?
 
-    // TODO: allow configuration of special thing to do on death
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -55,15 +52,8 @@ public class TakesDamage : MonoBehaviour
         if (curHP <= 0)
         {
             // We have died
-            Destroy(gameObject);
             AudioSource.PlayClipAtPoint(deathSoundEffect, Camera.main.transform.position);
-            // Check if we need to drop an object
-            DropsItemOnDeath itemDrop = GetComponent<DropsItemOnDeath>();
-            if (itemDrop != null)
-            {
-                itemDrop.Drop();
-            }
-            // TODO: allow configuration of special thing to do on death
+            Destroy(gameObject);
         } else {
             AudioSource.PlayClipAtPoint(damageSoundEffect, Camera.main.transform.position);
         }

@@ -36,4 +36,10 @@ public class Projectile : MonoBehaviour
             Debug.Log("Projectile fired in direction" + moveVec);
         }
     }
+
+    // Template for special animations and functions that happen after a projectile hits something
+    public virtual void PostCollision()
+    {
+        return;
+    }
 }

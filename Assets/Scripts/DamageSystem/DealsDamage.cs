@@ -20,8 +20,10 @@ public class DealsDamage : MonoBehaviour
         }
 
         // Check if we are a projectile, in which case we should delete ourselves on impact
-        if (GetComponent<Projectile>() != null) {
+        Projectile projectile = GetComponent<Projectile>();
+        if (projectile != null) {
             Debug.Log("Projectile destroyed");
+            projectile.PostCollision();
             Destroy(gameObject);
         }
     }
