@@ -7,6 +7,8 @@ public class Projectile : MonoBehaviour
 {
 
     public float flySpeed = 1.0f;   // Speed the projectile should move at
+    public bool multiFireAllowed;   // When true, WeaponInterface is allowed to have multiple active projectiles at once
+
     private bool inFlight;          // Is the projectile flying through the air?
     private Vector3 moveVec;        // Movement vector describing the projectiles motion (0 vector if not inFlight)
     private Rigidbody rb;           // Rigid body member of the projectile

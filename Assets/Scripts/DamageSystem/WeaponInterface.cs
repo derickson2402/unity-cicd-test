@@ -12,8 +12,14 @@ public class WeaponInterface : MonoBehaviour
     public DealsDamage weaponBPrefab;   // Prefab to use for weaponB
     public bool weaponBUsesAmmo;        // If weapon B is out of ammo, should it be useable?
 
-    private int weaponAAmmo = 0;
-    private int weaponBAmmo = 0;
+    private int weaponAAmmo = 0;        // Current amount of ammo in weapon A
+    private int weaponBAmmo = 0;        // Current amount of ammo in weapon B
+    private Dictionary<string,DealsDamage> weaponRefs; // References to any active projectiles, lookup done by DealsDamage.name
+
+    private void Awake()
+    {
+        weaponRefs = new Dictionary<string,DealsDamage>();
+    }
 
     // Use weapon A
     public void useWeaponA()
@@ -65,13 +71,32 @@ public class WeaponInterface : MonoBehaviour
     // Base method for useA and useB
     private void useWeapon(DealsDamage weapon, bool usesAmmo, ref int ammo)
     {
+        Assert.IsTrue(weapon != null);
         Debug.Log("Using weapon");
-        // If we have ammo left, instantiate a new weapon object on screen and decrement ammo count
+        // If we are holding a projectile, check if another is allowed to be fired
+        Projectile prefabProjectile = weapon.GetComponent<Projectile>();
+        if (prefabProjectile != null)
+        {
+            // Register projectiles to the weaponRefs dict firstly
+            if (!weaponRefs.ContainsKey(weapon.name))
+            {
+                weaponRefs.Add(weapon.name, null);
+            }
+            // Check if we're allowed to fire again
+            if (!prefabProjectile.multiFireAllowed && weaponRefs[weapon.name] != null)
+            {
+                Debug.Log("Active " + weapon.name + " already on map somewhere");
+                return;
+            }
+        }
+        // Check our ammo
+        Debug.Log("Checking ammo");
         DealsDamage weaponObj = null;
         if (usesAmmo)
         {
             if (ammo < 1)
             {
+                Debug.Log(weapon.name + " out of ammo");
                 return;
             }
             else
@@ -79,6 +104,7 @@ public class WeaponInterface : MonoBehaviour
                 --ammo;
             }
         }
+        // All good, instantiate the object
         weaponObj = Instantiate(weapon, GetComponent<Rigidbody>().position + new Vector3(0,-1), Quaternion.identity);
         Assert.IsFalse(weaponObj == null);
         // If this is a projectile, then we should call shoot
@@ -89,6 +115,10 @@ public class WeaponInterface : MonoBehaviour
         }
         else
         {
+            if (!prefabProjectile.multiFireAllowed)
+            {
+                weaponRefs[weapon.name] = weaponObj;
+            }
             projectile.Shoot(new Vector3(0, -1));
         }
     }
