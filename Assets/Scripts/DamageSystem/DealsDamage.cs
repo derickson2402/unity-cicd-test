@@ -7,6 +7,7 @@ public class DealsDamage : MonoBehaviour
     public float damageHP;      // How many health points this object deals to TakesDamage
     public bool affectPlayer;   // Should this deal damage to players?
     public bool affectEnemy;    // Should this deal damage to enemies?
+    public int attackDelayFrames; // How many frames to delay before firing/destroying. Used by WeaponInterface
 
     private void OnCollisionEnter(Collision collision)
     {
