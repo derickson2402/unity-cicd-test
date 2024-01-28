@@ -20,26 +20,29 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Set Rigidbody's velocity to currentInput.
-        Vector2 currentInput = GetMovementInput();
-        if (currentInput != Vector2.zero)
+        if (controlEnabled)
         {
-            mover.Move(currentInput);
-            //mover.Move2(currentInput);
-        }
+            // Set Rigidbody's velocity to currentInput.
+            Vector2 currentInput = GetMovementInput();
+            if (currentInput != Vector2.zero)
+            {
+                mover.Move(currentInput);
+                //mover.Move2(currentInput);
+            }
 
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            player.ActivateCheats();
-        }
+            if (Input.GetKey(KeyCode.Alpha1))
+            {
+                player.ActivateCheats();
+            }
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            GetComponent<WeaponInterface>().useWeaponA();
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            GetComponent<WeaponInterface>().useWeaponA();
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                GetComponent<WeaponInterface>().useWeaponA();
+            }
+            else if (Input.GetKeyDown(KeyCode.X))
+            {
+                GetComponent<WeaponInterface>().useWeaponA();
+            }
         }
     }
 

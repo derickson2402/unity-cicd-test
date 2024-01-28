@@ -121,6 +121,15 @@ public class WeaponInterface : MonoBehaviour
         weaponObj = Instantiate(weapon, GetComponent<Rigidbody>().position + new Vector3(0,-1), Quaternion.identity);
         weaponObj.name = weaponObj.name.Remove(weaponObj.name.Length - 7); // get rid of (cloned) at the end of name, needed for lookups later
         Assert.IsFalse(weaponObj == null);
+        // Freeze the character holding the weapon. Update() will relinquish controls once it is done with delay
+        // TODO: this will change with movement system
+        InputManager inputManager = GetComponent<InputManager>();
+        if (inputManager != null)
+        {
+            Debug.Log("Freezing player controls during weapon attack");
+            inputManager.controlEnabled = false;
+        }
+
         // Special logic for master sword, which is only a projectile when at full health
         WeaponTypeSword swordType = weaponObj.GetComponent<WeaponTypeSword>();
         if (swordType != null)
@@ -160,7 +169,8 @@ public class WeaponInterface : MonoBehaviour
                 if (projectile == null)
                 {
                     // handheld weapon
-                    Destroy(weaponInHand);
+                    Debug.Log("Destroying weapon in hand " + weaponInHand);
+                    Object.Destroy(weaponInHand.gameObject);
                 }
                 else
                 {
@@ -168,6 +178,12 @@ public class WeaponInterface : MonoBehaviour
                     Debug.Log("Fired object " + weaponInHand.name);
                     projRefs[weaponInHand.name] = weaponInHand;
                     projectile.Shoot(new Vector3(0, -1));
+                }
+                InputManager inputManger = GetComponent<InputManager>();
+                if (inputManger != null)
+                {
+                    Debug.Log("Relinquishing controls to player");
+                    inputManger.controlEnabled = true;
                 }
                 weaponInHand = null;
                 inHandFrames = 0;
