@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class CoroutineHelper {
     public static IEnumerator MoveObjectOverTime(Transform item, Vector3 startingPosition, Vector3 desiredPosition, float duration)
     {
+        UnityEngine.Debug.Log("Starting movement");
         float initialTime = Time.time;
         float progress = (Time.time - initialTime) / duration;
         while (progress < 1.0f)
@@ -15,5 +17,6 @@ public class CoroutineHelper {
             yield return null;
         }
         item.position = desiredPosition;
+        UnityEngine.Debug.Log("Finishing movement");
     }
 }
