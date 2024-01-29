@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8464560312874275155
+--- !u!1 &522914441871167163
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6123475555718510831}
-  - component: {fileID: 4425251874233818837}
-  - component: {fileID: 3930422569265256574}
-  - component: {fileID: 5916370554612000524}
-  - component: {fileID: 4039403692779773718}
-  - component: {fileID: 1813840800894668663}
+  - component: {fileID: 7261089739604898080}
+  - component: {fileID: 4230544938628868366}
+  - component: {fileID: 5898871329382514706}
+  - component: {fileID: 7414446811954800988}
+  - component: {fileID: 5081859690894173543}
+  - component: {fileID: 2914594022130949357}
+  - component: {fileID: 5988803650690637642}
+  - component: {fileID: 6381753220583550855}
   m_Layer: 0
-  m_Name: Arrow
-  m_TagString: Weapon
+  m_Name: Wallmaster
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6123475555718510831
+--- !u!4 &7261089739604898080
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464560312874275155}
+  m_GameObject: {fileID: 522914441871167163}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.881847, y: 3.9874685, z: 0.0872236}
+  m_LocalPosition: {x: 22, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4425251874233818837
+--- !u!212 &4230544938628868366
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464560312874275155}
+  m_GameObject: {fileID: 522914441871167163}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,29 +78,29 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300242, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -451461831, guid: c6fdd95b826a6854fb400a371109cdc3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.3125, y: 1}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!54 &3930422569265256574
+--- !u!54 &5898871329382514706
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464560312874275155}
+  m_GameObject: {fileID: 522914441871167163}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -115,13 +117,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &5916370554612000524
+--- !u!65 &7414446811954800988
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464560312874275155}
+  m_GameObject: {fileID: 522914441871167163}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -134,35 +136,69 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.21474075, y: 0.20762515, z: 0.2}
-  m_Center: {x: -0.0025730133, y: -0.33958924, z: 0}
---- !u!114 &4039403692779773718
+  m_Size: {x: 1, y: 1, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5081859690894173543
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464560312874275155}
+  m_GameObject: {fileID: 522914441871167163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a709243a6d74a8458868a84bc939293, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a1fb392f0db4ad498de98cdcc6d9a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flySpeed: 1
-  multiFireAllowed: 0
---- !u!114 &1813840800894668663
+--- !u!114 &2914594022130949357
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464560312874275155}
+  m_GameObject: {fileID: 522914441871167163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac5e2a7adb5b85f4db5e405134bec2aa, type: 3}
+  m_Script: {fileID: 11500000, guid: e130f230a029a084f869da843ea2fafb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageHP: 2
-  affectPlayer: 0
-  affectEnemy: 0
-  attackDelayFrames: 0
+  movementSpeed: 0.4
+  easeFactor: 0.1
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  gridSize: 0.5
+--- !u!114 &5988803650690637642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522914441871167163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a427afb93374c1fa06f13c8295a379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 3
+  invincible: 0
+  isEnemy: 1
+  iFrames: 10
+  damageSoundEffect: {fileID: 0}
+  deathSoundEffect: {fileID: 0}
+--- !u!114 &6381753220583550855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522914441871167163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00772ac332cedf2459608d839ec5137d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropFreq: 0
+  heartRatio: 1
+  bombRatio: 1
+  rupeeRatio: 1

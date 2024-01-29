@@ -9,9 +9,9 @@ public class Projectile : MonoBehaviour
     public float flySpeed = 1.0f;   // Speed the projectile should move at
     public bool multiFireAllowed;   // When true, WeaponInterface is allowed to have multiple active projectiles at once
 
-    private bool inFlight;          // Is the projectile flying through the air?
-    private Vector3 moveVec;        // Movement vector describing the projectiles motion (0 vector if not inFlight)
-    private Rigidbody rb;           // Rigid body member of the projectile
+    protected bool inFlight;        // Is the projectile flying through the air?
+    protected Vector3 moveVec;      // Movement vector describing the projectiles motion (0 vector if not inFlight)
+    protected Rigidbody rb;           // Rigid body member of the projectile
 
     // Start is called before the first frame update
     void Awake()
@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
 
     // Tells the projectile it is now in flight and to start moving in the given direction.
     // Throws exception if already in flight
-    public void Shoot(Vector3 direction)
+    public virtual void Shoot(Vector3 direction)
     {
         if (inFlight)
         {

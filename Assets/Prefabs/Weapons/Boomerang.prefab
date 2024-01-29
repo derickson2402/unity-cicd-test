@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 4425251874233818837}
   - component: {fileID: 3930422569265256574}
   - component: {fileID: 5916370554612000524}
-  - component: {fileID: 4039403692779773718}
   - component: {fileID: 1813840800894668663}
+  - component: {fileID: 2299222777477063596}
   m_Layer: 0
-  m_Name: Arrow
+  m_Name: Boomerang
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300242, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
+  m_Sprite: {fileID: 1308316783, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8464560312874275155}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.0000001
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -134,22 +134,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.21474075, y: 0.20762515, z: 0.2}
-  m_Center: {x: -0.0025730133, y: -0.33958924, z: 0}
---- !u!114 &4039403692779773718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464560312874275155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a709243a6d74a8458868a84bc939293, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flySpeed: 1
-  multiFireAllowed: 0
+  m_Size: {x: 0.52, y: 0.52, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1813840800894668663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +148,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5e2a7adb5b85f4db5e405134bec2aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageHP: 2
+  damageHP: 0.5
   affectPlayer: 0
   affectEnemy: 0
   attackDelayFrames: 0
+--- !u!114 &2299222777477063596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464560312874275155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc9039c89cbc314c976caf00c61ce8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flySpeed: 2
+  multiFireAllowed: 0
+  flyDistance: 2
+  turnFrames: 60

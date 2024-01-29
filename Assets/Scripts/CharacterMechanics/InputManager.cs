@@ -41,7 +41,7 @@ public class InputManager : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.X))
             {
-                GetComponent<WeaponInterface>().useWeaponA();
+                GetComponent<WeaponInterface>().useWeaponB();
             }
         }
     }

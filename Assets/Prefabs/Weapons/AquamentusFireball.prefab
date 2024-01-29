@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4039403692779773718}
   - component: {fileID: 1813840800894668663}
   m_Layer: 0
-  m_Name: Arrow
+  m_Name: AquamentusFireball
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300242, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
+  m_Sprite: {fileID: -291295492, guid: 328797c704b5d334fb43bd3cfad5be9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -134,8 +134,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.21474075, y: 0.20762515, z: 0.2}
-  m_Center: {x: -0.0025730133, y: -0.33958924, z: 0}
+  m_Size: {x: 0.65, y: 0.65, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4039403692779773718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flySpeed: 1
-  multiFireAllowed: 0
+  multiFireAllowed: 1
 --- !u!114 &1813840800894668663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5e2a7adb5b85f4db5e405134bec2aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageHP: 2
+  damageHP: 0.5
   affectPlayer: 0
   affectEnemy: 0
   attackDelayFrames: 0
