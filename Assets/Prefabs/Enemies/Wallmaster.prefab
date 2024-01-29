@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 5081859690894173543}
   - component: {fileID: 2914594022130949357}
   - component: {fileID: 5988803650690637642}
-  - component: {fileID: 7298099287942196844}
   - component: {fileID: 6381753220583550855}
   m_Layer: 0
   m_Name: Wallmaster
@@ -181,28 +180,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a427afb93374c1fa06f13c8295a379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 2
+  maxHP: 3
   invincible: 0
   isEnemy: 1
   iFrames: 10
   damageSoundEffect: {fileID: 0}
   deathSoundEffect: {fileID: 0}
---- !u!114 &7298099287942196844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 522914441871167163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac5e2a7adb5b85f4db5e405134bec2aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageHP: 0.5
-  affectPlayer: 1
-  affectEnemy: 0
-  attackDelayFrames: 0
 --- !u!114 &6381753220583550855
 MonoBehaviour:
   m_ObjectHideFlags: 0

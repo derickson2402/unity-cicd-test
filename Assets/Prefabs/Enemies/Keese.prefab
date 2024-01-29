@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a427afb93374c1fa06f13c8295a379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 2
+  maxHP: 0.5
   invincible: 0
   isEnemy: 1
   iFrames: 10

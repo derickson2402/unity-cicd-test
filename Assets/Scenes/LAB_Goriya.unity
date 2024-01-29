@@ -198,6 +198,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6535598022464079231, guid: b0e84b88ece50d34994faaa815e304f5, type: 3}
   m_PrefabInstance: {fileID: 521637314}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &30237631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 522914441871167163, guid: b9c53f07236f94c43abe1b7e89c11afd, type: 3}
+  m_PrefabInstance: {fileID: 972198873}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &30237641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30237631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724dbcfb4f3623a40801d30062f02ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponAPrefab: {fileID: 1813840800894668663, guid: 0e2207f1ebb0337458eda94b50952f69, type: 3}
+  weaponAUsesAmmo: 0
+  weaponBPrefab: {fileID: 0}
+  weaponBUsesAmmo: 0
 --- !u!1001 &33033664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1643,7 +1664,11 @@ PrefabInstance:
     - target: {fileID: 4869903085959527208, guid: 932ce63c9843253409f8a187b691e065, type: 3}
       propertyPath: weaponAPrefab
       value: 
-      objectReference: {fileID: 5278937283722435218, guid: 961cd858afef8ee4599588db1c737b9d, type: 3}
+      objectReference: {fileID: 1813840800894668663, guid: ece6dd788f2a122449c015c8c372a716, type: 3}
+    - target: {fileID: 4869903085959527208, guid: 932ce63c9843253409f8a187b691e065, type: 3}
+      propertyPath: weaponBPrefab
+      value: 
+      objectReference: {fileID: 1813840800894668663, guid: 0e2207f1ebb0337458eda94b50952f69, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7457,7 +7482,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 522914441871167163, guid: b9c53f07236f94c43abe1b7e89c11afd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 30237641}
   m_SourcePrefab: {fileID: 100100000, guid: b9c53f07236f94c43abe1b7e89c11afd, type: 3}
 --- !u!4 &972691088 stripped
 Transform:

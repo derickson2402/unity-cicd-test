@@ -130,7 +130,17 @@ public class WeaponInterface : MonoBehaviour
             inputManager.controlEnabled = false;
         }
 
-        // Special logic for master sword, which is only a projectile when at full health
+        // Special logic for special weapon mechanics
+        LogicSword(weaponObj);
+        LogicBoomerang(weaponObj);
+        // Weapon is spawned, put it in hand and start countdown. Update() will handle the rest of the logic
+        weaponInHand = weaponObj;
+        inHandFrames = 0;
+    }
+
+    // Special logic for master sword, which is only a projectile when at full health
+    private void LogicSword(DealsDamage weaponObj)
+    {
         WeaponTypeSword swordType = weaponObj.GetComponent<WeaponTypeSword>();
         if (swordType != null)
         {
@@ -148,9 +158,16 @@ public class WeaponInterface : MonoBehaviour
                 }
             }
         }
-        // Weapon is spawned, put it in hand and start countdown. Update() will handle the rest of the logic
-        weaponInHand = weaponObj;
-        inHandFrames = 0;
+    }
+
+    // Special logic for boomerang, which needs to track the character that threw it
+    private void LogicBoomerang(DealsDamage weaponObj)
+    {
+        WeaponTypeBoomerang boomerang = weaponObj.GetComponent<WeaponTypeBoomerang>();
+        if (boomerang != null)
+        {
+            boomerang.RefToThrower(GetComponent<Rigidbody>());
+        }
     }
 
     private void Update()

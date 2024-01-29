@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3930422569265256574}
   - component: {fileID: 5916370554612000524}
   - component: {fileID: 4039403692779773718}
+  - component: {fileID: 1813840800894668663}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Weapon
@@ -148,4 +149,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flySpeed: 1
-  damageAmount: 4
+  multiFireAllowed: 0
+--- !u!114 &1813840800894668663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464560312874275155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5e2a7adb5b85f4db5e405134bec2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageHP: 2
+  affectPlayer: 0
+  affectEnemy: 0
+  attackDelayFrames: 0
