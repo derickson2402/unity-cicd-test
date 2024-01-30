@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class MovementManager : GenericMovement
 {
@@ -19,172 +20,191 @@ public class MovementManager : GenericMovement
         desiredPosition = transform.position;
     }
 
-    void Update()
+    private int counter = 0;
+    protected override void FixedUpdate()
     {
-        EaseToDestination();
+        counter++;
+        if (counter == 60)
+        {
+            Debug.Log("Current player velocity: " + rb.velocity);
+            counter = 0;
+        }
+        base.FixedUpdate();
     }
+
+    public override void Move(Direction input)
+    {
+        Debug.Log("Direction before moving: " + directionManager.current);
+        base.Move(input);
+        Debug.Log("Direction after moving: " + directionManager.current);
+    }
+
+    //void Update()
+    //{
+    //    EaseToDestination();
+    //}
 
     //doesn't work right, supposed to be a smoother version of current movement
     //come back to later if Move3 is still broken
-    public void Move2(Vector2 input)
-    {
-        int xInput = (int)input.x;
-        int yInput = (int)input.y;
-        Vector2 start = transform.position;
+    //public void Move2(Vector2 input)
+    //{
+    //    int xInput = (int)input.x;
+    //    int yInput = (int)input.y;
+    //    Vector2 start = transform.position;
 
-        Vector2 end = start;
-        end.x += xInput * movementSpeed;
-        end.y += yInput * movementSpeed;
-        end = SnapToGrid(end);
+    //    Vector2 end = start;
+    //    end.x += xInput * movementSpeed;
+    //    end.y += yInput * movementSpeed;
+    //    end = SnapToGrid(end);
 
-        //disabling to prevent hitting our own collider
-        boxCollider.enabled = false;
+    //    //disabling to prevent hitting our own collider
+    //    boxCollider.enabled = false;
 
-        RaycastHit2D hit = Physics2D.Linecast(start, end, collisionLayer);
+    //    RaycastHit2D hit = Physics2D.Linecast(start, end, collisionLayer);
 
-        boxCollider.enabled = true;
+    //    boxCollider.enabled = true;
 
-        if (hit.transform == null)
-        {
-            StartCoroutine(CoroutineHelper.MoveObjectOverTime(transform, transform.position, end, 1f));
-        }
-    }
+    //    if (hit.transform == null)
+    //    {
+    //        StartCoroutine(CoroutineHelper.MoveObjectOverTime(transform, transform.position, end, 1f));
+    //    }
+    //}
 
     //doesn't work right, supposed to be more accurate recreation
     //come back to later
-    public void Move3(Vector2 input)
-    {
-        Vector2 start = transform.position;
-        int xInput = (int)input.x;
-        int yInput = (int)input.y;
-        float xMisalignment = Mathf.Abs(start.x % gridSize);
-        float yMisalignment = Mathf.Abs(start.y % gridSize);
-        bool xOnGrid = xMisalignment < float.Epsilon;
-        bool yOnGrid = yMisalignment < float.Epsilon;
+    //public void Move3(Vector2 input)
+    //{
+    //    Vector2 start = transform.position;
+    //    int xInput = (int)input.x;
+    //    int yInput = (int)input.y;
+    //    float xMisalignment = Mathf.Abs(start.x % gridSize);
+    //    float yMisalignment = Mathf.Abs(start.y % gridSize);
+    //    bool xOnGrid = xMisalignment < float.Epsilon;
+    //    bool yOnGrid = yMisalignment < float.Epsilon;
 
-        Debug.Log("idk man: " + (Mathf.Abs(start.x % gridSize)).ToString() + " " + (Mathf.Abs(start.y % gridSize)).ToString());
+    //    Debug.Log("idk man: " + (Mathf.Abs(start.x % gridSize)).ToString() + " " + (Mathf.Abs(start.y % gridSize)).ToString());
 
-        Debug.Log("Starting movement" +
-            "\ninitialPosition: " + start.ToString() +
-            "\nxMisalignment: " + xMisalignment.ToString() + 
-            "\nyMisalignment: " + yMisalignment.ToString() + 
-            "\nxOnGrid: " + xOnGrid.ToString() + 
-            "\nyOnGrid: " + yOnGrid.ToString());
+    //    Debug.Log("Starting movement" +
+    //        "\ninitialPosition: " + start.ToString() +
+    //        "\nxMisalignment: " + xMisalignment.ToString() + 
+    //        "\nyMisalignment: " + yMisalignment.ToString() + 
+    //        "\nxOnGrid: " + xOnGrid.ToString() + 
+    //        "\nyOnGrid: " + yOnGrid.ToString());
 
-        Vector2 newMovement = Vector2.zero;
+    //    Vector2 newMovement = Vector2.zero;
 
-        // is an x and y coordinate of 0.5 multiples
-        if (xOnGrid && yOnGrid)
-        {
-            if (xInput != 0 && yInput != 0)
-            {
-                // generate random number of 0 or 1 to decide whether to move in y or x first
-                int randomValue = Random.Range(0, 2);
-                if (randomValue == 0)
-                {
-                    newMovement += new Vector2(xInput, 0);
-                    Debug.Log("RandomMove, moving X");
-                }
-                else
-                {
-                    newMovement += new Vector2(0, yInput);
-                    Debug.Log("RandomMove, moving Y");
-                }
-            }
-            else if (xInput != 0)
-            {
-                newMovement += new Vector2(xInput, 0);
-                Debug.Log("Both on grid, moving X");
-            }
-            else if (yInput != 0)
-            {
-                newMovement += new Vector2(0, yInput);
-                Debug.Log("Both on grid, moving Y");
-            }
-        }
-        // is not a x coordinate of 0.5 multiples
-        else if (xOnGrid)
-        {
-            float distanceToGridX = Mathf.Round(start.x) - start.x;
-            if (xInput != 0)
-            {
-                newMovement += new Vector2(xInput, 0);
-                Debug.Log("X on grid, moving X");
-            }
-            else if (yInput != 0)
-            {
-                if (distanceToGridX > 0)
-                {
-                    newMovement += Vector2.right;
-                    Debug.Log("X on grid, moving right to hit Y grid");
-                }
-                else
-                {
-                    newMovement += Vector2.left;
-                    Debug.Log("X on grid, moving left to hit Y grid");
-                }
-            }
-        }
-        // is not a y coordinate of 0.5 multiples
-        else if (yOnGrid)
-        {
-            float distanceToGridY = Mathf.Round(start.y) - start.y;
-            if (yInput != 0)
-            {
-                newMovement += new Vector2(0, yInput);
-                Debug.Log("Y on grid, moving X");
-            }
-            else if (xInput != 0)
-            {
-                if (distanceToGridY > 0)
-                {
-                    newMovement += Vector2.up;
-                    Debug.Log("Y on grid, moving up to hit X grid");
-                }
-                else
-                {
-                    newMovement += Vector2.down;
-                    Debug.Log("Y on grid, moving down to hit X grid");
-                }
-            }
-        }
-        //should not happen ideally
-        else
-        {
-            float distanceToGridX = Mathf.Round(start.x) - start.x;
-            float distanceToGridY = Mathf.Round(start.y) - start.y;
-            if (Mathf.Abs(distanceToGridY) < Mathf.Abs(distanceToGridX))
-            {
-                if (distanceToGridY > 0)
-                {
-                    newMovement += Vector2.right;
-                    Debug.Log("No grid, moving right to hit Y grid");
-                }
-                else
-                {
-                    newMovement += Vector2.left;
-                    Debug.Log("No grid, moving left to hit Y grid");
-                }
-            }
-            else
-            {
-                if (distanceToGridX > 0)
-                {
-                    newMovement += Vector2.up;
-                    Debug.Log("No grid, moving up to hit X grid");
-                }
-                else
-                {
-                    newMovement += Vector2.down;
-                    Debug.Log("No grid, moving down to hit X grid");
-                }
-            }
-        }
-        Vector3 desiredPosition = start + newMovement;
-        StartCoroutine(CoroutineHelper.MoveObjectOverTime(transform, transform.position, desiredPosition, 1f));
-        //rb.velocity = newMovement * movementSpeed;
-        Debug.Log("Final velocity change: " + rb.velocity.ToString());
-    }
+    //    // is an x and y coordinate of 0.5 multiples
+    //    if (xOnGrid && yOnGrid)
+    //    {
+    //        if (xInput != 0 && yInput != 0)
+    //        {
+    //            // generate random number of 0 or 1 to decide whether to move in y or x first
+    //            int randomValue = Random.Range(0, 2);
+    //            if (randomValue == 0)
+    //            {
+    //                newMovement += new Vector2(xInput, 0);
+    //                Debug.Log("RandomMove, moving X");
+    //            }
+    //            else
+    //            {
+    //                newMovement += new Vector2(0, yInput);
+    //                Debug.Log("RandomMove, moving Y");
+    //            }
+    //        }
+    //        else if (xInput != 0)
+    //        {
+    //            newMovement += new Vector2(xInput, 0);
+    //            Debug.Log("Both on grid, moving X");
+    //        }
+    //        else if (yInput != 0)
+    //        {
+    //            newMovement += new Vector2(0, yInput);
+    //            Debug.Log("Both on grid, moving Y");
+    //        }
+    //    }
+    //    // is not a x coordinate of 0.5 multiples
+    //    else if (xOnGrid)
+    //    {
+    //        float distanceToGridX = Mathf.Round(start.x) - start.x;
+    //        if (xInput != 0)
+    //        {
+    //            newMovement += new Vector2(xInput, 0);
+    //            Debug.Log("X on grid, moving X");
+    //        }
+    //        else if (yInput != 0)
+    //        {
+    //            if (distanceToGridX > 0)
+    //            {
+    //                newMovement += Vector2.right;
+    //                Debug.Log("X on grid, moving right to hit Y grid");
+    //            }
+    //            else
+    //            {
+    //                newMovement += Vector2.left;
+    //                Debug.Log("X on grid, moving left to hit Y grid");
+    //            }
+    //        }
+    //    }
+    //    // is not a y coordinate of 0.5 multiples
+    //    else if (yOnGrid)
+    //    {
+    //        float distanceToGridY = Mathf.Round(start.y) - start.y;
+    //        if (yInput != 0)
+    //        {
+    //            newMovement += new Vector2(0, yInput);
+    //            Debug.Log("Y on grid, moving X");
+    //        }
+    //        else if (xInput != 0)
+    //        {
+    //            if (distanceToGridY > 0)
+    //            {
+    //                newMovement += Vector2.up;
+    //                Debug.Log("Y on grid, moving up to hit X grid");
+    //            }
+    //            else
+    //            {
+    //                newMovement += Vector2.down;
+    //                Debug.Log("Y on grid, moving down to hit X grid");
+    //            }
+    //        }
+    //    }
+    //    //should not happen ideally
+    //    else
+    //    {
+    //        float distanceToGridX = Mathf.Round(start.x) - start.x;
+    //        float distanceToGridY = Mathf.Round(start.y) - start.y;
+    //        if (Mathf.Abs(distanceToGridY) < Mathf.Abs(distanceToGridX))
+    //        {
+    //            if (distanceToGridY > 0)
+    //            {
+    //                newMovement += Vector2.right;
+    //                Debug.Log("No grid, moving right to hit Y grid");
+    //            }
+    //            else
+    //            {
+    //                newMovement += Vector2.left;
+    //                Debug.Log("No grid, moving left to hit Y grid");
+    //            }
+    //        }
+    //        else
+    //        {
+    //            if (distanceToGridX > 0)
+    //            {
+    //                newMovement += Vector2.up;
+    //                Debug.Log("No grid, moving up to hit X grid");
+    //            }
+    //            else
+    //            {
+    //                newMovement += Vector2.down;
+    //                Debug.Log("No grid, moving down to hit X grid");
+    //            }
+    //        }
+    //    }
+    //    Vector3 desiredPosition = start + newMovement;
+    //    StartCoroutine(CoroutineHelper.MoveObjectOverTime(transform, transform.position, desiredPosition, 1f));
+    //    //rb.velocity = newMovement * movementSpeed;
+    //    Debug.Log("Final velocity change: " + rb.velocity.ToString());
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
