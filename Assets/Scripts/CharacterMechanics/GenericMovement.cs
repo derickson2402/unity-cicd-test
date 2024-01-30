@@ -9,7 +9,7 @@ public class GenericMovement : MonoBehaviour
     [SerializeField] protected float easeFactor = 0.1f;
     [SerializeField] protected float accelerationFactor = 0.3f;
     [SerializeField] protected float deaccelerationFactor = 0.8f;
-    [SerializeField] protected float naturalDeaccelerationFactor = 0.5f;
+    [SerializeField] protected float naturalDeaccelerationFactor = 4f;
     [SerializeField] protected float changeDirectionThreshold = 0.0625f;
     [SerializeField] protected float stopThreshold = 0.0625f;
     [SerializeField] protected LayerMask collisionLayer;
@@ -34,7 +34,7 @@ public class GenericMovement : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        LerpToDestination();
+        //LerpToDestination();
     }
 
     protected void LerpToDestination()
@@ -79,18 +79,18 @@ public class GenericMovement : MonoBehaviour
         if (!movementEnabled)
         {
             //TODO: figure out velocity should be altered at all
-            desiredVelocity = Vector3.zero;
+            rb.velocity = Vector3.zero;
             return;
         }
 
         if (input == Direction.None)
         {
-            desiredVelocity = rb.velocity * naturalDeaccelerationFactor;
+            rb.velocity = rb.velocity / naturalDeaccelerationFactor;
         }
         // If player is not trying to change direction, apply velocity normally
         else if (directionManager.isCurrentDirection(input))
         {
-            desiredVelocity = DirectionManager.DirectionToVector3(input) * movementSpeed;
+            rb.velocity = DirectionManager.DirectionToVector3(input) * movementSpeed;
         }
         // If player is trying to change direction, snap position and change direction
         else
@@ -104,12 +104,12 @@ public class GenericMovement : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 Vector3 gridPosition = SnapPositionToGrid(rb.position, input);
                 StartCoroutine(
-                    CoroutineHelper.MoveCharacterOverTime(transform, rb.position, gridPosition, 0.2f, input));
+                    CoroutineHelper.MoveCharacterOverTime(transform, rb.position, gridPosition, 0.1f, input));
             }
             else
             {
                 Debug.Log("Slowing down");
-                desiredVelocity = Vector3.zero;
+                rb.velocity = Vector3.zero;
             }
         }
     }
@@ -117,7 +117,7 @@ public class GenericMovement : MonoBehaviour
     //used for applying velocity after coroutine finishes
     public void ChangeDirection(Direction input)
     {
-        desiredVelocity = DirectionManager.DirectionToVector3(input) * movementSpeed;
+        rb.velocity = DirectionManager.DirectionToVector3(input) * movementSpeed;
         directionManager.current = input;
         movementEnabled = true;
     }

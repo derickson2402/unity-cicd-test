@@ -8,6 +8,8 @@ public class InputManager : MonoBehaviour
     private MovementManager mover;
     private Rigidbody rb;
     private PlayerController player;
+    private const int MOVE_BUFFER_SIZE = 3;
+    private Queue<Direction> movements;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +17,18 @@ public class InputManager : MonoBehaviour
         mover = GetComponent<MovementManager>();
         rb = GetComponent<Rigidbody>();
         player = GetComponent<PlayerController>();
+        movements = new Queue<Direction>();
+    }
+
+    void FixedUpdate()
+    {
+        while (movements.Count > 0)
+        {
+            Debug.Log("Movements Queue Count: " + movements.Count);
+            Direction move = movements.Dequeue();
+            Debug.Log("MovementDirection: " + move);
+            mover.Move(move);
+        }
     }
 
     // Update is called once per frame
@@ -24,12 +38,16 @@ public class InputManager : MonoBehaviour
         //Vector2 currentInput = Vector2.zero;
         if (controlEnabled)
         {
-            Direction movement = DirectionManager.GetCurrentInputDirection();
-            Debug.Log("MovementDirection: " + movement);
-            if (movement != Direction.None)
+            if (movements.Count < MOVE_BUFFER_SIZE)
             {
-                mover.Move(movement);
+                movements.Enqueue(DirectionManager.GetCurrentInputDirection());
             }
+            else
+            {
+                movements.Dequeue();
+                movements.Enqueue(DirectionManager.GetCurrentInputDirection());
+            }
+
             //mover.Move2(currentInput);
             if (Input.GetKey(KeyCode.Alpha1))
             {

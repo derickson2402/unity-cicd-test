@@ -24,7 +24,7 @@ public class MovementManager : GenericMovement
     protected override void FixedUpdate()
     {
         counter++;
-        if (counter == 60)
+        if (counter == 15)
         {
             Debug.Log("Current player velocity: " + rb.velocity);
             counter = 0;
