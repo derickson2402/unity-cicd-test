@@ -178,17 +178,7 @@ public class PlayerController : MonoBehaviour
             if (keyCount > 0)
             {
                 ModifyKeys(-1);
-                SpriteRenderer[] sprites = go.GetComponentsInChildren<SpriteRenderer>();
-
-                Debug.Log("Size: " +  sprites.Length);
-
-                foreach (SpriteRenderer sprite in sprites)
-                {
-                    sprite.enabled = true;
-                }
-
-                go.tag = "Vertical_Door";
-                Debug.Log("Unlocking Door");
+                go.GetComponent<LockedDoor>().openDoor();
             }
         }
     }
