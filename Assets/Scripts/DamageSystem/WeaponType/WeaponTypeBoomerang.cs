@@ -41,6 +41,7 @@ public class WeaponTypeBoomerang : Projectile
         else
         {
             inFlight = true;
+            state = State.OUT;
             // Calculate the starting move vector in the given direction at the given speed
             moveVec = direction.normalized * flySpeed;
             rb.velocity = moveVec;
@@ -86,9 +87,10 @@ public class WeaponTypeBoomerang : Projectile
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == throwerRB.gameObject)
+        if ((collision.gameObject == throwerRB.gameObject) && (state == State.RETURN))
         {
             // Returned to the player, destroy ourselves
+            Debug.Log(throwerRB.gameObject + " caught " + gameObject);
             Destroy(gameObject);
         }
     }

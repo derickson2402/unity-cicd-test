@@ -12,11 +12,20 @@ public class DealsDamage : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Deal damage to the collided object
-        TakesDamage other = collision.gameObject.GetComponent<TakesDamage>();
+        ProcessInteraction(collision.gameObject.GetComponent<TakesDamage>());
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        ProcessInteraction(collider.gameObject.GetComponent<TakesDamage>());
+    }
+
+    private void ProcessInteraction(TakesDamage other)
+    {
         if (other != null)
         {
-            if ((other.isEnemy && affectEnemy) || (!other.isEnemy && affectPlayer)) {
+            if ((other.isEnemy && affectEnemy) || (!other.isEnemy && affectPlayer))
+            {
                 other.Damage(damageHP);
                 Debug.Log(gameObject + " damaged " + other);
             }
@@ -24,10 +33,14 @@ public class DealsDamage : MonoBehaviour
 
         // Check if we are a projectile, in which case we should delete ourselves on impact
         Projectile projectile = GetComponent<Projectile>();
-        if (projectile != null) {
-            Debug.Log("Projectile destroyed");
-            projectile.PostCollision();
-            Destroy(gameObject);
+        if (projectile != null)
+        {
+            if (projectile.InFlight())
+            {
+                Debug.Log("Projectile destroyed");
+                projectile.PostCollision();
+                Destroy(gameObject);
+            }
         }
     }
 }

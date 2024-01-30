@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 744461643
+  m_SortingLayer: 3
   m_SortingOrder: 2
   m_Sprite: {fileID: 1308316783, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -131,7 +131,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -152,8 +152,8 @@ MonoBehaviour:
   damageHP: 0.5
   affectPlayer: 0
   affectEnemy: 0
-  attackDelayFrames: 0
-  spawnOffsetDistance: 1
+  attackDelayFrames: 10
+  spawnOffsetDistance: 0.25
 --- !u!114 &2299222777477063596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,10 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc9039c89cbc314c976caf00c61ce8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flySpeed: 2
+  flySpeed: 3
   multiFireAllowed: 0
-  flyDistance: 2
-  turnFrames: 60
+  flyDistance: 3
+  turnFrames: 20
 --- !u!114 &3610373237724946670
 MonoBehaviour:
   m_ObjectHideFlags: 0
