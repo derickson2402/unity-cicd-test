@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5988803650690637642}
   - component: {fileID: 7298099287942196844}
   - component: {fileID: 6381753220583550855}
+  - component: {fileID: 3437271095162832015}
   m_Layer: 0
   m_Name: Keese
   m_TagString: Enemy
@@ -164,11 +165,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.4
-  easeFactor: 0.1
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  activeDeaccelerationFactor: 10
+  naturalDeaccelerationFactor: 4
+  gridAlignmentDurationSeconds: 0.03
+  changeDirectionThreshold: 0.17
+  stopThreshold: 0.0625
   gridSize: 0.5
+  movementEnabled: 0
 --- !u!114 &5988803650690637642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +206,7 @@ MonoBehaviour:
   affectPlayer: 1
   affectEnemy: 0
   attackDelayFrames: 0
+  spawnOffsetDistance: 0
 --- !u!114 &6381753220583550855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,3 +223,24 @@ MonoBehaviour:
   heartRatio: 1
   bombRatio: 1
   rupeeRatio: 1
+--- !u!114 &3437271095162832015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522914441871167163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 684e3b7d0c874b1458643441c4a10cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frameRate: 10
+  a: {fileID: -1842285433, guid: 15c6ef8d0de32fc4284ce2b0e2fc177a, type: 3}
+  b: {fileID: 1580812199, guid: 15c6ef8d0de32fc4284ce2b0e2fc177a, type: 3}
+  c: {fileID: 0}
+  d: {fileID: 0}
+  e: {fileID: 0}
+  f: {fileID: 0}
+  g: {fileID: 0}
+  h: {fileID: 0}

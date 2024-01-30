@@ -206,6 +206,7 @@ MonoBehaviour:
   affectPlayer: 1
   affectEnemy: 0
   attackDelayFrames: 0
+  spawnOffsetDistance: 0
 --- !u!114 &6381753220583550855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,20 +230,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522914441871167163}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b94e7bd48c4c2e41a9210939d26d770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sr: {fileID: 0}
-  flipFrameRate: 30
-  curDirection: 1
-  up: {fileID: -967709556, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
-  down: {fileID: 984893097, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
-  sideWalk: {fileID: -1287033027, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
-  sideIdle: {fileID: -1045794074, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
-  sideIdleAndWalkLookRight: 1
-  attackUp: {fileID: -967709556, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
-  attackDown: {fileID: 984893097, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
-  attackSide: {fileID: -1287033027, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
-  attackSideLooksRight: 1
+  frameRate: 15
+  up0: {fileID: -967709556, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  up1: {fileID: -479978076, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  down0: {fileID: 984893097, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  down1: {fileID: -1287033027, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  left0: {fileID: -993223371, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  left1: {fileID: -1142191504, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  right0: {fileID: -1045794074, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  right1: {fileID: -1073015967, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  attackUp: {fileID: -479978076, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  attackDown: {fileID: -1287033027, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  attackLeft: {fileID: -1142191504, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  attackRight: {fileID: -1073015967, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}

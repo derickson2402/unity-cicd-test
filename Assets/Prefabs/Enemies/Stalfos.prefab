@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a4a1e00fee27556428bf5ea56e72e0c6, type: 3}
+  m_Sprite: {fileID: -1038592916, guid: a4a1e00fee27556428bf5ea56e72e0c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -206,6 +206,7 @@ MonoBehaviour:
   affectPlayer: 1
   affectEnemy: 0
   attackDelayFrames: 0
+  spawnOffsetDistance: 0
 --- !u!114 &7000562906464284719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,9 +219,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684e3b7d0c874b1458643441c4a10cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frames: 60
-  sprite: {fileID: 0}
-  curFrame: 0
+  frameRate: 30
+  a: {fileID: -1038592916, guid: a4a1e00fee27556428bf5ea56e72e0c6, type: 3}
+  b: {fileID: -22159542, guid: a4a1e00fee27556428bf5ea56e72e0c6, type: 3}
+  c: {fileID: 0}
+  d: {fileID: 0}
+  e: {fileID: 0}
+  f: {fileID: 0}
+  g: {fileID: 0}
+  h: {fileID: 0}
 --- !u!114 &6381753220583550855
 MonoBehaviour:
   m_ObjectHideFlags: 0
