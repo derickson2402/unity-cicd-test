@@ -9,19 +9,22 @@ public class GenericMovement : MonoBehaviour
     [SerializeField] protected float easeFactor = 0.1f;
     [SerializeField] protected float accelerationFactor = 0.3f;
     [SerializeField] protected float deaccelerationFactor = 0.8f;
+    [SerializeField] protected float naturalDeaccelerationFactor = 0.5f;
     [SerializeField] protected float changeDirectionThreshold = 0.0625f;
     [SerializeField] protected float stopThreshold = 0.0625f;
     [SerializeField] protected LayerMask collisionLayer;
     [SerializeField] protected float gridSize = 0.5f;
 
+    public bool movementEnabled;
     protected BoxCollider boxCollider;
     protected Rigidbody rb;
     protected Vector3 desiredPosition;
-    protected DirectionManager directionManager = new DirectionManager();
+    protected DirectionManager directionManager = new();
     protected Vector3 desiredVelocity;
 
     void Start()
     {
+        movementEnabled = true;
         boxCollider = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
         directionManager.current = Direction.Down;
@@ -52,39 +55,20 @@ public class GenericMovement : MonoBehaviour
         }
     }
 
-    protected Vector3 SnapVelocityToGrid(Vector3 velocity, Direction newDirection)
-    {
-        // Are we moving horizontally or vertically?
-        if (newDirection is Direction.Left or Direction.Right)
-        {
-            // Snap horizontally
-            Vector3 gridVelocity = new Vector3(Mathf.Round(velocity.x / gridSize) * gridSize, velocity.y, 0);
-            Debug.Log("Snapping velocity to " + gridVelocity + "from " + velocity);
-            return gridVelocity;
-        }
-        else
-        {
-            // Snap vertically
-            Vector3 gridVelocity = new Vector3(velocity.x, Mathf.Round(velocity.y / gridSize) * gridSize, 0);
-            Debug.Log("Snapping velocity to " + gridVelocity + "from " + velocity);
-            return gridVelocity;
-        }
-    }
-
     protected Vector3 SnapPositionToGrid(Vector3 position, Direction newDirection)
     {
         // Are we moving horizontally or vertically?
         if (newDirection is Direction.Left or Direction.Right)
         {
             // Snap horizontally
-            Vector3 gridPosition = new Vector3(Mathf.Round(position.x / gridSize) * gridSize, Mathf.Round(position.y / gridSize) * gridSize, 0);
+            Vector3 gridPosition = new(Mathf.Round(position.x / gridSize) * gridSize, Mathf.Round(position.y / gridSize) * gridSize, 0);
             Debug.Log("Snapping position to " + gridPosition + "from " + position);
             return gridPosition;
         }
         else
         {
             // Snap vertically
-            Vector3 gridPosition = new Vector3(Mathf.Round(position.x / gridSize) * gridSize, Mathf.Round(position.y / gridSize) * gridSize, 0);
+            Vector3 gridPosition = new(Mathf.Round(position.x / gridSize) * gridSize, Mathf.Round(position.y / gridSize) * gridSize, 0);
             Debug.Log("Snapping position to " + gridPosition + "from " + position);
             return gridPosition;
         }
@@ -92,9 +76,16 @@ public class GenericMovement : MonoBehaviour
 
     public virtual void Move(Direction input)
     {
+        if (!movementEnabled)
+        {
+            //TODO: figure out velocity should be altered at all
+            desiredVelocity = Vector3.zero;
+            return;
+        }
+
         if (input == Direction.None)
         {
-            desiredVelocity = Vector3.zero;
+            desiredVelocity = rb.velocity * naturalDeaccelerationFactor;
         }
         // If player is not trying to change direction, apply velocity normally
         else if (directionManager.isCurrentDirection(input))
@@ -108,10 +99,12 @@ public class GenericMovement : MonoBehaviour
             //only snap to grid and change direction if nearly stopped
             if (rb.velocity.magnitude < changeDirectionThreshold)
             {
-                rb.position = SnapPositionToGrid(rb.position, input);
-                desiredVelocity = DirectionManager.DirectionToVector3(input) * movementSpeed;
-                //TODO: change animations here
-                directionManager.current = input;
+                // prevent more inputs being made during coroutine
+                movementEnabled = false;
+                rb.velocity = Vector3.zero;
+                Vector3 gridPosition = SnapPositionToGrid(rb.position, input);
+                StartCoroutine(
+                    CoroutineHelper.MoveCharacterOverTime(transform, rb.position, gridPosition, 0.2f, input));
             }
             else
             {
@@ -119,6 +112,14 @@ public class GenericMovement : MonoBehaviour
                 desiredVelocity = Vector3.zero;
             }
         }
+    }
+
+    //used for applying velocity after coroutine finishes
+    public void ChangeDirection(Direction input)
+    {
+        desiredVelocity = DirectionManager.DirectionToVector3(input) * movementSpeed;
+        directionManager.current = input;
+        movementEnabled = true;
     }
 
     protected void EaseToDestination()
