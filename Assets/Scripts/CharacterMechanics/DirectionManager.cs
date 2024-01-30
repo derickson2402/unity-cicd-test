@@ -11,7 +11,15 @@ public enum Direction
 
 public class DirectionManager
 {
+    public static Direction[] directions = { Direction.Up, Direction.Down, Direction.Left, Direction.Right };
+
     public Direction current;
+
+    public void changeDirection(Direction input)
+    {
+        current = input;
+        //TODO: trigger sprite change (probably accessed by an additional param)
+    }
 
     public bool isCurrentDirection(Direction input)
     {
