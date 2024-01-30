@@ -3,12 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+public enum Weapon
+{
+    Sword,
+    Bow,
+    Boomerang,
+    Bomb,
+    None
+}
+
 [RequireComponent(typeof(Rigidbody))]
 
 public class WeaponInterface : MonoBehaviour
 {
+    public Weapon weaponA;
     public DealsDamage weaponAPrefab;   // Prefab to use for weaponA
     public bool weaponAUsesAmmo;        // If weapon A is out of ammo, should it be useable?
+    public Weapon weaponB;
     public DealsDamage weaponBPrefab;   // Prefab to use for weaponB
     public bool weaponBUsesAmmo;        // If weapon B is out of ammo, should it be useable?
 
@@ -20,13 +31,15 @@ public class WeaponInterface : MonoBehaviour
 
     private void Awake()
     {
+        weaponA = Weapon.None;
+        weaponB = Weapon.None;
         projRefs = new Dictionary<string,DealsDamage>();
     }
 
     // Use weapon A
     public void useWeaponA()
     {
-        if (weaponAPrefab != null)
+        if (weaponA != Weapon.None)
         {
             useWeapon(weaponAPrefab, weaponAUsesAmmo, ref weaponAAmmo);
         }
@@ -35,7 +48,7 @@ public class WeaponInterface : MonoBehaviour
     // Use weapon B
     public void useWeaponB()
     {
-        if (weaponBPrefab != null)
+        if (weaponB != Weapon.None)
         {
             useWeapon(weaponBPrefab, weaponBUsesAmmo, ref weaponBAmmo);
         }
@@ -54,8 +67,9 @@ public class WeaponInterface : MonoBehaviour
     }
 
     // Set weapon slot A to the given parameters
-    public void setWeaponA(DealsDamage weaponPrefab, bool usesAmmo, int ammoCount)
+    public void setWeaponA(Weapon weaponType, DealsDamage weaponPrefab, bool usesAmmo, int ammoCount)
     {
+        weaponA = prefabToWeaponType(weaponPrefab);
         weaponAPrefab = weaponPrefab;
         weaponAUsesAmmo = usesAmmo;
         weaponAAmmo = ammoCount;
@@ -64,6 +78,7 @@ public class WeaponInterface : MonoBehaviour
     // Set weapon slot B to the given parameters
     public void setWeaponB(DealsDamage weaponPrefab, bool usesAmmo, int ammoCount)
     {
+        weaponB = prefabToWeaponType(weaponPrefab);
         weaponBPrefab = weaponPrefab;
         weaponBUsesAmmo = usesAmmo;
         weaponBAmmo = ammoCount;
@@ -151,7 +166,7 @@ public class WeaponInterface : MonoBehaviour
             }
             else
             {
-                if (health.GetHP() != health.maxHP)
+                if (health.GetHP().Equals(health.maxHP))
                 {
                     Debug.Log("Mortal player not at full health, swinging sword");
                     Destroy(weaponObj.GetComponent<Projectile>());
@@ -206,5 +221,29 @@ public class WeaponInterface : MonoBehaviour
                 inHandFrames = 0;
             }
         }
+    }
+
+    Weapon prefabToWeaponType(DealsDamage w)
+    {
+        string name = w.gameObject.name;
+        Weapon val = Weapon.None;
+        if (name == "Sword")
+        {
+            val = Weapon.Sword;
+        }
+        else if (name == "Boomerang")
+        {
+            val = Weapon.Boomerang;
+        }
+        else if (name == "Bomb")
+        {
+            val = Weapon.Bomb;
+        }
+        else if (name == "Bow")
+        {
+            val = Weapon.Bow;
+        }
+
+        return val;
     }
 }
