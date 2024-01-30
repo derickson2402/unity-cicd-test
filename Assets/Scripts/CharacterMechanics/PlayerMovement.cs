@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
-public class MovementManager : GenericMovement
+public class PlayerMovement : GenericMovement
 {
     private int counter = 0;
     protected void FixedUpdate()

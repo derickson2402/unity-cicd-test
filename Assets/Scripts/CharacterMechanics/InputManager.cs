@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public bool controlEnabled = true;
-    private MovementManager mover;
+    private PlayerMovement mover;
     private Rigidbody rb;
     private PlayerController player;
     private const int MOVE_BUFFER_SIZE = 3;
@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
-        mover = GetComponent<MovementManager>();
+        mover = GetComponent<PlayerMovement>();
         rb = GetComponent<Rigidbody>();
         player = GetComponent<PlayerController>();
         movements = new Queue<Direction>();
