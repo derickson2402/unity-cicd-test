@@ -77,14 +77,14 @@ public class GenericMovement : MonoBehaviour
         if (newDirection is Direction.Left or Direction.Right)
         {
             // Snap horizontally
-            Vector3 gridPosition = new Vector3(position.x, Mathf.Round(position.y / gridSize) * gridSize, 0);
+            Vector3 gridPosition = new Vector3(Mathf.Round(position.x / gridSize) * gridSize, Mathf.Round(position.y / gridSize) * gridSize, 0);
             Debug.Log("Snapping position to " + gridPosition + "from " + position);
             return gridPosition;
         }
         else
         {
             // Snap vertically
-            Vector3 gridPosition = new Vector3(Mathf.Round(position.x / gridSize) * gridSize, position.y, 0);
+            Vector3 gridPosition = new Vector3(Mathf.Round(position.x / gridSize) * gridSize, Mathf.Round(position.y / gridSize) * gridSize, 0);
             Debug.Log("Snapping position to " + gridPosition + "from " + position);
             return gridPosition;
         }
