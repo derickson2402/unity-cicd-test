@@ -188,8 +188,8 @@ MonoBehaviour:
   invincible: 0
   isEnemy: 1
   iFrames: 10
-  damageSoundEffect: {fileID: 0}
-  deathSoundEffect: {fileID: 0}
+  damageSoundEffect: {fileID: 8300000, guid: 85e35dc53d2044249abde32101625874, type: 3}
+  deathSoundEffect: {fileID: 8300000, guid: eadd9ddd6caf28f478d3fe5144e381c6, type: 3}
 --- !u!114 &7298099287942196844
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -153,7 +153,7 @@ MonoBehaviour:
   affectPlayer: 0
   affectEnemy: 0
   attackDelayFrames: 0
-  spawnOffsetDistance: 0
+  spawnOffsetDistance: 1
 --- !u!114 &2299222777477063596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,8 +182,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684e3b7d0c874b1458643441c4a10cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frameRate: 0
-  a: {fileID: 0}
-  b: {fileID: 0}
-  c: {fileID: 0}
-  d: {fileID: 0}
+  frameRate: 2
+  a: {fileID: 1308316783, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
+  b: {fileID: -1543908116, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
+  c: {fileID: 2105342776, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
+  d: {fileID: -1000114816, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
+  e: {fileID: -1240568716, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
+  f: {fileID: 682953426, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
+  g: {fileID: -159454125, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
+  h: {fileID: -109148453, guid: 692bce65886c270469706eb4c1a4aced, type: 3}

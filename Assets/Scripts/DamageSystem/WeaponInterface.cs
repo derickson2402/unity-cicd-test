@@ -124,6 +124,13 @@ public class WeaponInterface : MonoBehaviour
         weaponObj = Instantiate(weapon, GetComponent<Rigidbody>().position + weaponOffset, Quaternion.identity);
         weaponObj.name = weaponObj.name.Remove(weaponObj.name.Length - 7); // get rid of (cloned) at the end of name, needed for lookups later
         Assert.IsFalse(weaponObj == null);
+        // Set player/enemy interactions
+        if (weaponObj.name != "Bomb")
+        {
+            TakesDamage health = GetComponent<TakesDamage>();
+            weaponObj.affectEnemy = !health.isEnemy;
+            weaponObj.affectPlayer = health.isEnemy;
+        }
         // Trigger attack animations if necessary
         ScriptAnim4DirectionWalkPlusAttack anim = GetComponent<ScriptAnim4DirectionWalkPlusAttack>();
         if (anim != null)

@@ -18,6 +18,7 @@ public class DealsDamage : MonoBehaviour
         {
             if ((other.isEnemy && affectEnemy) || (!other.isEnemy && affectPlayer)) {
                 other.Damage(damageHP);
+                Debug.Log(gameObject + " damaged " + other);
             }
         }
 
