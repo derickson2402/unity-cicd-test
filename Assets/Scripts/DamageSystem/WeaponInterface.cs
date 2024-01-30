@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(GenericMovement))]
 
 public class WeaponInterface : MonoBehaviour
 {
@@ -116,13 +117,20 @@ public class WeaponInterface : MonoBehaviour
                 --ammo;
             }
         }
+        // What direction are we facing?
+        Vector3 weaponOffset = weapon.spawnOffsetDistance * DirectionManager.DirectionToVector3(GetComponent<GenericMovement>().directionManager.current);
         // All good, instantiate the object
         Debug.Log("spawning weapon " + weapon.name);
-        weaponObj = Instantiate(weapon, GetComponent<Rigidbody>().position + new Vector3(0,-1), Quaternion.identity);
+        weaponObj = Instantiate(weapon, GetComponent<Rigidbody>().position + weaponOffset, Quaternion.identity);
         weaponObj.name = weaponObj.name.Remove(weaponObj.name.Length - 7); // get rid of (cloned) at the end of name, needed for lookups later
         Assert.IsFalse(weaponObj == null);
+        // Trigger attack animations if necessary
+        ScriptAnim4DirectionWalkPlusAttack anim = GetComponent<ScriptAnim4DirectionWalkPlusAttack>();
+        if (anim != null)
+        {
+            anim.BeginAttack();
+        }
         // Freeze the character holding the weapon. Update() will relinquish controls once it is done with delay
-        // TODO: this will change with movement system
         InputManager inputManager = GetComponent<InputManager>();
         if (inputManager != null)
         {
@@ -194,13 +202,20 @@ public class WeaponInterface : MonoBehaviour
                     // Projectile
                     Debug.Log("Fired object " + weaponInHand.name);
                     projRefs[weaponInHand.name] = weaponInHand;
-                    projectile.Shoot(new Vector3(0, -1));
+                    projectile.Shoot(DirectionManager.DirectionToVector3(GetComponent<GenericMovement>().directionManager.current));
                 }
+                // Return control back to player
                 InputManager inputManger = GetComponent<InputManager>();
                 if (inputManger != null)
                 {
                     Debug.Log("Relinquishing controls to player");
                     inputManger.controlEnabled = true;
+                }
+                // Handle animations
+                ScriptAnim4DirectionWalkPlusAttack anim = GetComponent<ScriptAnim4DirectionWalkPlusAttack>();
+                if (anim != null)
+                {
+                    anim.EndAttack();
                 }
                 weaponInHand = null;
                 inHandFrames = 0;

@@ -166,3 +166,4 @@ MonoBehaviour:
   affectPlayer: 0
   affectEnemy: 0
   attackDelayFrames: 0
+  spawnOffsetDistance: 0

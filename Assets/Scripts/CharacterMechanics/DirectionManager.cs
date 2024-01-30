@@ -18,7 +18,6 @@ public class DirectionManager
     public void changeDirection(Direction input)
     {
         current = input;
-        //TODO: trigger sprite change (probably accessed by an additional param)
     }
 
     public bool isCurrentDirection(Direction input)

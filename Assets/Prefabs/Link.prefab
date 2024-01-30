@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7163417431876909910}
   - component: {fileID: 1992576672297029314}
   - component: {fileID: 4869903085959527208}
+  - component: {fileID: 6226975357632161720}
   m_Layer: 0
   m_Name: Link
   m_TagString: Player
@@ -215,7 +216,6 @@ MonoBehaviour:
   stopThreshold: 0.0625
   gridSize: 0.5
   movementEnabled: 1
-  mainCamera: {fileID: 0}
 --- !u!114 &1992576672297029314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,3 +250,27 @@ MonoBehaviour:
   weaponAUsesAmmo: 0
   weaponBPrefab: {fileID: 0}
   weaponBUsesAmmo: 0
+--- !u!114 &6226975357632161720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434397218435722383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b94e7bd48c4c2e41a9210939d26d770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sr: {fileID: 0}
+  flipFrameRate: 15
+  curDirection: 0
+  up: {fileID: -967709556, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  down: {fileID: 984893097, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  sideWalk: {fileID: -1287033027, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  sideIdle: {fileID: -1045794074, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  sideIdleAndWalkLookRight: 1
+  attackUp: {fileID: -967709556, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  attackDown: {fileID: 984893097, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  attackSide: {fileID: -1287033027, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  attackSideLooksRight: 1

@@ -8,6 +8,7 @@ public class DealsDamage : MonoBehaviour
     public bool affectPlayer;   // Should this deal damage to players?
     public bool affectEnemy;    // Should this deal damage to enemies?
     public int attackDelayFrames; // How many frames to delay before firing/destroying. Used by WeaponInterface
+    public float spawnOffsetDistance; // How far from the character should this be spawned on use?
 
     private void OnCollisionEnter(Collision collision)
     {

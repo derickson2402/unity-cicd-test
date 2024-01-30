@@ -17,7 +17,7 @@ public class GenericMovement : MonoBehaviour
 
     public bool movementEnabled;
     protected Rigidbody rb;
-    protected DirectionManager directionManager = new();
+    public DirectionManager directionManager = new();
 
     void Start()
     {
@@ -74,5 +74,11 @@ public class GenericMovement : MonoBehaviour
         rb.velocity = DirectionManager.DirectionToVector3(input) * movementSpeed;
         directionManager.changeDirection(input);
         movementEnabled = true;
+        // Handle animations
+        ScriptAnim4DirectionWalkPlusAttack anim = GetComponent<ScriptAnim4DirectionWalkPlusAttack>();
+        if (anim != null)
+        {
+            anim.ChangeDirection(input);
+        }
     }
 }

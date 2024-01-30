@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5988803650690637642}
   - component: {fileID: 7298099287942196844}
   - component: {fileID: 6381753220583550855}
+  - component: {fileID: 5381262001536537138}
   m_Layer: 0
   m_Name: Goriya
   m_TagString: Enemy
@@ -164,11 +165,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.4
-  easeFactor: 0.1
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  activeDeaccelerationFactor: 10
+  naturalDeaccelerationFactor: 4
+  gridAlignmentDurationSeconds: 0.03
+  changeDirectionThreshold: 0.17
+  stopThreshold: 0.0625
   gridSize: 0.5
+  movementEnabled: 0
 --- !u!114 &5988803650690637642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,3 +222,27 @@ MonoBehaviour:
   heartRatio: 1
   bombRatio: 1
   rupeeRatio: 1
+--- !u!114 &5381262001536537138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522914441871167163}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b94e7bd48c4c2e41a9210939d26d770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sr: {fileID: 0}
+  flipFrameRate: 30
+  curDirection: 1
+  up: {fileID: -967709556, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  down: {fileID: 984893097, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  sideWalk: {fileID: -1287033027, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  sideIdle: {fileID: -1045794074, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  sideIdleAndWalkLookRight: 1
+  attackUp: {fileID: -967709556, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  attackDown: {fileID: 984893097, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  attackSide: {fileID: -1287033027, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  attackSideLooksRight: 1
