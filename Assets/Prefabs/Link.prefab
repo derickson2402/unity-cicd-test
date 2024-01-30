@@ -207,12 +207,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82bdef513b6286b49a21acbd74c5ed96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0.88
-  easeFactor: 0.1
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  movementSpeed: 4.4
+  activeDeaccelerationFactor: 10
+  naturalDeaccelerationFactor: 4
+  gridAlignmentDurationSeconds: 0.03
+  changeDirectionThreshold: 0.17
+  stopThreshold: 0.0625
   gridSize: 0.5
+  movementEnabled: 1
   mainCamera: {fileID: 0}
 --- !u!114 &1992576672297029314
 MonoBehaviour:

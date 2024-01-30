@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5898871329382514706}
   - component: {fileID: 7414446811954800988}
   - component: {fileID: 5081859690894173543}
-  - component: {fileID: 2914594022130949357}
+  - component: {fileID: 5301714761667237543}
   - component: {fileID: 5988803650690637642}
   - component: {fileID: 7298099287942196844}
   - component: {fileID: 7000562906464284719}
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1fb392f0db4ad498de98cdcc6d9a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2914594022130949357
+--- !u!114 &5301714761667237543
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,15 +161,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 522914441871167163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e130f230a029a084f869da843ea2fafb, type: 3}
+  m_Script: {fileID: 11500000, guid: 82bdef513b6286b49a21acbd74c5ed96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0.4
-  easeFactor: 0.1
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  movementSpeed: 4.4
+  activeDeaccelerationFactor: 10
+  naturalDeaccelerationFactor: 4
+  gridAlignmentDurationSeconds: 0.03
+  changeDirectionThreshold: 0.17
+  stopThreshold: 0.0625
   gridSize: 0.5
+  movementEnabled: 1
 --- !u!114 &5988803650690637642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +205,7 @@ MonoBehaviour:
   damageHP: 0.5
   affectPlayer: 1
   affectEnemy: 0
+  attackDelayFrames: 0
 --- !u!114 &7000562906464284719
 MonoBehaviour:
   m_ObjectHideFlags: 0

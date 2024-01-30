@@ -1,66 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class GenericMovement : MonoBehaviour
 {
-    [SerializeField] protected float movementSpeed = 0.28f;
-    [SerializeField] protected float easeFactor = 0.1f;
-    [SerializeField] protected LayerMask collisionLayer;
+    [SerializeField] protected float movementSpeed = 2f;
+    [SerializeField] protected float activeDeaccelerationFactor = 10f;
+    [SerializeField] protected float naturalDeaccelerationFactor = 4f;
+    [SerializeField] protected float gridAlignmentDurationSeconds = 0.03f;
+
+    [SerializeField] protected float changeDirectionThreshold = 0.17f;
+    [SerializeField] protected float stopThreshold = 0.0625f;
+
     [SerializeField] protected float gridSize = 0.5f;
 
-    protected BoxCollider boxCollider;
+    public bool movementEnabled;
     protected Rigidbody rb;
-    protected Vector3 desiredPosition;
+    protected DirectionManager directionManager = new();
 
     void Start()
     {
-        boxCollider = GetComponent<BoxCollider>();
+        movementEnabled = true;
         rb = GetComponent<Rigidbody>();
-        desiredPosition = transform.position;
+        directionManager.changeDirection(Direction.Down);
     }
 
-    void Update()
+    protected Vector3 SnapPositionToGrid(Vector3 position)
     {
-        EaseToDestination();
+        // Snap horizontally and vertically
+        Vector3 gridPosition = new(Mathf.Round(position.x / gridSize) * gridSize, Mathf.Round(position.y / gridSize) * gridSize, 0);
+        Debug.Log("Snapping position to " + gridPosition + "from " + position);
+        return gridPosition;
     }
 
-    //put into a function, so it can be easily switched for testing
-    protected void EaseToDestination()
+    public virtual void Move(Direction input)
     {
-        if ((desiredPosition - transform.position).magnitude > float.Epsilon)
+        if (!movementEnabled)
         {
-            Vector3 difference = (desiredPosition - transform.position);
-            transform.position += difference * easeFactor;
+            rb.velocity = Vector3.zero;
+        }
+        // If player is not trying to change direction, apply velocity normally
+        else if (directionManager.isCurrentDirection(input))
+        {
+            rb.velocity = DirectionManager.DirectionToVector3(input) * movementSpeed;
+        }
+        else
+        {
+            // If player is trying to change direction, snap position and change direction
+            Debug.Log("Trying to change directions to " + input);
+            //only snap to grid and change direction if nearly stopped
+            if (rb.velocity.magnitude < changeDirectionThreshold)
+            {
+                // prevent more inputs being made during coroutine
+                movementEnabled = false;
+                rb.velocity = Vector3.zero;
+                Vector3 gridPosition = SnapPositionToGrid(rb.position);
+                StartCoroutine(
+                    CoroutineHelper.MoveCharacterOverTime(transform, rb.position, gridPosition, gridAlignmentDurationSeconds, input));
+            }
+            else
+            {
+                // If player is moving too fast for a direction change, slow down
+                Debug.Log("Slowing down");
+                rb.velocity /= activeDeaccelerationFactor;
+            }
         }
     }
 
-    protected Vector2 SnapToGrid(Vector2 current)
+    //used for applying velocity after coroutine finishes
+    public void ChangeDirection(Direction input)
     {
-        return new Vector2(Mathf.Round(current.x / gridSize) * gridSize, Mathf.Round(current.y / gridSize) * gridSize);
-    }
-
-    public void Move(Vector2 input)
-    {
-        int xInput = (int)input.x;
-        int yInput = (int)input.y;
-        Vector2 start = transform.position;
-
-        Vector2 end = start;
-        end.x += xInput * movementSpeed;
-        end.y += yInput * movementSpeed;
-        end = SnapToGrid(end);
-
-        //disabling to prevent hitting our own collider
-        boxCollider.enabled = false;
-
-        RaycastHit2D hit = Physics2D.Linecast(start, end, collisionLayer);
-
-        boxCollider.enabled = true;
-
-        if (hit.transform == null)
-        {
-            desiredPosition = end;
-        }
+        rb.velocity = DirectionManager.DirectionToVector3(input) * movementSpeed;
+        directionManager.changeDirection(input);
+        movementEnabled = true;
     }
 }

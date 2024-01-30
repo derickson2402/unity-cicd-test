@@ -7,7 +7,6 @@ public class NPCController : MonoBehaviour
     private GenericMovement mover;
     private Rigidbody rb;
     private Coroutine currentMovement;
-    private Vector2[] directions = { Vector2.up, Vector2.right, Vector2.down, Vector2.left };
 
     void Start()
     {
@@ -29,8 +28,8 @@ public class NPCController : MonoBehaviour
             }
 
             // 20% chance to move in a random direction (each direction is 25%)
-            Vector2 movement = directions[Random.Range(0, directions.Length)];
-            Debug.Log("NPC moving " + movement.ToString());
+            Direction movement = DirectionManager.directions[Random.Range(0, DirectionManager.directions.Length)];
+            Debug.Log("NPC " + gameObject.name + " moving " + movement.ToString());
             mover.Move(movement);
             yield return new WaitForSeconds(1);
         }
