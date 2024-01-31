@@ -62,4 +62,28 @@ public class DirectionManager
             _ => Vector3.zero
         };
     }
+
+    public static Direction invertDirection(Direction input)
+    {
+        if (input == Direction.Left)
+        {
+            return Direction.Right;
+        }
+        else if (input == Direction.Right)
+        {
+            return Direction.Left;
+        }
+        else if (input == Direction.Up)
+        {
+            return Direction.Down;
+        }
+        else if (input == Direction.Down)
+        {
+            return Direction.Up;
+        }
+        else
+        {
+            return Direction.None;
+        }
+    }
 }

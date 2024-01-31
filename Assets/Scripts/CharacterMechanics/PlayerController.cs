@@ -17,9 +17,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected AudioClip keyCollectionSoundEffect;
     [SerializeField] protected AudioClip bombCollectionSoundEffect;
 
-    //public fields for movement
-    public Vector2 directionFacing;
-
     //hp variables
     private bool godMode = false;
 
@@ -34,7 +31,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         GetComponent<ScriptAnim4DirectionWalkPlusAttack>().active = true;
-        directionFacing = Vector2.down;
+        GetComponent<GenericMovement>().movementEnabled = true;
     }
 
     private void OnTriggerEnter(Collider other)

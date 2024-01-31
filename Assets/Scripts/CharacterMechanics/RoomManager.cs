@@ -12,6 +12,8 @@ public class RoomManager : MonoBehaviour
     private Dictionary<(int, int), GameObject> roomDictionary;
     private int roomX;
     private int roomY;
+    private GameObject currentRoom;
+    private GoriyaAI[] goriyaAIArray;
 
     void Start()
     {
@@ -27,7 +29,8 @@ public class RoomManager : MonoBehaviour
         }
         roomX = 2;
         roomY = 0;
-        SetRoomState(roomX, roomY, true);
+        currentRoom = roomDictionary[(roomX, roomY)];
+        SetRoomState(currentRoom, true);
         rb = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         inputManager = GetComponent<InputManager>();
@@ -84,7 +87,7 @@ public class RoomManager : MonoBehaviour
         boxCollider.enabled = false;
         inputManager.controlEnabled = false;
 
-        SetRoomState(roomX, roomY, false);
+        SetRoomState(currentRoom, false);
         Debug.Log("Room (" + roomX + "," + roomY + ") is deactivated");
 
         Debug.Log("Player control removed\nPlayer:" + transform.position + "\nDoor?: " + doorPosition);
@@ -104,9 +107,11 @@ public class RoomManager : MonoBehaviour
             CoroutineHelper.MoveObjectOverTime(transform, transform.position, outerDoorPosition, 1f));
         Debug.Log("Player moved into new room\n" + transform.position);
 
+        inputManager.goriyaInRoom = false;
         roomX += xChange;
         roomY += yChange;
-        SetRoomState(roomX, roomY, true);
+        currentRoom = roomDictionary[(roomX, roomY)];
+        SetRoomState(currentRoom, true);
         Debug.Log("Room (" + roomX + "," + roomY + ") is active");
 
         rb.detectCollisions = true;
@@ -116,21 +121,34 @@ public class RoomManager : MonoBehaviour
         yield return null;
     }
 
-    private void SetRoomState(int x, int y, bool state)
+    private void SetRoomState(GameObject room, bool state)
     {
-        foreach (var children in roomDictionary[(x, y)].GetComponentsInChildren<GenericMovement>())
+        foreach (var children in room.GetComponentsInChildren<GenericMovement>())
         {
             children.movementEnabled = state;
         }
 
-        foreach (var children in roomDictionary[(x, y)].GetComponentsInChildren<ScriptAnim4DirectionWalkPlusAttack>())
+        foreach (var children in room.GetComponentsInChildren<ScriptAnim4DirectionWalkPlusAttack>())
         {
             children.active = state;
         }
 
-        foreach (var children in roomDictionary[(x, y)].GetComponentsInChildren<ScriptAnim4Sprite>())
+        foreach (var children in room.GetComponentsInChildren<ScriptAnim4Sprite>())
         {
             children.active = state;
+        }
+
+        goriyaAIArray = room.GetComponentsInChildren<GoriyaAI>();
+        if (state && goriyaAIArray.Length > 0) {
+            inputManager.goriyaInRoom = true;
+        }
+    }
+
+    public void transmitDirectionToGoriya(Direction move)
+    {
+        foreach (var goriyaAI in goriyaAIArray)
+        {
+            goriyaAI.SetMirrorMove(move);
         }
     }
 }

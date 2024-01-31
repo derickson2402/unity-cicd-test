@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
+using static System.Net.WebRequestMethods;
 
 public enum AIState
 {
@@ -13,61 +14,63 @@ public enum AIState
 public class NPCController : MonoBehaviour
 {
     public AIState state;
-    private GenericMovement mover;
-    private Rigidbody rb;
-    private Coroutine currentMovement;
+    protected GenericMovement mover;
+    protected Rigidbody rb;
+    protected Coroutine currentMovement;
+    protected GameObject player;
+    private float raycastDistance = 1.0f;
 
     //private Vector3 playerPosition;
     //private float timeSincePlayerScan;
     //private float timeBetweenPlayerScans = 0.3f;
 
-    void Start()
+    void Awake()
     {
         mover = GetComponent<GenericMovement>();
-        mover.movementEnabled = false;
         rb = GetComponent<Rigidbody>();
+    }
+
+    protected virtual void Start()
+    {
         //playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
-        
+        player = GameObject.FindGameObjectWithTag("Player");
         state = AIState.Wander;
         currentMovement = StartCoroutine(AIMovement());
     }
 
-    protected virtual void Update()
-    {
-        //timeSincePlayerScan += Time.deltaTime;
-        //if (timeSincePlayerScan >= timeBetweenPlayerScans)
-        //{
-        //    timeSincePlayerScan = 0;
-        //    playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
-        //}
-    }
-
     protected virtual Direction GenerateMoveTowardPlayer()
     {
-        Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
-        Vector3 delta = transform.position - playerPosition;
+        RaycastHit hitUp, hitDown, hitLeft, hitRight;
+
+        Physics.Raycast(transform.position, Vector3.up, out hitUp, raycastDistance);
+        Physics.Raycast(transform.position, Vector3.down, out hitDown, raycastDistance);
+        Physics.Raycast(transform.position, Vector3.left, out hitLeft, raycastDistance);
+        Physics.Raycast(transform.position, Vector3.right, out hitRight, raycastDistance);
+
+        Vector3 delta = player.transform.position - transform.position;
         if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
         {
-            if (delta.x > 0)
+            if (delta.x > 0 && hitRight.collider == null)
             {
                 return Direction.Right;
             }
-            else
+            else if (hitLeft.collider == null)
             {
                 return Direction.Left;
             }
         }
         else
         {
-            if (delta.y > 0)
+            if (delta.y > 0 && hitUp.collider == null)
             {
                 return Direction.Up;
             }
-            else
+            else if (hitDown.collider == null)
             {
                 return Direction.Down;
             }
         }
+        return Direction.None; // return an alternative or do nothing if all paths are blocked
     }
 
     protected virtual void WanderMove()
@@ -90,18 +93,29 @@ public class NPCController : MonoBehaviour
     {
         while (true)
         {
-            while (mover.movementEnabled)
+            if (mover.movementEnabled)
             {
-                if (state == AIState.Wander)
+                switch (state)
                 {
-                    WanderMove();
-                }
-                else if (state == AIState.Aggression)
-                {
-                    AggressionMove();
+                    case AIState.Wander:
+                        WanderMove();
+                        break;
+                    case AIState.Aggression:
+                        AggressionMove();
+                        break;
                 }
             }
             yield return new WaitForSeconds(1);
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawRay(transform.position, Vector3.up * raycastDistance);
+        Gizmos.DrawRay(transform.position, Vector3.down * raycastDistance);
+        Gizmos.DrawRay(transform.position, Vector3.left * raycastDistance);
+        Gizmos.DrawRay(transform.position, Vector3.right * raycastDistance);
     }
 }

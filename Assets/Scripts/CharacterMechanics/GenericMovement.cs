@@ -21,7 +21,7 @@ public class GenericMovement : MonoBehaviour
 
     void Start()
     {
-        movementEnabled = true;
+        movementEnabled = false;
         rb = GetComponent<Rigidbody>();
         directionManager.changeDirection(Direction.Down);
     }
