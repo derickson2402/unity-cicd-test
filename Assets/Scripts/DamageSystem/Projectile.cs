@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
 
     protected bool inFlight;        // Is the projectile flying through the air?
     protected Vector3 moveVec;      // Movement vector describing the projectiles motion (0 vector if not inFlight)
-    protected Rigidbody rb;           // Rigid body member of the projectile
+    protected Rigidbody rb;         // Rigid body member of the projectile
 
     // Start is called before the first frame update
     void Awake()
@@ -38,6 +38,9 @@ public class Projectile : MonoBehaviour
             Debug.Log("Projectile fired in direction" + moveVec);
         }
     }
+
+    // Is the projectile already fired?
+    public bool InFlight() { return inFlight; }
 
     // Template for special animations and functions that happen after a projectile hits something
     public virtual void PostCollision()

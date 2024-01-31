@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 7778409181121746504}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.93161, y: 4.9978905, z: -0.06975584}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 120015055
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -196811916, guid: b913947c8461ed74d98e5fd856f77ab8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -116,7 +116,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!65 &7737051100362390174
 BoxCollider:
@@ -155,6 +155,7 @@ MonoBehaviour:
   invincible: 0
   isEnemy: 1
   iFrames: 0
+  boomerangStunOnly: 0
   damageSoundEffect: {fileID: 8300000, guid: 85e35dc53d2044249abde32101625874, type: 3}
   deathSoundEffect: {fileID: 8300000, guid: eadd9ddd6caf28f478d3fe5144e381c6, type: 3}
 --- !u!114 &846139459658061504
@@ -174,6 +175,8 @@ MonoBehaviour:
   affectEnemy: 0
   attackDelayFrames: 0
   spawnOffsetDistance: 0
+  knockBackDistance: 0
+  stunFrames: 0
 --- !u!114 &4071739552478366876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e130f230a029a084f869da843ea2fafb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0.28
+  movementSpeed: 4.4
   activeDeaccelerationFactor: 10
   naturalDeaccelerationFactor: 4
   gridAlignmentDurationSeconds: 0.03
@@ -218,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684e3b7d0c874b1458643441c4a10cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frameRate: 2
+  timeBetweenFrames: 0.2
   a: {fileID: -196811916, guid: b913947c8461ed74d98e5fd856f77ab8, type: 3}
   b: {fileID: 712240195, guid: b913947c8461ed74d98e5fd856f77ab8, type: 3}
   c: {fileID: 0}
@@ -227,3 +230,4 @@ MonoBehaviour:
   f: {fileID: 0}
   g: {fileID: 0}
   h: {fileID: 0}
+  spriteCount: 2

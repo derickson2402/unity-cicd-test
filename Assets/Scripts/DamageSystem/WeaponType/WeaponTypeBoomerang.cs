@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -17,7 +18,13 @@ public class WeaponTypeBoomerang : Projectile
     {
         OUT,        // Initial movement at constant flySpeed and Shoot(direction) for flyDistance tiles
         TURNING,    // Slowdown period at constant acceleration decreasing speed [flySpeed, -flySpeed] and Shoot(direction) for turnDistance tiles each way
-        RETURN      // Return period at constant flySpeed in direction of throwerRB
+        RETURN,      // Return period at constant flySpeed in direction of throwerRB
+        OFF
+    }
+
+    void Start()
+    {
+        state = State.OFF;
     }
 
     // Special method for boomerang which must be called before throwing. Gives
@@ -41,6 +48,7 @@ public class WeaponTypeBoomerang : Projectile
         else
         {
             inFlight = true;
+            state = State.OUT;
             // Calculate the starting move vector in the given direction at the given speed
             moveVec = direction.normalized * flySpeed;
             rb.velocity = moveVec;
@@ -58,6 +66,8 @@ public class WeaponTypeBoomerang : Projectile
     {
         switch (state)
         {
+            case State.OFF:
+                break;
             case State.OUT:
                 // Constant velocity already set, track how far we've gone
                 if (Vector3.Distance(startPos, rb.position) > flyDistance)
@@ -86,9 +96,10 @@ public class WeaponTypeBoomerang : Projectile
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == throwerRB.gameObject)
+        if ((collision.gameObject == throwerRB.gameObject) && (state == State.RETURN))
         {
             // Returned to the player, destroy ourselves
+            Debug.Log(throwerRB.gameObject + " caught " + gameObject);
             Destroy(gameObject);
         }
     }
