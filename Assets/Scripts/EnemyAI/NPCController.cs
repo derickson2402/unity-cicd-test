@@ -50,22 +50,22 @@ public class NPCController : MonoBehaviour
         Vector3 delta = player.transform.position - transform.position;
         if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
         {
-            if (delta.x > 0 && hitRight.collider == null)
+            if (delta.x > 0 && (hitRight.collider == null || hitRight.collider.gameObject == player))
             {
                 return Direction.Right;
             }
-            else if (hitLeft.collider == null)
+            else if (hitLeft.collider == null || hitLeft.collider.gameObject == player)
             {
                 return Direction.Left;
             }
         }
         else
         {
-            if (delta.y > 0 && hitUp.collider == null)
+            if (delta.y > 0 && (hitUp.collider == null || hitUp.collider.gameObject == player))
             {
                 return Direction.Up;
             }
-            else if (hitDown.collider == null)
+            else if (hitDown.collider == null || hitDown.collider.gameObject == player)
             {
                 return Direction.Down;
             }

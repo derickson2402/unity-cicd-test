@@ -35,12 +35,16 @@ public class KeeseAI : NPCController
                 state = AIState.Aggression;
                 return;
             }
+            else
+            {
+                state = AIState.Wander;
+                return;
+            }
         }
     }
 
     void OnDrawGizmosSelected()
     {
-        // Draw a yellow sphere at the transform's position
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }

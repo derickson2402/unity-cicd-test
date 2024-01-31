@@ -121,6 +121,15 @@ public class RoomManager : MonoBehaviour
         yield return null;
     }
 
+    public void SetRoom(int x, int y)
+    {
+        SetRoomState(currentRoom, false);
+        roomX = x;
+        roomY = y;
+        currentRoom = roomDictionary[(roomX, roomY)];
+        SetRoomState(currentRoom, true);
+    }
+
     private void SetRoomState(GameObject room, bool state)
     {
         foreach (var children in room.GetComponentsInChildren<GenericMovement>())

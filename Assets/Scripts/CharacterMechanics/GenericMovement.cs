@@ -5,7 +5,7 @@ using UnityEngine.Windows;
 
 public class GenericMovement : MonoBehaviour
 {
-    [SerializeField] protected float movementSpeed = 2f;
+    [SerializeField] public float movementSpeed = 2f;
     [SerializeField] protected float activeDeaccelerationFactor = 10f;
     [SerializeField] protected float naturalDeaccelerationFactor = 4f;
     [SerializeField] protected float gridAlignmentDurationSeconds = 0.03f;

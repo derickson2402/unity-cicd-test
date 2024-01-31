@@ -35,7 +35,7 @@ public class GoriyaAI : NPCController
                     mover.Move(nextMove);
                 }
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2);
         }
     }
 
@@ -47,7 +47,7 @@ public class GoriyaAI : NPCController
             {
                 // throw boomerang at player
             }
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3);
         }
     }
 }
