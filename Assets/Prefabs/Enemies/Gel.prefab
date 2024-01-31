@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e130f230a029a084f869da843ea2fafb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4.4
+  movementSpeed: 2
   activeDeaccelerationFactor: 10
   naturalDeaccelerationFactor: 4
   gridAlignmentDurationSeconds: 0.03
@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1fb392f0db4ad498de98cdcc6d9a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
 --- !u!114 &7770700924783176600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,4 +231,5 @@ MonoBehaviour:
   f: {fileID: 0}
   g: {fileID: 0}
   h: {fileID: 0}
+  active: 0
   spriteCount: 2
