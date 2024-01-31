@@ -9,6 +9,8 @@ public class DealsDamage : MonoBehaviour
     public bool affectEnemy;    // Should this deal damage to enemies?
     public int attackDelayFrames; // How many frames to delay before firing/destroying. Used by WeaponInterface
     public float spawnOffsetDistance; // How far from the character should this be spawned on use?
+    public float knockBackDistance; // How far should the affected character be knocked back when hit?
+    public int stunFrames;      // How many frames of stun damage does this thing deal?
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -26,8 +28,25 @@ public class DealsDamage : MonoBehaviour
         {
             if ((other.isEnemy && affectEnemy) || (!other.isEnemy && affectPlayer))
             {
-                other.Damage(damageHP);
-                Debug.Log(gameObject + " damaged " + other);
+                // Boomerangs only stun certain things
+                WeaponTypeBoomerang boomerang = GetComponent<WeaponTypeBoomerang>();
+                if (boomerang == null)
+                {
+                    Debug.Log(gameObject + " damaged " + other);
+                    other.Damage(damageHP);
+                }
+                else
+                {
+                    if (other.boomerangStunOnly)
+                    {
+                        Debug.Log(gameObject + " stunned " + other);
+                        other.Stun(stunFrames);
+                    } else
+                    {
+                        Debug.Log(gameObject + " damaged " + other);
+                        other.Damage(damageHP);
+                    }
+                }
             }
         }
 

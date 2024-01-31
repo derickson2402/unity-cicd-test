@@ -154,6 +154,8 @@ MonoBehaviour:
   affectEnemy: 0
   attackDelayFrames: 10
   spawnOffsetDistance: 0.25
+  knockBackDistance: 1
+  stunFrames: 120
 --- !u!114 &2299222777477063596
 MonoBehaviour:
   m_ObjectHideFlags: 0
