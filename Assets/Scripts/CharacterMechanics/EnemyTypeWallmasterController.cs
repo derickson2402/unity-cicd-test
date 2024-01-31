@@ -28,7 +28,7 @@ public class EnemyTypeWallmasterController : MonoBehaviour
         Assert.IsNotNull(openHandSprite);
         Assert.IsNotNull(closeHandSprite);
         mover = GetComponent<GenericMovement>();
-        mover.movementEnabled = true;
+        mover.movementEnabled = false;
         rb = GetComponent<Rigidbody>();
         sr = GetComponent<SpriteRenderer>();
         currentMovement = StartCoroutine(RandomMovement());
@@ -36,6 +36,10 @@ public class EnemyTypeWallmasterController : MonoBehaviour
 
     private void Update()
     {
+        if (!mover.movementEnabled)
+        {
+            return;
+        }
         if (!grabbedPlayer)
         {
             // Basic cycle of sprites for animation
@@ -102,7 +106,8 @@ public class EnemyTypeWallmasterController : MonoBehaviour
         }
         else if ((collision.gameObject.name == "Tile_WALL" || collision.gameObject.name == "Tile_NONE") && grabbedPlayer)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+           GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().returnPlayerToStart();
+           Destroy(gameObject);
         }
     }
 }

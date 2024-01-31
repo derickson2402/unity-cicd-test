@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4230544938628868366}
   - component: {fileID: 5898871329382514706}
   - component: {fileID: 7414446811954800988}
-  - component: {fileID: 5081859690894173543}
+  - component: {fileID: 6689570734707993455}
   - component: {fileID: -7411616260874548930}
   - component: {fileID: 5988803650690637642}
   - component: {fileID: 7298099287942196844}
@@ -140,7 +140,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5081859690894173543
+--- !u!114 &6689570734707993455
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,9 +149,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 522914441871167163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a1fb392f0db4ad498de98cdcc6d9a61, type: 3}
+  m_Script: {fileID: 11500000, guid: 347bf39ce958e7e45a7435f649db5e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
+  detectionDistance: 4.5
 --- !u!114 &-7411616260874548930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e130f230a029a084f869da843ea2fafb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4.4
+  movementSpeed: 2.5
   activeDeaccelerationFactor: 10
   naturalDeaccelerationFactor: 4
   gridAlignmentDurationSeconds: 0.03
@@ -231,6 +233,7 @@ MonoBehaviour:
   f: {fileID: 0}
   g: {fileID: 0}
   h: {fileID: 0}
+  active: 0
   spriteCount: 2
 --- !u!114 &6381753220583550855
 MonoBehaviour:

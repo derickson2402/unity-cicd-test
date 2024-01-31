@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4230544938628868366}
   - component: {fileID: 5898871329382514706}
   - component: {fileID: 7414446811954800988}
-  - component: {fileID: 5081859690894173543}
+  - component: {fileID: -7590995694877310193}
   - component: {fileID: 2914594022130949357}
   - component: {fileID: 5988803650690637642}
   - component: {fileID: 7298099287942196844}
@@ -140,7 +140,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5081859690894173543
+--- !u!114 &-7590995694877310193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,9 +149,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 522914441871167163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a1fb392f0db4ad498de98cdcc6d9a61, type: 3}
+  m_Script: {fileID: 11500000, guid: c000a19aab89b89499afe0c20e2e82d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 1
 --- !u!114 &2914594022130949357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e130f230a029a084f869da843ea2fafb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4.4
+  movementSpeed: 1.5
   activeDeaccelerationFactor: 10
   naturalDeaccelerationFactor: 4
   gridAlignmentDurationSeconds: 0.03
@@ -251,3 +252,4 @@ MonoBehaviour:
   attackDown: {fileID: -1287033027, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
   attackLeft: {fileID: -1142191504, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
   attackRight: {fileID: -1073015967, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
+  active: 0

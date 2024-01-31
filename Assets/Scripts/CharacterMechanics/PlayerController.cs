@@ -17,9 +17,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected AudioClip keyCollectionSoundEffect;
     [SerializeField] protected AudioClip bombCollectionSoundEffect;
 
-    //public fields for movement
-    public Vector2 directionFacing;
-
     //hp variables
     private bool godMode = false;
 
@@ -34,12 +31,19 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         GetComponent<ScriptAnim4DirectionWalkPlusAttack>().active = true;
-        directionFacing = Vector2.down;
+        GetComponent<GenericMovement>().movementEnabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         CheckForPickups(other);
+    }
+
+    public void returnPlayerToStart()
+    {
+        gameObject.transform.position = new Vector3(39.5f, 5.5f, 0);
+        GetComponent<RoomManager>().mainCamera.gameObject.transform.position = new Vector3(39.5f, 6.5f, -1);
+        GetComponent<RoomManager>().SetRoom(2, 0);
     }
 
     //-----------------------

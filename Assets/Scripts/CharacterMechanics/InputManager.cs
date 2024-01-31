@@ -5,6 +5,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public bool controlEnabled = true;
+    public bool goriyaInRoom = false;
     private PlayerMovement mover;
     private Rigidbody rb;
     private PlayerController player;
@@ -27,6 +28,10 @@ public class InputManager : MonoBehaviour
             Direction move = movements.Dequeue();
             Debug.Log("MovementDirection: " + move);
             mover.Move(move);
+            if (goriyaInRoom)
+            {
+                GetComponent<RoomManager>().transmitDirectionToGoriya(move);
+            }
         }
     }
 
