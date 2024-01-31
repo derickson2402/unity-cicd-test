@@ -100,9 +100,8 @@ public class NPCController : MonoBehaviour
                 {
                     AggressionMove();
                 }
-
-                yield return new WaitForSeconds(1);
             }
+            yield return new WaitForSeconds(1);
         }
     }
 }
