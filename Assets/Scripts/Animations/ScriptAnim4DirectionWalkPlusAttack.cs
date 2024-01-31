@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 [RequireComponent(typeof(SpriteRenderer))]
 public class ScriptAnim4DirectionWalkPlusAttack : MonoBehaviour
 {
-    public float timeBetweenFrames;           // Frame rate between sprite changes
+    public int frameRate;           // Frame rate between sprite changes
     public Sprite up0;
     public Sprite up1;
     public Sprite down0;
@@ -20,35 +20,31 @@ public class ScriptAnim4DirectionWalkPlusAttack : MonoBehaviour
     public Sprite attackLeft;
     public Sprite attackRight;
 
-    private Direction curDirection;     // What direction the character is currently facing
-    private SpriteRenderer sr;          // Reference to this game objects sprite renderer
-    private float curTime;              // Current animation frame we are on
-    private bool idleMode;              // Are we currently in idle mode (will not change frames)
-    private bool onFrame1;              // Are we on frame 1? otherwise on frame 0. All animations are 2 frames max
-
-    public bool active;
+    private Direction curDirection; // What direction the character is currently facing
+    private SpriteRenderer sr;      // Reference to this game objects sprite renderer
+    private int curFrame;           // Current animation frame we are on
+    private bool idleMode;          // Are we currently in idle mode (will not change frames)
+    private bool onFrame1;          // Are we on frame 1? otherwise on frame 0. All animations are 2 frames max
 
     void Start()
     {
-        active = false;
         sr = GetComponent<SpriteRenderer>();
         Assert.IsNotNull(sr);
-        curTime = 0;
+        curFrame = 0;
         curDirection = GetComponent<GenericMovement>().directionManager.current;
     }
 
     // Change sprites for walking animation
     void Update()
     {
-        if (!active)
-        {
-            return;
-        }
         if (idleMode) { return; }
-        curTime += Time.deltaTime;
-        if (curTime >= timeBetweenFrames)
+        if (curFrame < frameRate)
         {
-            curTime = 0;
+            ++curFrame;
+        }
+        else
+        {
+            curFrame = 0;
             onFrame1 = !onFrame1;
             switch (curDirection)
             {
@@ -70,7 +66,7 @@ public class ScriptAnim4DirectionWalkPlusAttack : MonoBehaviour
 
     public void ChangeDirection(Direction dir)
     {
-        curTime = 0;
+        curFrame = 0;
         onFrame1 = false;
         curDirection = dir;
         switch (curDirection)
@@ -93,7 +89,7 @@ public class ScriptAnim4DirectionWalkPlusAttack : MonoBehaviour
     {
         idleMode = true;
         onFrame1 = false;
-        curTime = 0;
+        curFrame = 0;
         switch (curDirection) {
             case Direction.Left:
                 sr.sprite = attackLeft;

@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class ScriptAnim4Sprite : MonoBehaviour
 {
-    public float timeBetweenFrames;         // How many seconds in between each flip
-    public Sprite a;                        // Add any number of frames here, on Start they 
-    public Sprite b;                        // will be checked and only the filled ones will be used
+    public int frameRate;       // How many frames in between each flip
+    public Sprite a;            // Add any number of frames here, on Start they 
+    public Sprite b;            // will be checked and only the filled ones will be used
     public Sprite c;
     public Sprite d;
     public Sprite e;
@@ -15,20 +15,16 @@ public class ScriptAnim4Sprite : MonoBehaviour
     public Sprite g;
     public Sprite h;
 
-    private SpriteRenderer sr;      // SpriteRenderer component for the object
-    private int curSpriteIndex;     // What sprite are we currently on?
-    private float curTime;          // What time it is currently, resets on flip
-    private Sprite[] spriteArr;     // Array object holding the a,b,c,d sprites
-
-    public bool active;
-    public int spriteCount;
+    private SpriteRenderer sr;  // SpriteRenderer component for the object
+    private int curSpriteIndex; // What sprite are we currently on?
+    private int curFrame;       // What frame we are on now in the cycle, resets on flip
+    private Sprite[] spriteArr; // Array object holding the a,b,c,d sprites
 
     // Start is called before the first frame update
     void Start()
     {
-        active = false;
         sr = GetComponent<SpriteRenderer>();
-        curTime = 0;
+        curFrame = 0;
         int numSprites = 0;
         numSprites = (a != null) ? numSprites + 1 : numSprites;
         numSprites = (b != null) ? numSprites + 1 : numSprites;
@@ -48,24 +44,18 @@ public class ScriptAnim4Sprite : MonoBehaviour
         if (f != null) { spriteArr[curSpriteIndex++] = f; }
         if (g != null) { spriteArr[curSpriteIndex++] = g; }
         if (h != null) { spriteArr[curSpriteIndex++] = h; }
-
-        curSpriteIndex = Random.Range(0, spriteCount);
-        sr.sprite = spriteArr[curSpriteIndex];
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!active)
+        if (curFrame >= frameRate)
         {
-            return;
-        }
-        curTime += Time.deltaTime;
-        if (curTime >= timeBetweenFrames)
-        {
-            curTime = 0;
+            curFrame = 0;
             curSpriteIndex = (curSpriteIndex + 1) % spriteArr.Length;
             sr.sprite = spriteArr[curSpriteIndex];
+        } else {
+            ++curFrame;
         }
     }
 }
