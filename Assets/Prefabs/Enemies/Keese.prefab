@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684e3b7d0c874b1458643441c4a10cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frameRate: 10
+  timeBetweenFrames: 0.2
   a: {fileID: -1842285433, guid: 15c6ef8d0de32fc4284ce2b0e2fc177a, type: 3}
   b: {fileID: 1580812199, guid: 15c6ef8d0de32fc4284ce2b0e2fc177a, type: 3}
   c: {fileID: 0}
@@ -247,3 +247,4 @@ MonoBehaviour:
   f: {fileID: 0}
   g: {fileID: 0}
   h: {fileID: 0}
+  spriteCount: 2

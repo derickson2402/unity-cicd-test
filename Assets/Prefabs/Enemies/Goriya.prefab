@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b94e7bd48c4c2e41a9210939d26d770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frameRate: 15
+  timeBetweenFrames: 0.2
   up0: {fileID: -967709556, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
   up1: {fileID: -479978076, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
   down0: {fileID: 984893097, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}

@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684e3b7d0c874b1458643441c4a10cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frameRate: 30
+  timeBetweenFrames: 0.2
   a: {fileID: 510834078, guid: 2fb9977fd8c22dc4d850d6f7b5488719, type: 3}
   b: {fileID: 287276200, guid: 2fb9977fd8c22dc4d850d6f7b5488719, type: 3}
   c: {fileID: -371766451, guid: 2fb9977fd8c22dc4d850d6f7b5488719, type: 3}
@@ -249,3 +249,4 @@ MonoBehaviour:
   f: {fileID: 0}
   g: {fileID: 0}
   h: {fileID: 0}
+  spriteCount: 4
