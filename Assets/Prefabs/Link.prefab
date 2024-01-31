@@ -210,6 +210,7 @@ MonoBehaviour:
   invincible: 0
   isEnemy: 0
   iFrames: 30
+  boomerangStunOnly: 0
   damageSoundEffect: {fileID: 8300000, guid: aa41d0b3506539c43ad3eb4ef4a59ed0, type: 3}
   deathSoundEffect: {fileID: 8300000, guid: d5435988321a753458efd8416062bb07, type: 3}
 --- !u!114 &4869903085959527208
@@ -224,8 +225,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724dbcfb4f3623a40801d30062f02ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponA: 0
   weaponAPrefab: {fileID: 0}
   weaponAUsesAmmo: 0
+  weaponB: 0
   weaponBPrefab: {fileID: 0}
   weaponBUsesAmmo: 0
 --- !u!114 &6226975357632161720

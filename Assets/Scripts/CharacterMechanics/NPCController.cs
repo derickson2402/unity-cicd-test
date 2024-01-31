@@ -11,6 +11,7 @@ public class NPCController : MonoBehaviour
     void Start()
     {
         mover = GetComponent<GenericMovement>();
+        mover.movementEnabled = false;
         rb = GetComponent<Rigidbody>();
         currentMovement = StartCoroutine(RandomMovement());
     }
@@ -18,7 +19,7 @@ public class NPCController : MonoBehaviour
     // Called to generate movement for NPC
     private IEnumerator RandomMovement()
     {
-        while (true)
+        while (mover.movementEnabled)
         {
             // do nothing 80% of the time
             int randomValue = Random.Range(0, 10);

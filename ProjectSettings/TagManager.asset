@@ -17,6 +17,7 @@ TagManager:
   - LockedDoor
   - Horizontal_Door
   - Vertical_Door
+  - Room
   layers:
   - Default
   - TransparentFX

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5898871329382514706}
   - component: {fileID: 7414446811954800988}
   - component: {fileID: 5081859690894173543}
-  - component: {fileID: 5301714761667237543}
+  - component: {fileID: -7411616260874548930}
   - component: {fileID: 5988803650690637642}
   - component: {fileID: 7298099287942196844}
   - component: {fileID: 7000562906464284719}
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1fb392f0db4ad498de98cdcc6d9a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5301714761667237543
+--- !u!114 &-7411616260874548930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 522914441871167163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82bdef513b6286b49a21acbd74c5ed96, type: 3}
+  m_Script: {fileID: 11500000, guid: e130f230a029a084f869da843ea2fafb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 4.4
@@ -171,7 +171,7 @@ MonoBehaviour:
   changeDirectionThreshold: 0.17
   stopThreshold: 0.0625
   gridSize: 0.5
-  movementEnabled: 1
+  movementEnabled: 0
 --- !u!114 &5988803650690637642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +188,7 @@ MonoBehaviour:
   invincible: 0
   isEnemy: 1
   iFrames: 10
+  boomerangStunOnly: 0
   damageSoundEffect: {fileID: 8300000, guid: 85e35dc53d2044249abde32101625874, type: 3}
   deathSoundEffect: {fileID: 8300000, guid: eadd9ddd6caf28f478d3fe5144e381c6, type: 3}
 --- !u!114 &7298099287942196844
@@ -207,6 +208,8 @@ MonoBehaviour:
   affectEnemy: 0
   attackDelayFrames: 0
   spawnOffsetDistance: 0
+  knockBackDistance: 0
+  stunFrames: 0
 --- !u!114 &7000562906464284719
 MonoBehaviour:
   m_ObjectHideFlags: 0
