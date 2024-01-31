@@ -20,6 +20,8 @@ public class ScriptAnim4Sprite : MonoBehaviour
     private float curTime;          // What time it is currently, resets on flip
     private Sprite[] spriteArr;     // Array object holding the a,b,c,d sprites
 
+    public int spriteCount;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,9 @@ public class ScriptAnim4Sprite : MonoBehaviour
         if (f != null) { spriteArr[curSpriteIndex++] = f; }
         if (g != null) { spriteArr[curSpriteIndex++] = g; }
         if (h != null) { spriteArr[curSpriteIndex++] = h; }
+
+        curSpriteIndex = Random.Range(0, spriteCount);
+        sr.sprite = spriteArr[curSpriteIndex];
     }
 
     // Update is called once per frame
