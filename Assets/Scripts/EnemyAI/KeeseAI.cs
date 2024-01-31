@@ -35,12 +35,9 @@ public class KeeseAI : NPCController
                 state = AIState.Aggression;
                 return;
             }
-            else
-            {
-                state = AIState.Wander;
-                return;
-            }
         }
+        state = AIState.Wander;
+        return;
     }
 
     void OnDrawGizmosSelected()
