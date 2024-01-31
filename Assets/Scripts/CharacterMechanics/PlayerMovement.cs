@@ -19,7 +19,6 @@ public class PlayerMovement : GenericMovement
 
     public override void Move(Direction input)
     {
-        Debug.Log("Player direction before moving: " + directionManager.current);
         //NOTE: needs restructuring if the player is meant to have velocity and movement disabled at some point
         if (!movementEnabled || (rb.velocity.magnitude < stopThreshold && input == Direction.None))
         {
@@ -55,6 +54,5 @@ public class PlayerMovement : GenericMovement
                 rb.velocity /= activeDeaccelerationFactor;
             }
         }
-        Debug.Log("Player direction after moving: " + directionManager.current);
     }
 }

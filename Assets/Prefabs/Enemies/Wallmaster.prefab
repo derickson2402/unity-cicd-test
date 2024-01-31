@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4230544938628868366}
   - component: {fileID: 5898871329382514706}
   - component: {fileID: 7414446811954800988}
-  - component: {fileID: 5081859690894173543}
+  - component: {fileID: 8479018248982319635}
   - component: {fileID: 2914594022130949357}
   - component: {fileID: 5988803650690637642}
   - component: {fileID: 6381753220583550855}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 120015055
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: -451461831, guid: c6fdd95b826a6854fb400a371109cdc3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -138,7 +138,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5081859690894173543
+--- !u!114 &8479018248982319635
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,9 +147,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 522914441871167163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a1fb392f0db4ad498de98cdcc6d9a61, type: 3}
+  m_Script: {fileID: 11500000, guid: fde60efe3a4e6994682151ce41410612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openHandSprite: {fileID: -451461831, guid: c6fdd95b826a6854fb400a371109cdc3, type: 3}
+  closeHandSprite: {fileID: 1093043206, guid: c6fdd95b826a6854fb400a371109cdc3, type: 3}
+  timeBetweenFrames: 0.1
+  downSpeed: 2.5
 --- !u!114 &2914594022130949357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,8 +191,8 @@ MonoBehaviour:
   isEnemy: 1
   iFrames: 10
   boomerangStunOnly: 0
-  damageSoundEffect: {fileID: 0}
-  deathSoundEffect: {fileID: 0}
+  damageSoundEffect: {fileID: 8300000, guid: 85e35dc53d2044249abde32101625874, type: 3}
+  deathSoundEffect: {fileID: 8300000, guid: eadd9ddd6caf28f478d3fe5144e381c6, type: 3}
 --- !u!114 &6381753220583550855
 MonoBehaviour:
   m_ObjectHideFlags: 0
