@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class CoroutineHelper {
     public static IEnumerator MoveObjectOverTime(Transform item, Vector3 startingPosition, Vector3 desiredPosition, float duration)
