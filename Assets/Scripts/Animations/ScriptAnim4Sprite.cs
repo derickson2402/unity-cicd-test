@@ -20,11 +20,13 @@ public class ScriptAnim4Sprite : MonoBehaviour
     private float curTime;          // What time it is currently, resets on flip
     private Sprite[] spriteArr;     // Array object holding the a,b,c,d sprites
 
+    public bool active;
     public int spriteCount;
 
     // Start is called before the first frame update
     void Start()
     {
+        active = false;
         sr = GetComponent<SpriteRenderer>();
         curTime = 0;
         int numSprites = 0;
@@ -54,6 +56,10 @@ public class ScriptAnim4Sprite : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!active)
+        {
+            return;
+        }
         curTime += Time.deltaTime;
         if (curTime >= timeBetweenFrames)
         {

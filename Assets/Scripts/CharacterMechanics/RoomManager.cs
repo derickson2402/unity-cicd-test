@@ -122,5 +122,15 @@ public class RoomManager : MonoBehaviour
         {
             children.movementEnabled = state;
         }
+
+        foreach (var children in roomDictionary[(x, y)].GetComponentsInChildren<ScriptAnim4DirectionWalkPlusAttack>())
+        {
+            children.active = state;
+        }
+
+        foreach (var children in roomDictionary[(x, y)].GetComponentsInChildren<ScriptAnim4Sprite>())
+        {
+            children.active = state;
+        }
     }
 }
