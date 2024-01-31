@@ -165,5 +165,7 @@ MonoBehaviour:
   damageHP: 2
   affectPlayer: 0
   affectEnemy: 0
-  attackDelayFrames: 0
+  attackDelayFrames: 20
   spawnOffsetDistance: 0
+  knockBackDistance: 0
+  stunFrames: 0
