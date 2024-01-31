@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
                 rupeeCount += num;
             }
         }
-        rupeeCountText.Write(rupeeCount.ToString());
+        rupeeCountText.Write('x' + rupeeCount.ToString());
     }
 
     public void ModifyKeys(int num)
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
                 keyCount += num;
             }
         }
-        keyCountText.Write(keyCount.ToString());
+        keyCountText.Write('x' + keyCount.ToString());
     }
 
 
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
                 bombCount += num;
             }
         }
-        bombCountText.Write(bombCount.ToString());
+        bombCountText.Write('x' + bombCount.ToString());
     }
 
     //--------------------
