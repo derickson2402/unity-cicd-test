@@ -3,12 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+public enum Weapon
+{
+    Sword,
+    Bow,
+    Boomerang,
+    Bomb,
+    None
+}
+
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(GenericMovement))]
 
 public class WeaponInterface : MonoBehaviour
 {
+    public Weapon weaponA;
     public DealsDamage weaponAPrefab;   // Prefab to use for weaponA
     public bool weaponAUsesAmmo;        // If weapon A is out of ammo, should it be useable?
+    public Weapon weaponB;
     public DealsDamage weaponBPrefab;   // Prefab to use for weaponB
     public bool weaponBUsesAmmo;        // If weapon B is out of ammo, should it be useable?
 
@@ -20,13 +32,15 @@ public class WeaponInterface : MonoBehaviour
 
     private void Awake()
     {
+        weaponA = Weapon.None;
+        weaponB = Weapon.None;
         projRefs = new Dictionary<string,DealsDamage>();
     }
 
     // Use weapon A
     public void useWeaponA()
     {
-        if (weaponAPrefab != null)
+        if (weaponA != Weapon.None)
         {
             useWeapon(weaponAPrefab, weaponAUsesAmmo, ref weaponAAmmo);
         }
@@ -35,7 +49,7 @@ public class WeaponInterface : MonoBehaviour
     // Use weapon B
     public void useWeaponB()
     {
-        if (weaponBPrefab != null)
+        if (weaponB != Weapon.None)
         {
             useWeapon(weaponBPrefab, weaponBUsesAmmo, ref weaponBAmmo);
         }
@@ -54,8 +68,9 @@ public class WeaponInterface : MonoBehaviour
     }
 
     // Set weapon slot A to the given parameters
-    public void setWeaponA(DealsDamage weaponPrefab, bool usesAmmo, int ammoCount)
+    public void setWeaponA(Weapon weaponType, DealsDamage weaponPrefab, bool usesAmmo, int ammoCount)
     {
+        weaponA = prefabToWeaponType(weaponPrefab);
         weaponAPrefab = weaponPrefab;
         weaponAUsesAmmo = usesAmmo;
         weaponAAmmo = ammoCount;
@@ -64,6 +79,7 @@ public class WeaponInterface : MonoBehaviour
     // Set weapon slot B to the given parameters
     public void setWeaponB(DealsDamage weaponPrefab, bool usesAmmo, int ammoCount)
     {
+        weaponB = prefabToWeaponType(weaponPrefab);
         weaponBPrefab = weaponPrefab;
         weaponBUsesAmmo = usesAmmo;
         weaponBAmmo = ammoCount;
@@ -116,13 +132,27 @@ public class WeaponInterface : MonoBehaviour
                 --ammo;
             }
         }
+        // What direction are we facing?
+        Vector3 weaponOffset = weapon.spawnOffsetDistance * DirectionManager.DirectionToVector3(GetComponent<GenericMovement>().directionManager.current);
         // All good, instantiate the object
         Debug.Log("spawning weapon " + weapon.name);
-        weaponObj = Instantiate(weapon, GetComponent<Rigidbody>().position + new Vector3(0,-1), Quaternion.identity);
+        weaponObj = Instantiate(weapon, GetComponent<Rigidbody>().position + weaponOffset, Quaternion.identity);
         weaponObj.name = weaponObj.name.Remove(weaponObj.name.Length - 7); // get rid of (cloned) at the end of name, needed for lookups later
         Assert.IsFalse(weaponObj == null);
+        // Set player/enemy interactions
+        if (weaponObj.name != "Bomb")
+        {
+            TakesDamage health = GetComponent<TakesDamage>();
+            weaponObj.affectEnemy = !health.isEnemy;
+            weaponObj.affectPlayer = health.isEnemy;
+        }
+        // Trigger attack animations if necessary
+        ScriptAnim4DirectionWalkPlusAttack anim = GetComponent<ScriptAnim4DirectionWalkPlusAttack>();
+        if (anim != null)
+        {
+            anim.BeginAttack();
+        }
         // Freeze the character holding the weapon. Update() will relinquish controls once it is done with delay
-        // TODO: this will change with movement system
         InputManager inputManager = GetComponent<InputManager>();
         if (inputManager != null)
         {
@@ -151,7 +181,7 @@ public class WeaponInterface : MonoBehaviour
             }
             else
             {
-                if (health.GetHP() != health.maxHP)
+                if (health.GetHP().Equals(health.maxHP))
                 {
                     Debug.Log("Mortal player not at full health, swinging sword");
                     Destroy(weaponObj.GetComponent<Projectile>());
@@ -194,17 +224,48 @@ public class WeaponInterface : MonoBehaviour
                     // Projectile
                     Debug.Log("Fired object " + weaponInHand.name);
                     projRefs[weaponInHand.name] = weaponInHand;
-                    projectile.Shoot(new Vector3(0, -1));
+                    projectile.Shoot(DirectionManager.DirectionToVector3(GetComponent<GenericMovement>().directionManager.current));
                 }
+                // Return control back to player
                 InputManager inputManger = GetComponent<InputManager>();
                 if (inputManger != null)
                 {
                     Debug.Log("Relinquishing controls to player");
                     inputManger.controlEnabled = true;
                 }
+                // Handle animations
+                ScriptAnim4DirectionWalkPlusAttack anim = GetComponent<ScriptAnim4DirectionWalkPlusAttack>();
+                if (anim != null)
+                {
+                    anim.EndAttack();
+                }
                 weaponInHand = null;
                 inHandFrames = 0;
             }
         }
+    }
+
+    Weapon prefabToWeaponType(DealsDamage w)
+    {
+        string name = w.gameObject.name;
+        Weapon val = Weapon.None;
+        if (name == "Sword")
+        {
+            val = Weapon.Sword;
+        }
+        else if (name == "Boomerang")
+        {
+            val = Weapon.Boomerang;
+        }
+        else if (name == "Bomb")
+        {
+            val = Weapon.Bomb;
+        }
+        else if (name == "Bow")
+        {
+            val = Weapon.Bow;
+        }
+
+        return val;
     }
 }

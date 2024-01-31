@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5916370554612000524}
   - component: {fileID: 1813840800894668663}
   - component: {fileID: 2299222777477063596}
+  - component: {fileID: 3610373237724946670}
   m_Layer: 0
   m_Name: Boomerang
   m_TagString: Weapon
@@ -152,6 +153,7 @@ MonoBehaviour:
   affectPlayer: 0
   affectEnemy: 0
   attackDelayFrames: 0
+  spawnOffsetDistance: 1
 --- !u!114 &2299222777477063596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,3 +170,24 @@ MonoBehaviour:
   multiFireAllowed: 0
   flyDistance: 2
   turnFrames: 60
+--- !u!114 &3610373237724946670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464560312874275155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 684e3b7d0c874b1458643441c4a10cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frameRate: 2
+  a: {fileID: 1308316783, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
+  b: {fileID: -1543908116, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
+  c: {fileID: 2105342776, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
+  d: {fileID: -1000114816, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
+  e: {fileID: -1240568716, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
+  f: {fileID: 682953426, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
+  g: {fileID: -159454125, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
+  h: {fileID: -109148453, guid: 692bce65886c270469706eb4c1a4aced, type: 3}

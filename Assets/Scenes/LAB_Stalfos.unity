@@ -1965,6 +1965,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4230544938628868366, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1038592916, guid: a4a1e00fee27556428bf5ea56e72e0c6, type: 3}
+    - target: {fileID: 4230544938628868366, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230544938628868366, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5081859690894173543, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1992,6 +2004,26 @@ PrefabInstance:
     - target: {fileID: 6381753220583550855, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
       propertyPath: heartRatio
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000562906464284719, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: a
+      value: 
+      objectReference: {fileID: -1038592916, guid: a4a1e00fee27556428bf5ea56e72e0c6, type: 3}
+    - target: {fileID: 7000562906464284719, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: b
+      value: 
+      objectReference: {fileID: -22159542, guid: a4a1e00fee27556428bf5ea56e72e0c6, type: 3}
+    - target: {fileID: 7000562906464284719, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: c
+      value: 
+      objectReference: {fileID: -1038592916, guid: a4a1e00fee27556428bf5ea56e72e0c6, type: 3}
+    - target: {fileID: 7000562906464284719, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: d
+      value: 
+      objectReference: {fileID: -22159542, guid: a4a1e00fee27556428bf5ea56e72e0c6, type: 3}
+    - target: {fileID: 7000562906464284719, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
+      propertyPath: frameRate
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7261089739604898080, guid: 7a3af3350f117ce4dbfc18dc0382e06e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15469,5 +15501,5 @@ SceneRoots:
   - {fileID: 2064521799}
   - {fileID: 1276383493}
   - {fileID: 324036316}
-  - {fileID: 186536047}
   - {fileID: 220797329}
+  - {fileID: 186536047}

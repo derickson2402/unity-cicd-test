@@ -1644,6 +1644,10 @@ PrefabInstance:
       propertyPath: weaponAPrefab
       value: 
       objectReference: {fileID: 5278937283722435218, guid: 961cd858afef8ee4599588db1c737b9d, type: 3}
+    - target: {fileID: 4869903085959527208, guid: 932ce63c9843253409f8a187b691e065, type: 3}
+      propertyPath: weaponBPrefab
+      value: 
+      objectReference: {fileID: 1813840800894668663, guid: ece6dd788f2a122449c015c8c372a716, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5916370554612000524}
   - component: {fileID: 4039403692779773718}
   - component: {fileID: 1813840800894668663}
+  - component: {fileID: 8786563656003369993}
   m_Layer: 0
   m_Name: AquamentusFireball
   m_TagString: Weapon
@@ -166,3 +167,21 @@ MonoBehaviour:
   affectPlayer: 0
   affectEnemy: 0
   attackDelayFrames: 0
+  spawnOffsetDistance: 1
+--- !u!114 &8786563656003369993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464560312874275155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 684e3b7d0c874b1458643441c4a10cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frameRate: 5
+  a: {fileID: -291295492, guid: 328797c704b5d334fb43bd3cfad5be9f, type: 3}
+  b: {fileID: 1402656772, guid: 328797c704b5d334fb43bd3cfad5be9f, type: 3}
+  c: {fileID: -107834436, guid: 328797c704b5d334fb43bd3cfad5be9f, type: 3}
+  d: {fileID: -1401300392, guid: 328797c704b5d334fb43bd3cfad5be9f, type: 3}

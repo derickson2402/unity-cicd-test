@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -51,5 +52,11 @@ public class CoroutineHelper {
         UnityEngine.Debug.Log("Finishing movement");
 
         genericMovement.ChangeDirection(newDirection);
+    }
+
+    public static IEnumerator DelayFunction(float waitTimeSeconds, Action callback)
+    {
+        yield return new WaitForSeconds(waitTimeSeconds);
+        callback.Invoke();
     }
 }

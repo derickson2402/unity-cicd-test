@@ -78,12 +78,10 @@ public class RoomTransitions : MonoBehaviour
             mainCamera.transform.position, newCameraPosition, 2.5f));
         Debug.Log("Camera moved into new room\n" + transform.position);
 
-        var outerDoorPosition = doorPosition + 3f * playerMovement;
+        var outerDoorPosition = doorPosition + 2f * playerMovement;
         yield return StartCoroutine(
             CoroutineHelper.MoveObjectOverTime(transform, transform.position, outerDoorPosition, 1f));
         Debug.Log("Player moved into new room\n" + transform.position);
-
-        yield return new WaitForSeconds(2);
 
         rb.detectCollisions = true;
         boxCollider.enabled = true;
