@@ -133,24 +133,10 @@ public class WeaponInterface : MonoBehaviour
             }
         }
         // What direction are we facing?
-        Vector3 dirVec = DirectionManager.DirectionToVector3(GetComponent<GenericMovement>().directionManager.current);
-        Vector3 weaponOffset = weapon.spawnOffsetDistance * dirVec;
-        float degreeAngle = 0;
-        switch (GetComponent<GenericMovement>().directionManager.current)
-        {
-            case Direction.Up:
-                degreeAngle = 180; break;
-            case Direction.Down:
-                degreeAngle = 0; break;
-            case Direction.Left:
-                degreeAngle = 270; break;
-            case Direction.Right:
-                degreeAngle = 90; break;
-        }
-        Quaternion weaponRot = Quaternion.AngleAxis(degreeAngle, Vector3.forward);
+        Vector3 weaponOffset = weapon.spawnOffsetDistance * DirectionManager.DirectionToVector3(GetComponent<GenericMovement>().directionManager.current);
         // All good, instantiate the object
         Debug.Log("spawning weapon " + weapon.name);
-        weaponObj = Instantiate(weapon, GetComponent<Rigidbody>().position + weaponOffset, weaponRot);
+        weaponObj = Instantiate(weapon, GetComponent<Rigidbody>().position + weaponOffset, Quaternion.identity);
         weaponObj.name = weaponObj.name.Remove(weaponObj.name.Length - 7); // get rid of (cloned) at the end of name, needed for lookups later
         Assert.IsFalse(weaponObj == null);
         // Set player/enemy interactions

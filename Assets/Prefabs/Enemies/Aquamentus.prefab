@@ -34,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 522914441871167163}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 22, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78,8 +78,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 120015055
-  m_SortingLayer: 2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 510834078, guid: 2fb9977fd8c22dc4d850d6f7b5488719, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -117,7 +117,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!65 &7414446811954800988
 BoxCollider:
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e130f230a029a084f869da843ea2fafb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4.4
+  movementSpeed: 0.4
   activeDeaccelerationFactor: 10
   naturalDeaccelerationFactor: 4
   gridAlignmentDurationSeconds: 0.03
@@ -188,7 +188,6 @@ MonoBehaviour:
   invincible: 0
   isEnemy: 1
   iFrames: 10
-  boomerangStunOnly: 0
   damageSoundEffect: {fileID: 8300000, guid: 85e35dc53d2044249abde32101625874, type: 3}
   deathSoundEffect: {fileID: 8300000, guid: eadd9ddd6caf28f478d3fe5144e381c6, type: 3}
 --- !u!114 &7298099287942196844
@@ -208,8 +207,6 @@ MonoBehaviour:
   affectEnemy: 0
   attackDelayFrames: 0
   spawnOffsetDistance: 0
-  knockBackDistance: 0
-  stunFrames: 0
 --- !u!114 &1543703540673772519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,10 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724dbcfb4f3623a40801d30062f02ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponA: 0
   weaponAPrefab: {fileID: 0}
   weaponAUsesAmmo: 0
-  weaponB: 0
   weaponBPrefab: {fileID: 0}
   weaponBUsesAmmo: 0
 --- !u!114 &412560933461219008
@@ -240,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684e3b7d0c874b1458643441c4a10cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenFrames: 0.2
+  frameRate: 30
   a: {fileID: 510834078, guid: 2fb9977fd8c22dc4d850d6f7b5488719, type: 3}
   b: {fileID: 287276200, guid: 2fb9977fd8c22dc4d850d6f7b5488719, type: 3}
   c: {fileID: -371766451, guid: 2fb9977fd8c22dc4d850d6f7b5488719, type: 3}
@@ -249,4 +244,3 @@ MonoBehaviour:
   f: {fileID: 0}
   g: {fileID: 0}
   h: {fileID: 0}
-  spriteCount: 4

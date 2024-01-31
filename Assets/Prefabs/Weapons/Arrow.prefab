@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 744461643
-  m_SortingLayer: 3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300242, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -130,7 +130,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -165,7 +165,4 @@ MonoBehaviour:
   damageHP: 2
   affectPlayer: 0
   affectEnemy: 0
-  attackDelayFrames: 20
-  spawnOffsetDistance: 0
-  knockBackDistance: 0
-  stunFrames: 0
+  attackDelayFrames: 0
