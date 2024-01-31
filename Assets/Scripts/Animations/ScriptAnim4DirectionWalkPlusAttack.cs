@@ -37,6 +37,9 @@ public class ScriptAnim4DirectionWalkPlusAttack : MonoBehaviour
         curDirection = GetComponent<GenericMovement>().directionManager.current;
     }
 
+    public void IdleModeOn() { idleMode = true; }
+    public void IdleModeOff() {  idleMode = false; }
+
     // Change sprites for walking animation
     void Update()
     {

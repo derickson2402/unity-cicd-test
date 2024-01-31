@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 120015055
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: -451461831, guid: c6fdd95b826a6854fb400a371109cdc3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -191,8 +191,8 @@ MonoBehaviour:
   isEnemy: 1
   iFrames: 10
   boomerangStunOnly: 0
-  damageSoundEffect: {fileID: 0}
-  deathSoundEffect: {fileID: 0}
+  damageSoundEffect: {fileID: 8300000, guid: 85e35dc53d2044249abde32101625874, type: 3}
+  deathSoundEffect: {fileID: 8300000, guid: eadd9ddd6caf28f478d3fe5144e381c6, type: 3}
 --- !u!114 &6381753220583550855
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -98,6 +98,7 @@ public class EnemyTypeWallmasterController : MonoBehaviour
             sr.sprite = closeHandSprite;
             playerRB = collision.gameObject.GetComponent<Rigidbody>();
             collision.gameObject.GetComponent<PlayerMovement>().movementEnabled = false;
+            collision.gameObject.GetComponent<ScriptAnim4DirectionWalkPlusAttack>().IdleModeOn();
         }
         else if ((collision.gameObject.name == "Tile_WALL" || collision.gameObject.name == "Tile_NONE") && grabbedPlayer)
         {
