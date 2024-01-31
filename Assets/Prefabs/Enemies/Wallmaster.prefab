@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 522914441871167163}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 120015055
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -451461831, guid: c6fdd95b826a6854fb400a371109cdc3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -115,7 +115,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!65 &7414446811954800988
 BoxCollider:
@@ -162,12 +162,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e130f230a029a084f869da843ea2fafb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0.4
-  easeFactor: 0.1
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 1
+  movementSpeed: 4.4
+  activeDeaccelerationFactor: 10
+  naturalDeaccelerationFactor: 4
+  gridAlignmentDurationSeconds: 0.03
+  changeDirectionThreshold: 0.17
+  stopThreshold: 0.0625
   gridSize: 0.5
+  movementEnabled: 0
 --- !u!114 &5988803650690637642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +186,7 @@ MonoBehaviour:
   invincible: 0
   isEnemy: 1
   iFrames: 10
+  boomerangStunOnly: 0
   damageSoundEffect: {fileID: 0}
   deathSoundEffect: {fileID: 0}
 --- !u!114 &6381753220583550855

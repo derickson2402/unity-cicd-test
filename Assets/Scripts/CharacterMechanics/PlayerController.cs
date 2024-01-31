@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        GetComponent<ScriptAnim4DirectionWalkPlusAttack>().active = true;
         directionFacing = Vector2.down;
     }
 
