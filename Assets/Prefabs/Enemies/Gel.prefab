@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684e3b7d0c874b1458643441c4a10cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frameRate: 2
+  timeBetweenFrames: 0.2
   a: {fileID: -196811916, guid: b913947c8461ed74d98e5fd856f77ab8, type: 3}
   b: {fileID: 712240195, guid: b913947c8461ed74d98e5fd856f77ab8, type: 3}
   c: {fileID: 0}

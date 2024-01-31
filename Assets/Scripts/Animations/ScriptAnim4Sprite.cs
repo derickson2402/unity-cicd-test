@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class ScriptAnim4Sprite : MonoBehaviour
 {
-    public int frameRate;       // How many frames in between each flip
-    public Sprite a;            // Add any number of frames here, on Start they 
-    public Sprite b;            // will be checked and only the filled ones will be used
+    public float timeBetweenFrames;         // How many seconds in between each flip
+    public Sprite a;                        // Add any number of frames here, on Start they 
+    public Sprite b;                        // will be checked and only the filled ones will be used
     public Sprite c;
     public Sprite d;
     public Sprite e;
@@ -15,16 +15,16 @@ public class ScriptAnim4Sprite : MonoBehaviour
     public Sprite g;
     public Sprite h;
 
-    private SpriteRenderer sr;  // SpriteRenderer component for the object
-    private int curSpriteIndex; // What sprite are we currently on?
-    private int curFrame;       // What frame we are on now in the cycle, resets on flip
-    private Sprite[] spriteArr; // Array object holding the a,b,c,d sprites
+    private SpriteRenderer sr;      // SpriteRenderer component for the object
+    private int curSpriteIndex;     // What sprite are we currently on?
+    private float curTime;          // What time it is currently, resets on flip
+    private Sprite[] spriteArr;     // Array object holding the a,b,c,d sprites
 
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        curFrame = 0;
+        curTime = 0;
         int numSprites = 0;
         numSprites = (a != null) ? numSprites + 1 : numSprites;
         numSprites = (b != null) ? numSprites + 1 : numSprites;
@@ -49,13 +49,12 @@ public class ScriptAnim4Sprite : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (curFrame >= frameRate)
+        curTime += Time.deltaTime;
+        if (curTime >= timeBetweenFrames)
         {
-            curFrame = 0;
+            curTime = 0;
             curSpriteIndex = (curSpriteIndex + 1) % spriteArr.Length;
             sr.sprite = spriteArr[curSpriteIndex];
-        } else {
-            ++curFrame;
         }
     }
 }
