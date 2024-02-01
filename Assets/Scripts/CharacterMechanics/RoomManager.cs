@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.CharacterMechanics;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
+using static Unity.VisualScripting.Metadata;
 
 public class RoomManager : MonoBehaviour
 {
@@ -11,10 +14,17 @@ public class RoomManager : MonoBehaviour
     private Rigidbody rb;
     private BoxCollider boxCollider;
     private InputManager inputManager;
+
+
     private Dictionary<(int, int), GameObject> roomDictionary;
     private int roomX;
     private int roomY;
     private GameObject currentRoom;
+
+    public bool roomCleared = false;
+    public int currentRoomEnemyTotal;
+    public int currentRoomEnemyDeaths;
+
     private GoriyaAI[] goriyaAIArray;
 
     void Start()
@@ -36,6 +46,23 @@ public class RoomManager : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         inputManager = GetComponent<InputManager>();
+    }
+
+    void Update()
+    {
+        if (roomCleared)
+        {
+            return;
+        }
+        if (currentRoomEnemyTotal > 0 && currentRoomEnemyTotal == currentRoomEnemyDeaths)
+        {
+            roomCleared = true;
+            AmbushDoors temp;
+            if (currentRoom.TryGetComponent<AmbushDoors>(out temp))
+            {
+                temp.setState(false);
+            }
+        } 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -109,6 +136,9 @@ public class RoomManager : MonoBehaviour
             CoroutineHelper.MoveObjectOverTime(transform, transform.position, outerDoorPosition, 1f));
         Debug.Log("Player moved into new room\n" + transform.position);
 
+        currentRoomEnemyTotal = 0;
+        currentRoomEnemyDeaths = 0;
+        roomCleared = false;
         inputManager.goriyaInRoom = false;
         roomX += xChange;
         roomY += yChange;
@@ -134,31 +164,46 @@ public class RoomManager : MonoBehaviour
 
     private void SetRoomState(GameObject room, bool state)
     {
-        foreach (var children in room.GetComponentsInChildren<GenericMovement>())
+        // direct room modifications
+        GoriyaTrait goriyaTrait;
+        if (room.TryGetComponent<GoriyaTrait>(out goriyaTrait) && state)
         {
-            children.movementEnabled = state;
+            goriyaAIArray = goriyaTrait.getGoriyaAIArray();
+            inputManager.goriyaInRoom = state;
+        }
+        RoomTrait rm;
+        if (room.TryGetComponent<RoomTrait>(out rm))
+        {
+            rm.setState(state);
         }
 
-        foreach (var children in room.GetComponentsInChildren<ScriptAnim4DirectionWalkPlusAttack>())
+        // child modifications
+        for (int i = 0; i < room.transform.childCount; i++)
         {
-            children.active = state;
-        }
+            var child = room.transform.GetChild(i);
+            var gm = child.GetComponent<GenericMovement>();
+            var anim1 = child.GetComponent<ScriptAnim4DirectionWalkPlusAttack>();
+            var anim2 = child.GetComponent<ScriptAnim4Sprite>();
+            var isEnemy = child.CompareTag("Enemy");
+            if (gm != null)
+            {
+                gm.movementEnabled = state;
+            }
 
-        foreach (var children in room.GetComponentsInChildren<ScriptAnim4Sprite>())
-        {
-            children.active = state;
-        }
+            if (anim1 != null)
+            {
+                anim1.active = state;
+            }
 
-        goriyaAIArray = room.GetComponentsInChildren<GoriyaAI>();
-        if (state && goriyaAIArray.Length > 0)
-        {
-            inputManager.goriyaInRoom = true;
-        }
+            if (anim2 != null)
+            {
+                anim2.active = state;
+            }
 
-        OldManDialogue oldMan;
-        if (room.TryGetComponent<OldManDialogue>(out oldMan))
-        {
-            oldMan.DisplayState(state);
+            if (isEnemy && state)
+            {
+                currentRoomEnemyTotal++;
+            }
         }
     }
 
@@ -173,6 +218,11 @@ public class RoomManager : MonoBehaviour
         transform.position = playerOffset;
         mainCamera.transform.position += cameraOffset;
         SetRoom(x, y);
+    }
+
+    public void recieveEnemyDeath()
+    {
+        currentRoomEnemyDeaths++;
     }
 
     public void transmitDirectionToGoriya(Direction move)
