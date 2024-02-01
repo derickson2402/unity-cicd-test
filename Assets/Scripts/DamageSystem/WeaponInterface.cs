@@ -18,10 +18,22 @@ public class WeaponInterface : MonoBehaviour
     private DealsDamage weaponInHand;   // For non-projectiles, can only have 1 weapon actively being used
     private int inHandFrames;           // For non-projectiles, how many frames has the character been attacking
     private Dictionary<string,DealsDamage> projRefs; // References to any active projectiles, lookup done by DealsDamage.name
+    private CharacterWeaponUIInterface weaponUI; // Characters (Link specifically) will have their weapons show up in the UI
 
     private void Awake()
     {
         projRefs = new Dictionary<string,DealsDamage>();
+    }
+
+    private void Start()
+    {
+        weaponUI = GetComponent<CharacterWeaponUIInterface>();
+        if (weaponUI != null )
+        {
+            // If these are null the image will just be blank
+            weaponUI.setWeaponA(weaponAPrefab);
+            weaponUI.setWeaponB(weaponBPrefab);
+        }
     }
 
     // Use weapon A
@@ -60,6 +72,10 @@ public class WeaponInterface : MonoBehaviour
         weaponAPrefab = weaponPrefab;
         weaponAUsesAmmo = usesAmmo;
         weaponAAmmo = ammoCount;
+        if (weaponUI != null)
+        {
+            weaponUI.setWeaponA(weaponPrefab);
+        }
     }
 
     // Set weapon slot B to the given parameters
@@ -68,6 +84,10 @@ public class WeaponInterface : MonoBehaviour
         weaponBPrefab = weaponPrefab;
         weaponBUsesAmmo = usesAmmo;
         weaponBAmmo = ammoCount;
+        if (weaponUI != null)
+        {
+            weaponUI.setWeaponB(weaponPrefab);
+        }
     }
 
 
