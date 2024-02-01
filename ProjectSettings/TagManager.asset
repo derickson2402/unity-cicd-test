@@ -19,6 +19,7 @@ TagManager:
   - Vertical_Door
   - Room
   - AmbushDoor
+  - PuzzleDoor
   layers:
   - Default
   - TransparentFX
