@@ -194,7 +194,7 @@ MonoBehaviour:
   f: {fileID: 682953426, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
   g: {fileID: -159454125, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
   h: {fileID: -109148453, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
-  active: 0
+  active: 1
   spriteCount: 0
 --- !u!114 &1987987113913266835
 MonoBehaviour:

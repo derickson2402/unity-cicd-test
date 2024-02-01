@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 744461643
-  m_SortingLayer: 3
+  m_SortingLayerID: 120015055
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300326, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -133,6 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4e7dd39d2381a4a959732f650275a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 0
+  weaponType: 2
   soundEffect: {fileID: 8300000, guid: 8160ddcc7fa902442b1b655844416ba2, type: 3}
   weaponPrefab: {fileID: 1813840800894668663, guid: f4853cc3cdbbaea44960d20733cbf23a, type: 3}
