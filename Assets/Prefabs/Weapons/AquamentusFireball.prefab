@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a709243a6d74a8458868a84bc939293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flySpeed: 1
+  flySpeed: 4
   multiFireAllowed: 1
 --- !u!114 &1813840800894668663
 MonoBehaviour:
