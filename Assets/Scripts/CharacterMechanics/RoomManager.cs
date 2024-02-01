@@ -153,6 +153,19 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    public void TeleportToRoom(int x, int y)
+    {
+        float xPlayer = (float)((currentRoom.transform.position.x + 7.5) + ((x - roomX) * 16f));
+        float yPlayer = (float)((currentRoom.transform.position.y + 2) + ((y - roomY) * 11f));
+        float xCamera = ((x - roomX) * 16f);
+        float yCamera = ((y - roomY) * 11f);
+        Vector3 playerOffset = new Vector3(xPlayer, yPlayer, 0);
+        Vector3 cameraOffset = new Vector3(xCamera, yCamera, 0);
+        transform.position = playerOffset;
+        mainCamera.transform.position += cameraOffset;
+        SetRoom(x, y);
+    }
+
     public void transmitDirectionToGoriya(Direction move)
     {
         foreach (var goriyaAI in goriyaAIArray)

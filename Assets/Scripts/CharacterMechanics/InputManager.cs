@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
+using Input = UnityEngine.Input;
 
 public class InputManager : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class InputManager : MonoBehaviour
     private PlayerController player;
     private const int MOVE_BUFFER_SIZE = 3;
     private Queue<Direction> movements;
+    private RoomManager roomManager;
+    private string stringInput = "";
+    private bool recievingStringInput = false;
 
     void Start()
     {
@@ -18,6 +23,7 @@ public class InputManager : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GetComponent<PlayerController>();
         movements = new Queue<Direction>();
+        roomManager = GetComponent<RoomManager>();
     }
 
     void FixedUpdate()
@@ -30,7 +36,7 @@ public class InputManager : MonoBehaviour
             mover.Move(move);
             if (goriyaInRoom)
             {
-                GetComponent<RoomManager>().transmitDirectionToGoriya(move);
+                roomManager.transmitDirectionToGoriya(move);
             }
         }
     }
@@ -62,6 +68,30 @@ public class InputManager : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.X))
             {
                 GetComponent<WeaponInterface>().useWeaponB();
+            }
+            else if (Input.GetKeyDown(KeyCode.Return))
+            {
+                recievingStringInput = true;
+            }
+            else if (recievingStringInput)
+            {
+                foreach (char charInput in Input.inputString)
+                {
+                    if (char.IsDigit(charInput))
+                        stringInput += charInput;
+                    if (stringInput.Length == 2)
+                    {
+                        int x = int.Parse(stringInput[0].ToString());
+                        int y = int.Parse(stringInput[1].ToString());
+
+                        roomManager.TeleportToRoom(x, y);
+
+                        // reset input
+                        stringInput = "";
+                        recievingStringInput = false;
+                        return;
+                    }
+                }
             }
         }
     }
