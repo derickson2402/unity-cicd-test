@@ -165,12 +165,6 @@ public class RoomManager : MonoBehaviour
     private void SetRoomState(GameObject room, bool state)
     {
         // direct room modifications
-        GoriyaTrait goriyaTrait;
-        if (room.TryGetComponent<GoriyaTrait>(out goriyaTrait) && state)
-        {
-            goriyaAIArray = goriyaTrait.getGoriyaAIArray();
-            inputManager.goriyaInRoom = state;
-        }
         RoomTrait rm;
         if (room.TryGetComponent<RoomTrait>(out rm))
         {
@@ -204,6 +198,13 @@ public class RoomManager : MonoBehaviour
             {
                 currentRoomEnemyTotal++;
             }
+        }
+
+
+        goriyaAIArray = room.GetComponentsInChildren<GoriyaAI>();
+        if (state && goriyaAIArray.Length > 0)
+        {
+            inputManager.goriyaInRoom = true;
         }
     }
 

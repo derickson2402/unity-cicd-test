@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GoriyaAI : NPCController
 {
@@ -22,6 +23,21 @@ public class GoriyaAI : NPCController
         newMove = true;
         nextMove = DirectionManager.invertDirection(move);
     }
+    protected override void WanderMove()
+    {
+        // 25% to move in any direction
+        int fiftyFifty = Random.Range(0, 2);
+        if (fiftyFifty == 0)
+        {
+            Direction movement = DirectionManager.directions[Random.Range(0, DirectionManager.directions.Length)];
+            Debug.Log("NPC " + gameObject.name + " wandering " + movement.ToString());
+            mover.Move(movement);
+        }
+        else
+        {
+            mover.Move(nextMove);
+        }
+    }
 
     protected override IEnumerator AIMovement()
     {
@@ -31,8 +47,7 @@ public class GoriyaAI : NPCController
             {
                 if (newMove)
                 {
-                    newMove = false;
-                    mover.Move(nextMove);
+                    WanderMove();
                 }
             }
             yield return new WaitForSeconds(2);
