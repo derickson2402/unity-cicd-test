@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  movementWaitTime: 1
+  timeBetweenChecks: 0.3
   sightDistance: 4
 --- !u!114 &-7411616260874548930
 MonoBehaviour:
@@ -234,6 +236,7 @@ MonoBehaviour:
   g: {fileID: 0}
   h: {fileID: 0}
   active: 0
+  spriteCount: 0
 --- !u!114 &6381753220583550855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00772ac332cedf2459608d839ec5137d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropFreq: 0
+  dropFreq: 2
   heartRatio: 1
   bombRatio: 1
   rupeeRatio: 1

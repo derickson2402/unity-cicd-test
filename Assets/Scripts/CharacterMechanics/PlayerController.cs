@@ -188,6 +188,22 @@ public class PlayerController : MonoBehaviour
             // Play Rupee collection clip.
             AudioSource.PlayClipAtPoint(keyCollectionSoundEffect, Camera.main.transform.position);
         }
+        else if (go.CompareTag("Heart"))
+        {
+            GetComponent<TakesDamage>().Heal(1);
+            Destroy(go);
+
+            // Play collection clip.
+            AudioSource.PlayClipAtPoint(heartCollectionSoundEffect, Camera.main.transform.position);
+        }
+        else if (go.CompareTag("Bomb"))
+        {
+            ModifyBombs(1);
+            Destroy(go);
+
+            // Play collection clip.
+            AudioSource.PlayClipAtPoint(bombCollectionSoundEffect, Camera.main.transform.position);
+        }
         else if (go.CompareTag("LockedDoor"))
         {
             if (keyCount > 0)

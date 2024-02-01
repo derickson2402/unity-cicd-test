@@ -152,7 +152,7 @@ MonoBehaviour:
   damageHP: 2
   affectPlayer: 0
   affectEnemy: 1
-  attackDelayFrames: 60
+  attackDelayFrames: 30
   spawnOffsetDistance: 0.8
   knockBackDistance: 0
   stunFrames: 0
@@ -182,4 +182,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2709ee70cdb41394ea9d95a67c0a15bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300238, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
+  icon: {fileID: 21300236, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}

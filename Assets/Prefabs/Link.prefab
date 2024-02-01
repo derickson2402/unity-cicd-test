@@ -142,7 +142,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9375, y: 1, z: 0.2}
+  m_Size: {x: 0.7, y: 0.7, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &568490478191754886
 MonoBehaviour:
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3fff6b2c48e6c45873320962ca6190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sword: {fileID: 21300272, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
+  Sword: {fileID: 21300238, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
   Bow: {fileID: 21300326, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
   Boomerang: {fileID: 120067907, guid: e631fb4225ba2e64db8867349932b066, type: 3}
   Bomb: {fileID: 21300292, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
