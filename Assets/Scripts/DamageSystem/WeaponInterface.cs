@@ -143,7 +143,11 @@ public class WeaponInterface : MonoBehaviour
             Debug.Log("Freezing player controls during weapon attack");
             inputManager.controlEnabled = false;
         }
-
+        GenericMovement gm = GetComponent<GenericMovement>();
+        if (gm != null)
+        {
+            gm.movementEnabled = false;
+        }
         // Special logic for special weapon mechanics
         LogicSword(weaponObj);
         LogicBoomerang(weaponObj);
@@ -216,6 +220,11 @@ public class WeaponInterface : MonoBehaviour
                 {
                     Debug.Log("Relinquishing controls to player");
                     inputManger.controlEnabled = true;
+                }
+                GenericMovement gm = GetComponent<GenericMovement>();
+                if (gm != null)
+                {
+                    gm.movementEnabled = true;
                 }
                 // Handle animations
                 ScriptAnim4DirectionWalkPlusAttack anim = GetComponent<ScriptAnim4DirectionWalkPlusAttack>();
