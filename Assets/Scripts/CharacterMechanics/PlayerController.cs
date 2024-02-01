@@ -27,11 +27,39 @@ public class PlayerController : MonoBehaviour
     private int maxKeys = 255;
     private int bombCount = 0;
     private int maxBombs = 8;
+    private List<CollectableWeaponTypes> weaponsUnlocked;
+    private List<DealsDamage> weaponPrefabs;
+    private int weaponIndex = 0;
 
     void Start()
     {
         GetComponent<ScriptAnim4DirectionWalkPlusAttack>().active = true;
         GetComponent<GenericMovement>().movementEnabled = true;
+        weaponsUnlocked = new List<CollectableWeaponTypes>();
+        weaponPrefabs = new List<DealsDamage>();
+        // Check if we already have a secondary weapon equipped
+        WeaponInterface wi = GetComponent<WeaponInterface>();
+        if (wi != null)
+        {
+            string wpnName = wi.weaponBPrefab.name;
+            if (wpnName == "Boomerang")
+            {
+                weaponsUnlocked.Add(CollectableWeaponTypes.BOOMERANG);
+                weaponPrefabs.Add(wi.weaponBPrefab);
+            } else if (wpnName == "Bomb")
+            {
+                weaponsUnlocked.Add(CollectableWeaponTypes.BOMB);
+                weaponPrefabs.Add(wi.weaponBPrefab);
+            } else if (wpnName == "Bow")
+            {
+                weaponsUnlocked.Add(CollectableWeaponTypes.BOW);
+                weaponPrefabs.Add(wi.weaponBPrefab);
+            } else if (wpnName == "SWORD")
+            {
+                weaponsUnlocked.Add(CollectableWeaponTypes.BOOMERANG);
+                weaponPrefabs.Add(wi.weaponBPrefab);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -166,18 +194,6 @@ public class PlayerController : MonoBehaviour
             // Play Rupee collection clip.
             AudioSource.PlayClipAtPoint(keyCollectionSoundEffect, Camera.main.transform.position);
         }
-        else if (go.CompareTag("Bomb"))
-        {
-            ModifyBombs(1);
-
-            Debug.Log("Keys x" + bombCount);
-
-            // Make Rupee disappear.
-            Destroy(go);
-
-            // Play Rupee collection clip.
-            AudioSource.PlayClipAtPoint(bombCollectionSoundEffect, Camera.main.transform.position);
-        }
         else if (go.CompareTag("LockedDoor"))
         {
             if (keyCount > 0)
@@ -186,6 +202,78 @@ public class PlayerController : MonoBehaviour
                 go.GetComponent<LockedDoor>().openDoor();
             }
         }
+    }
+    public void PickUpSecondaryWeapon(CollectableWeaponTypes weaponType, AudioClip soundEffect, DealsDamage weaponPrefab)
+    {
+        Debug.Log(gameObject + " picked up " + weaponType);
+        AudioSource.PlayClipAtPoint(soundEffect, Camera.main.transform.position);
+        if (!weaponsUnlocked.Contains(weaponType))
+        {
+            weaponsUnlocked.Add(weaponType);
+            weaponPrefabs.Add(weaponPrefab);
+            if (weaponsUnlocked.Count == 1)
+            {
+                weaponIndex = 0;
+                EquipNextSecondaryWeapon();
+            }
+        }
+        if (weaponType == CollectableWeaponTypes.BOMB)
+        {
+            ModifyBombs(1);
+        }
+    }
+
+    public void EquipNextSecondaryWeapon()
+    {
+        WeaponInterface wi = GetComponent<WeaponInterface>();
+        if (wi == null)
+        {
+            Debug.Log("Error getting weaponinterface");
+            return;
+        }
+        if (weaponsUnlocked.Count == 0)
+        {
+            return;
+        }
+        weaponIndex = (weaponIndex + 1) % weaponsUnlocked.Count;
+        wi.setWeaponB(weaponPrefabs[weaponIndex]);
+    }
+
+    public void UseSecondaryWeapon()
+    {
+        WeaponInterface wi = GetComponent<WeaponInterface>();
+        if (wi == null)
+        {
+            Debug.Log("Error getting weaponinterface");
+            return;
+        }
+
+        if (weaponsUnlocked.Count == 0) { return; }
+        if (weaponsUnlocked[weaponIndex] == CollectableWeaponTypes.BOMB)
+        {
+            if (bombCount > 0)
+            {
+                ModifyBombs(-1);
+            }
+            else
+            {
+                Debug.Log("out of bombs");
+                return;
+            }
+        }
+        if (weaponsUnlocked[weaponIndex] == CollectableWeaponTypes.BOW)
+        {
+            if (rupeeCount > 0)
+            {
+                ModifyRupees(-1);
+            }
+            else
+            {
+                Debug.Log("out of rupees");
+                return;
+            }
+        }
+        wi.useWeaponB();
     }
 
     //-----------------------

@@ -9,11 +9,7 @@ using UnityEngine.Assertions;
 public class WeaponInterface : MonoBehaviour
 {
     public DealsDamage weaponAPrefab;   // Prefab to use for weaponA
-    public bool weaponAUsesAmmo;        // If weapon A is out of ammo, should it be useable?
-    public int weaponAAmmo = 0;         // Current amount of ammo in weapon A
     public DealsDamage weaponBPrefab;   // Prefab to use for weaponB
-    public bool weaponBUsesAmmo;        // If weapon B is out of ammo, should it be useable?
-    public int weaponBAmmo = 0;         // Current amount of ammo in weapon B
 
     private DealsDamage weaponInHand;   // For non-projectiles, can only have 1 weapon actively being used
     private int inHandFrames;           // For non-projectiles, how many frames has the character been attacking
@@ -41,7 +37,7 @@ public class WeaponInterface : MonoBehaviour
     {
         if (weaponAPrefab != null)
         {
-            useWeapon(weaponAPrefab, weaponAUsesAmmo, ref weaponAAmmo);
+            useWeapon(weaponAPrefab);
         }
     }
 
@@ -50,28 +46,14 @@ public class WeaponInterface : MonoBehaviour
     {
         if (weaponBPrefab != null)
         {
-            useWeapon(weaponBPrefab, weaponBUsesAmmo, ref weaponBAmmo);
+            useWeapon(weaponBPrefab);
         }
     }
 
-    // Increase ammo count for weapon slot A
-    public void giveAmmoWeaponA()
-    {
-        ++weaponAAmmo;
-    }
-
-    // Increase ammo count for weapon slot B
-    public void giveAmmoWeaponB()
-    {
-        ++weaponBAmmo;
-    }
-
     // Set weapon slot A to the given parameters
-    public void setWeaponA(DealsDamage weaponPrefab, bool usesAmmo, int ammoCount)
+    public void setWeaponA(DealsDamage weaponPrefab)
     {
         weaponAPrefab = weaponPrefab;
-        weaponAUsesAmmo = usesAmmo;
-        weaponAAmmo = ammoCount;
         if (uiRef != null)
         {
             uiRef.setWeaponA(weaponPrefab);
@@ -79,11 +61,9 @@ public class WeaponInterface : MonoBehaviour
     }
 
     // Set weapon slot B to the given parameters
-    public void setWeaponB(DealsDamage weaponPrefab, bool usesAmmo, int ammoCount)
+    public void setWeaponB(DealsDamage weaponPrefab)
     {
         weaponBPrefab = weaponPrefab;
-        weaponBUsesAmmo = usesAmmo;
-        weaponBAmmo = ammoCount;
         if (uiRef != null)
         {
             uiRef.setWeaponB(weaponPrefab);
@@ -92,7 +72,7 @@ public class WeaponInterface : MonoBehaviour
 
 
     // Base method for useA and useB
-    private void useWeapon(DealsDamage weapon, bool usesAmmo, ref int ammo)
+    private void useWeapon(DealsDamage weapon)
     {
         // If we are already mid attack, do not allow attack
         if (weaponInHand != null)
@@ -122,21 +102,6 @@ public class WeaponInterface : MonoBehaviour
                 return;
             }
         }
-        // Check our ammo
-        Debug.Log("Checking ammo");
-        DealsDamage weaponObj = null;
-        if (usesAmmo)
-        {
-            if (ammo < 1)
-            {
-                Debug.Log(weapon.name + " out of ammo");
-                return;
-            }
-            else
-            {
-                --ammo;
-            }
-        }
         // What direction are we facing?
         Vector3 dirVec = DirectionManager.DirectionToVector3(GetComponent<GenericMovement>().directionManager.current);
         Vector3 weaponOffset = weapon.spawnOffsetDistance * dirVec;
@@ -155,7 +120,7 @@ public class WeaponInterface : MonoBehaviour
         Quaternion weaponRot = Quaternion.AngleAxis(degreeAngle, Vector3.forward);
         // All good, instantiate the object
         Debug.Log("spawning weapon " + weapon.name);
-        weaponObj = Instantiate(weapon, GetComponent<Rigidbody>().position + weaponOffset, weaponRot);
+        DealsDamage weaponObj = Instantiate(weapon, GetComponent<Rigidbody>().position + weaponOffset, weaponRot);
         weaponObj.name = weaponObj.name.Remove(weaponObj.name.Length - 7); // get rid of (cloned) at the end of name, needed for lookups later
         Assert.IsFalse(weaponObj == null);
         // Set player/enemy interactions
