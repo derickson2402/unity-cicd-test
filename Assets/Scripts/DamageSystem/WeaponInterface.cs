@@ -13,6 +13,8 @@ public class WeaponInterface : MonoBehaviour
     public DealsDamage weaponBPrefab;   // Prefab to use for weaponB
     public WeaponType weaponTypeB;
 
+    public GameObject bombWeaponPrefab;
+
     private DealsDamage weaponInHand;   // For non-projectiles, can only have 1 weapon actively being used
     private int inHandFrames;           // For non-projectiles, how many frames has the character been attacking
     private Dictionary<string,DealsDamage> projRefs; // References to any active projectiles, lookup done by DealsDamage.name
@@ -45,6 +47,10 @@ public class WeaponInterface : MonoBehaviour
     // Use weapon B
     public void useWeaponB()
     {
+        if (weaponTypeB == WeaponType.Bomb)
+        {
+            Instantiate(bombWeaponPrefab, transform.position, Quaternion.identity);
+        }
         if (weaponBPrefab != null)
         {
             useWeapon(weaponBPrefab);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TakesDamage : MonoBehaviour
 {
@@ -77,9 +78,17 @@ public class TakesDamage : MonoBehaviour
         }
         if (curHP == 0)
         {
-            // We have died
-            AudioSource.PlayClipAtPoint(deathSoundEffect, Camera.main.transform.position);
-            Destroy(gameObject);
+            if (gameObject.CompareTag("Player"))
+            {
+                AudioSource.PlayClipAtPoint(deathSoundEffect, Camera.main.transform.position);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            else
+            {
+                AudioSource.PlayClipAtPoint(deathSoundEffect, Camera.main.transform.position);
+                GameObject.FindGameObjectWithTag("Player").GetComponent<RoomManager>().recieveEnemyDeath();
+                Destroy(gameObject);
+            }
         } else {
             AudioSource.PlayClipAtPoint(damageSoundEffect, Camera.main.transform.position);
         }

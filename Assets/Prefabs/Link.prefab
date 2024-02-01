@@ -286,10 +286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3fff6b2c48e6c45873320962ca6190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sword: {fileID: 0}
-  Bow: {fileID: 0}
-  Boomerang: {fileID: 0}
-  Bomb: {fileID: 0}
+  Sword: {fileID: 21300272, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
+  Bow: {fileID: 21300326, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
+  Boomerang: {fileID: 120067907, guid: e631fb4225ba2e64db8867349932b066, type: 3}
+  Bomb: {fileID: 21300292, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
 --- !u!114 &3116282824638265271
 MonoBehaviour:
   m_ObjectHideFlags: 0
