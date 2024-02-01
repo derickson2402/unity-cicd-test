@@ -54,10 +54,6 @@ public class PlayerController : MonoBehaviour
             {
                 weaponsUnlocked.Add(CollectableWeaponTypes.BOW);
                 weaponPrefabs.Add(wi.weaponBPrefab);
-            } else if (wpnName == "SWORD")
-            {
-                weaponsUnlocked.Add(CollectableWeaponTypes.BOOMERANG);
-                weaponPrefabs.Add(wi.weaponBPrefab);
             }
         }
     }
