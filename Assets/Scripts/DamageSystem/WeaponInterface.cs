@@ -18,7 +18,7 @@ public class WeaponInterface : MonoBehaviour
     private DealsDamage weaponInHand;   // For non-projectiles, can only have 1 weapon actively being used
     private int inHandFrames;           // For non-projectiles, how many frames has the character been attacking
     private Dictionary<string,DealsDamage> projRefs; // References to any active projectiles, lookup done by DealsDamage.name
-    private CharacterWeaponUIInterface weaponUI; // Characters (Link specifically) will have their weapons show up in the UI
+    private CharacterUsesUI uiRef;      // Characters (Link specifically) will have their weapons show up in the UI
 
     private void Awake()
     {
@@ -27,12 +27,12 @@ public class WeaponInterface : MonoBehaviour
 
     private void Start()
     {
-        weaponUI = GetComponent<CharacterWeaponUIInterface>();
-        if (weaponUI != null )
+        uiRef = GetComponent<CharacterUsesUI>();
+        if (uiRef != null )
         {
             // If these are null the image will just be blank
-            weaponUI.setWeaponA(weaponAPrefab);
-            weaponUI.setWeaponB(weaponBPrefab);
+            uiRef.setWeaponA(weaponAPrefab);
+            uiRef.setWeaponB(weaponBPrefab);
         }
     }
 
@@ -72,9 +72,9 @@ public class WeaponInterface : MonoBehaviour
         weaponAPrefab = weaponPrefab;
         weaponAUsesAmmo = usesAmmo;
         weaponAAmmo = ammoCount;
-        if (weaponUI != null)
+        if (uiRef != null)
         {
-            weaponUI.setWeaponA(weaponPrefab);
+            uiRef.setWeaponA(weaponPrefab);
         }
     }
 
@@ -84,9 +84,9 @@ public class WeaponInterface : MonoBehaviour
         weaponBPrefab = weaponPrefab;
         weaponBUsesAmmo = usesAmmo;
         weaponBAmmo = ammoCount;
-        if (weaponUI != null)
+        if (uiRef != null)
         {
-            weaponUI.setWeaponB(weaponPrefab);
+            uiRef.setWeaponB(weaponPrefab);
         }
     }
 

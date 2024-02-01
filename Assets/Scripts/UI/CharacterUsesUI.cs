@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterWeaponUIInterface : MonoBehaviour
+[RequireComponent(typeof(TakesDamage))]
+[RequireComponent(typeof(WeaponInterface))]
+public class CharacterUsesUI : MonoBehaviour
 {
     WeaponInterface wi; // Reference to the characters weapon interface
 
@@ -30,6 +33,19 @@ public class CharacterWeaponUIInterface : MonoBehaviour
         else
         {
             im.sprite = weaponPrefab.GetComponent<ItemUIIcon>().GetIcon();
+        }
+    }
+
+    public void setHealth(float hp)
+    {
+        TextMeshProUGUI text = GameObject.Find("HealthCountText").GetComponent<TextMeshProUGUI>();
+        if (text == null)
+        {
+            Debug.Log("Could not find reference to health text UI element");
+        }
+        else
+        {
+            text.text = 'x' + hp.ToString();
         }
     }
 }
