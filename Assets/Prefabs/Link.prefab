@@ -230,6 +230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+  startX: 2
+  startY: 0
 --- !u!114 &4869903085959527208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +276,7 @@ MonoBehaviour:
   attackLeft: {fileID: 21300050, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
   attackRight: {fileID: 21300054, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
   active: 0
+  delayBeforeRestart: 2
 --- !u!114 &1423729573196425357
 MonoBehaviour:
   m_ObjectHideFlags: 0

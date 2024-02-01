@@ -44,7 +44,7 @@ public class NPCController : MonoBehaviour
     protected (RaycastHit hitUp, RaycastHit hitDown, RaycastHit hitLeft, RaycastHit hitRight) FourDirectionRayCast(BoolWrapper gizmoBool, Vector3 position, float raycastDistance)
     {
         gizmoBool.Start();
-        
+
         Physics.Raycast(position, Vector3.up, out var hitUp, raycastDistance);
         Physics.Raycast(position, Vector3.down, out var hitDown, raycastDistance);
         Physics.Raycast(position, Vector3.left, out var hitLeft, raycastDistance);
@@ -120,7 +120,7 @@ public class NPCController : MonoBehaviour
         }
     }
 
-    protected IEnumerator ReturnToSpawn(float duration)
+    protected virtual IEnumerator ReturnToSpawn(float duration)
     {
         mover.movementEnabled = false;
         float startTime = Time.time;

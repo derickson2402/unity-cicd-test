@@ -3,7 +3,10 @@ using UnityEngine;
 
 public class BladeTrapAI : NPCController
 {
+    public float returnToSpawnTime = 3f;
     public float sightDistance = 15f;
+    public float xDeltaThreshold = 0.4f;
+    public float yDeltaThreshold = 0.4f;
 
     // Gizmo stuff for debugging and testing
     private BoolWrapper drawSightRay = new BoolWrapper(0.15f);
@@ -11,10 +14,18 @@ public class BladeTrapAI : NPCController
 
     private BoolWrapper playerInSight = new BoolWrapper(0.5f);
     private Direction nextMove = Direction.None;
+
+    private BoxCollider boxCollider;
+    private bool hitPlayer = false;
     //private float curTime = 0.0f;
     //private float timeBetweenChecks = 0.5f;
 
-    // Update is called once per frame
+    protected override void Start()
+    {
+        boxCollider = GetComponent<BoxCollider>();
+        base.Start();
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -33,38 +44,82 @@ public class BladeTrapAI : NPCController
 
     private bool IsPlayerInSight()
     {
-        nextMove = Direction.None;
-        float deltaDistance = Vector3.Distance(initialPosition, player.transform.position);
-        if (deltaDistance <= sightDistance)
-        {
-            (RaycastHit hitUp, RaycastHit hitDown, RaycastHit hitLeft, RaycastHit hitRight) = FourDirectionRayCast(drawSightRay, initialPosition, sightDistance);
+        Vector3 playerPos = player.transform.position;
+        Vector3 trapPos = transform.position;
 
-            if (hitUp.collider != null && hitUp.collider.gameObject == player)
+        // Check the difference between player's position and trap's position
+        float deltaX = Mathf.Abs(playerPos.x - trapPos.x);
+        float deltaY = Mathf.Abs(playerPos.y - trapPos.y);
+
+        // If the player is lined up with the trap either horizontally or vertically
+        // and is within sight distance, cast a ray from trap towards the player
+        if ((deltaX < xDeltaThreshold && deltaY <= sightDistance) || (deltaY < yDeltaThreshold && deltaX <= sightDistance))
+        {
+            RaycastHit hit;
+            // If the player is to the right or left of the trap
+            if (deltaX < xDeltaThreshold)
             {
-                nextMove = Direction.Up;
+                Direction move = playerPos.y > trapPos.y ? Direction.Up : Direction.Down;
+                raycastDirection = DirectionManager.DirectionToVector3(move);
+                drawSightRay.Start();
+                if (Physics.Raycast(trapPos, raycastDirection, out hit, sightDistance))
+                {
+                    // If the first object hit is not the player, return false
+                    if (hit.collider.gameObject != player)
+                    {
+                        return false;
+                    }
+                }
+
+                nextMove = move;
             }
-            else if (hitDown.collider != null && hitDown.collider.gameObject == player)
+            // If the player is above or below the trap
+            else if (deltaY < yDeltaThreshold)
             {
-                nextMove = Direction.Down;
+                Direction move = playerPos.x > trapPos.x ? Direction.Right : Direction.Left;
+                raycastDirection = DirectionManager.DirectionToVector3(move);
+                drawSightRay.Start();
+                if (Physics.Raycast(trapPos, raycastDirection, out hit, sightDistance))
+                {
+                    // If the first object hit is not the player, return false
+                    if (hit.collider.gameObject != player)
+                    {
+                        return false;
+                    }
+                }
+                nextMove = move;
             }
-            else if (hitLeft.collider != null && hitLeft.collider.gameObject == player)
-            {
-                nextMove = Direction.Left;
-            }
-            else if (hitRight.collider != null && hitRight.collider.gameObject == player)
-            {
-                nextMove = Direction.Right;
-            }
-            else
-            {
-                nextMove = Direction.None;
-                return false;
-            }
-            raycastDirection = DirectionManager.DirectionToVector3(nextMove);
+
             return true;
         }
 
         return false;
+    }
+
+    protected override IEnumerator ReturnToSpawn(float duration)
+    {
+        mover.movementEnabled = false;
+        float startTime = Time.time;
+
+        while (Vector3.Distance(transform.position, initialPosition) > 0.1f)
+        {
+            // If the enemy spots the player during the return, it stops returning and move towards the player
+            if (IsPlayerInSight() && !hitPlayer)
+            {
+                mover.movementEnabled = true;
+                yield break;
+            }
+
+            float timeSinceStarted = Time.time - startTime;
+            float percentageComplete = timeSinceStarted / duration;
+
+            transform.position = Vector3.Lerp(transform.position, initialPosition, percentageComplete);
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        mover.movementEnabled = true;
+        yield return null;
     }
 
     protected override IEnumerator AIMovement()
@@ -73,25 +128,29 @@ public class BladeTrapAI : NPCController
         {
             if (mover.movementEnabled)
             {
-                while (playerInSight.value)
+                boxCollider.enabled = false;
+                while (IsPlayerInSight())
                 {
                     mover.Move(nextMove);
-                    nextMove = Direction.None;
                     yield return new WaitForSeconds(0.05f);
+                    boxCollider.enabled = true;
                 }
-                if (!playerInSight.value)
-                {
-                    if (IsPlayerInSight())
-                    {
-                        playerInSight.Start();
-                    }
-                    else
-                    {
-                        yield return StartCoroutine(ReturnToSpawn(0.5f));
-                    }
-                }
+                yield return StartCoroutine(ReturnToSpawn(returnToSpawnTime));
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(movementWaitTime);
+        }
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        // Check if the trap collide with wall or player
+        if (collision.gameObject.tag == "Tile_WALL")
+        {
+            StartCoroutine(ReturnToSpawn(returnToSpawnTime));
+        }
+        else if (collision.gameObject.tag == "Player")
+        {
+            hitPlayer = true;
+            StartCoroutine(ReturnToSpawn(returnToSpawnTime));
         }
     }
 

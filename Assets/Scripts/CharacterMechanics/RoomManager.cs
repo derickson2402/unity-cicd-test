@@ -5,7 +5,9 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour
 {
     public Camera mainCamera;
-    
+    public int startX;
+    public int startY;
+
     private Rigidbody rb;
     private BoxCollider boxCollider;
     private InputManager inputManager;
@@ -27,8 +29,8 @@ public class RoomManager : MonoBehaviour
             int y = room.name[^2] - '0';
             roomDictionary[(x, y)] = room;
         }
-        roomX = 2;
-        roomY = 0;
+        roomX = startX;
+        roomY = startY;
         currentRoom = roomDictionary[(roomX, roomY)];
         SetRoomState(currentRoom, true);
         rb = GetComponent<Rigidbody>();
@@ -148,7 +150,8 @@ public class RoomManager : MonoBehaviour
         }
 
         goriyaAIArray = room.GetComponentsInChildren<GoriyaAI>();
-        if (state && goriyaAIArray.Length > 0) {
+        if (state && goriyaAIArray.Length > 0)
+        {
             inputManager.goriyaInRoom = true;
         }
 
