@@ -9,9 +9,14 @@ public class KeeseAI : NPCController
     private float curTime = 0.0f;
     private float timeBetweenChecks = 0.5f;
 
+    // Gizmo stuff for debugging and testing
+    private BoolWrapper drawAggressionSphere = new BoolWrapper(0.3f);
+
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+        drawAggressionSphere.Update();
         if (mover.movementEnabled)
         {
             curTime += Time.deltaTime;
@@ -31,18 +36,22 @@ public class KeeseAI : NPCController
         {
             if (hitCollider.gameObject == player)
             {
+                drawAggressionSphere.Start();
                 Debug.Log("Enemy " + gameObject.name + " is turning aggressive");
                 state = AIState.Aggression;
                 return;
             }
         }
         state = AIState.Wander;
-        return;
     }
 
-    void OnDrawGizmosSelected()
+    protected override void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        base.OnDrawGizmos();
+        if (drawAggressionSphere.value)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        }
     }
 }

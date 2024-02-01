@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  detectionDistance: 4.5
+  sightDistance: 4
 --- !u!114 &-7411616260874548930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,8 +169,8 @@ MonoBehaviour:
   movementSpeed: 2.5
   activeDeaccelerationFactor: 10
   naturalDeaccelerationFactor: 4
-  gridAlignmentDurationSeconds: 0.03
-  changeDirectionThreshold: 0.17
+  gridAlignmentDurationSeconds: 0.015
+  changeDirectionThreshold: 0.13
   stopThreshold: 0.0625
   gridSize: 0.5
   movementEnabled: 0

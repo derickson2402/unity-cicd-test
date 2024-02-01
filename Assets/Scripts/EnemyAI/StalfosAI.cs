@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class StalfosAI : NPCController
 {
-    public float detectionDistance = 4.5f;
-
     private float curTime = 0.0f;
-    private float timeBetweenChecks = 0.5f;
+    public float timeBetweenChecks = 0.3f;
+    public float sightDistance = 4f;
 
-    // Update is called once per frame
-    void Update()
+    // Gizmo stuff for debugging and testing
+    private BoolWrapper draw1DRaycast = new BoolWrapper(0.1f);
+    private Vector3 raycastDirection;
+
+    protected override void Update()
     {
+        base.Update();
+        draw1DRaycast.Update();
         if (mover.movementEnabled)
         {
             curTime += Time.deltaTime;
@@ -26,10 +30,12 @@ public class StalfosAI : NPCController
     private void IsPlayerInSight()
     {
         float deltaDistance = Vector3.Distance(transform.position, player.transform.position);
-        if (deltaDistance <= detectionDistance)
+        if (deltaDistance <= sightDistance)
         {
+            raycastDirection = player.transform.position - transform.position;
+            draw1DRaycast.Start();
             if (Physics.Raycast(transform.position, player.transform.position - transform.position, out var hit,
-                    deltaDistance))
+                    sightDistance))
             {
                 if (hit.collider.gameObject == player)
                 {
@@ -37,6 +43,16 @@ public class StalfosAI : NPCController
                     Debug.Log("Enemy " + gameObject.name + " is turning aggressive");
                 }
             }
+        }
+    }
+
+    protected virtual void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+        if (draw1DRaycast.value)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(transform.position, raycastDirection * sightDistance);
         }
     }
 }
