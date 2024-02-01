@@ -1,9 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting;
 using UnityEngine;
-using static System.Net.WebRequestMethods;
 
 public enum AIState
 {
@@ -14,20 +10,27 @@ public enum AIState
 public class NPCController : MonoBehaviour
 {
     public AIState state;
+    public float movementWaitTime = 1f;
+    protected Vector3 initialPosition;
     protected GenericMovement mover;
     protected Rigidbody rb;
     protected Coroutine currentMovement;
     protected GameObject player;
-    private float raycastDistance = 1.0f;
 
-    //private Vector3 playerPosition;
-    //private float timeSincePlayerScan;
-    //private float timeBetweenPlayerScans = 0.3f;
+    // Gizmo stuff for debugging and testing
+    private BoolWrapper draw4DRaycastGizmos = new BoolWrapper(0.2f);
+    private float hazardCheckRaycastDistance = 1.0f;
 
     void Awake()
     {
         mover = GetComponent<GenericMovement>();
         rb = GetComponent<Rigidbody>();
+        initialPosition = transform.position;
+    }
+
+    protected virtual void Update()
+    {
+        draw4DRaycastGizmos.Update();
     }
 
     protected virtual void Start()
@@ -38,39 +41,47 @@ public class NPCController : MonoBehaviour
         currentMovement = StartCoroutine(AIMovement());
     }
 
-    protected virtual Direction GenerateMoveTowardPlayer()
+    protected (RaycastHit hitUp, RaycastHit hitDown, RaycastHit hitLeft, RaycastHit hitRight) FourDirectionRayCast(BoolWrapper gizmoBool, Vector3 position, float raycastDistance)
     {
-        RaycastHit hitUp, hitDown, hitLeft, hitRight;
+        gizmoBool.Start();
 
-        Physics.Raycast(transform.position, Vector3.up, out hitUp, raycastDistance);
-        Physics.Raycast(transform.position, Vector3.down, out hitDown, raycastDistance);
-        Physics.Raycast(transform.position, Vector3.left, out hitLeft, raycastDistance);
-        Physics.Raycast(transform.position, Vector3.right, out hitRight, raycastDistance);
+        Physics.Raycast(position, Vector3.up, out var hitUp, raycastDistance);
+        Physics.Raycast(position, Vector3.down, out var hitDown, raycastDistance);
+        Physics.Raycast(position, Vector3.left, out var hitLeft, raycastDistance);
+        Physics.Raycast(position, Vector3.right, out var hitRight, raycastDistance);
 
-        Vector3 delta = player.transform.position - transform.position;
+        return (hitUp, hitDown, hitLeft, hitRight);
+    }
+
+    protected virtual Direction GenerateMoveTowardPosition(Vector3 position)
+    {
+        (RaycastHit hitUp, RaycastHit hitDown, RaycastHit hitLeft, RaycastHit hitRight) =
+            FourDirectionRayCast(draw4DRaycastGizmos, transform.position, hazardCheckRaycastDistance);
+
+        Vector3 delta = position - transform.position;
         if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
         {
-            if (delta.x > 0 && (hitRight.collider == null || hitRight.collider.gameObject == player))
+            if (delta.x > 0 && (hitRight.collider == null || (hitRight.collider != null && hitRight.collider.gameObject == player)))
             {
                 return Direction.Right;
             }
-            else if (hitLeft.collider == null || hitLeft.collider.gameObject == player)
+            else if (hitLeft.collider == null || (hitLeft.collider != null && hitLeft.collider.gameObject == player))
             {
                 return Direction.Left;
             }
         }
         else
         {
-            if (delta.y > 0 && (hitUp.collider == null || hitUp.collider.gameObject == player))
+            if (delta.y > 0 && (hitUp.collider == null || (hitUp.collider != null && hitUp.collider.gameObject == player)))
             {
                 return Direction.Up;
             }
-            else if (hitDown.collider == null || hitDown.collider.gameObject == player)
+            else if (hitDown.collider == null || (hitDown.collider != null && hitDown.collider.gameObject == player))
             {
                 return Direction.Down;
             }
         }
-        return Direction.None; // return an alternative or do nothing if all paths are blocked
+        return Direction.None;
     }
 
     protected virtual void WanderMove()
@@ -81,10 +92,10 @@ public class NPCController : MonoBehaviour
         mover.Move(movement);
     }
 
-    protected virtual void AggressionMove()
+    protected virtual void AggressionMove(Vector3 position)
     {
-        Direction movement = GenerateMoveTowardPlayer();
-        Debug.Log("NPC " + gameObject.name + " seeking player " + movement.ToString());
+        Direction movement = GenerateMoveTowardPosition(position);
+        Debug.Log("NPC " + gameObject.name + " seeking position " + position + " " + movement.ToString());
         mover.Move(movement);
     }
 
@@ -101,21 +112,41 @@ public class NPCController : MonoBehaviour
                         WanderMove();
                         break;
                     case AIState.Aggression:
-                        AggressionMove();
+                        AggressionMove(player.transform.position);
                         break;
                 }
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(movementWaitTime);
         }
     }
 
-    void OnDrawGizmos()
+    protected virtual IEnumerator ReturnToSpawn(float duration)
     {
-        Gizmos.color = Color.red;
+        mover.movementEnabled = false;
+        float startTime = Time.time;
 
-        Gizmos.DrawRay(transform.position, Vector3.up * raycastDistance);
-        Gizmos.DrawRay(transform.position, Vector3.down * raycastDistance);
-        Gizmos.DrawRay(transform.position, Vector3.left * raycastDistance);
-        Gizmos.DrawRay(transform.position, Vector3.right * raycastDistance);
+        while (Vector3.Distance(transform.position, initialPosition) > 0.1f)
+        {
+            float timeSinceStarted = Time.time - startTime;
+            float percentageComplete = timeSinceStarted / duration;
+            transform.position = Vector3.Lerp(transform.position, initialPosition, percentageComplete);
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        mover.movementEnabled = true;
+        yield return null;
+    }
+
+    protected virtual void OnDrawGizmos()
+    {
+        if (draw4DRaycastGizmos.value)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawRay(transform.position, Vector3.up * hazardCheckRaycastDistance);
+            Gizmos.DrawRay(transform.position, Vector3.down * hazardCheckRaycastDistance);
+            Gizmos.DrawRay(transform.position, Vector3.left * hazardCheckRaycastDistance);
+            Gizmos.DrawRay(transform.position, Vector3.right * hazardCheckRaycastDistance);
+        }
     }
 }

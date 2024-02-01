@@ -85,7 +85,7 @@ public class WallMasterAI : NPCController
         Debug.Log("NPC " + gameObject.name + " waiting");
     }
 
-    protected override void AggressionMove()
+    protected override void AggressionMove(Vector3 position)
     {
         if (!IsPlayerInSquare())
         {
@@ -99,7 +99,8 @@ public class WallMasterAI : NPCController
         {
             mover.movementSpeed = normalSpeed;
         }
-        Direction movement = GenerateMoveTowardPlayer();
+
+        Direction movement = GenerateMoveTowardPosition(position);
         Debug.Log("NPC " + gameObject.name + " seeking player " + movement.ToString());
         mover.Move(movement);
         firstMove = false;
