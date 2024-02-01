@@ -45,7 +45,7 @@ public class CharacterUsesUI : MonoBehaviour
         }
         else
         {
-            text.text = 'x' + hp.ToString();
+            text.text = hp.ToString();
         }
     }
 }

@@ -67,7 +67,11 @@ public class InputManager : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.X))
             {
-                GetComponent<WeaponInterface>().useWeaponB();
+                GetComponent<PlayerController>().UseSecondaryWeapon();
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
+            {
+                GetComponent<PlayerController>().EquipNextSecondaryWeapon();
             }
             else if (Input.GetKeyDown(KeyCode.Return))
             {

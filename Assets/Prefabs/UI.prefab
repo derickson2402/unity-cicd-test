@@ -819,8 +819,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3605568816656690772}
-  - {fileID: 1100381080680512864}
   - {fileID: 307116291980801441}
+  - {fileID: 1100381080680512864}
   - {fileID: 3249065181465232893}
   - {fileID: 9031222139981681797}
   m_Father: {fileID: 5340649704174500473}
@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 2694348246878321484}
   - component: {fileID: 1187380628004716272}
   m_Layer: 5
-  m_Name: WeaponBImage
+  m_Name: WeaponAImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -888,14 +888,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9350302, g: 0.9622642, b: 0.9407162, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300272, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1465,7 +1465,6 @@ GameObject:
   - component: {fileID: 3139058891252074417}
   - component: {fileID: 4233895757750827665}
   - component: {fileID: 6527073456814548822}
-  - component: {fileID: 1491937621960465577}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1564,22 +1563,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1491937621960465577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4437772855463956155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b3e9fdac41d7d34daafaf80fd72ef50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swordImage: {fileID: 21300272, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
-  bombImage: {fileID: 21300292, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
-  bommerangImage: {fileID: 1308316783, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
-  bowImage: {fileID: 21300326, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
 --- !u!1 &4558001644627651870
 GameObject:
   m_ObjectHideFlags: 0
@@ -2169,7 +2152,7 @@ GameObject:
   - component: {fileID: 490201656465760298}
   - component: {fileID: 1451737538445265600}
   m_Layer: 5
-  m_Name: WeaponAImage
+  m_Name: WeaponBImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2222,7 +2205,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300326, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

@@ -151,6 +151,12 @@ public class RoomManager : MonoBehaviour
         if (state && goriyaAIArray.Length > 0) {
             inputManager.goriyaInRoom = true;
         }
+
+        OldManDialogue oldMan;
+        if (room.TryGetComponent<OldManDialogue>(out oldMan))
+        {
+            oldMan.DisplayState(state);
+        }
     }
 
     public void TeleportToRoom(int x, int y)
