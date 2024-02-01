@@ -31,6 +31,7 @@ public class WeaponTypeBomb : MonoBehaviour
     void Detonate()
     {
         Debug.Log("Bomb detonating");
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
         foreach (GameObject enemy in enemiesInRange)
         {
             Debug.Log("Bomb damaging " + enemy.name + " for " + damage);

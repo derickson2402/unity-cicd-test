@@ -232,6 +232,9 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   startX: 2
   startY: 0
+  roomCleared: 0
+  currentRoomEnemyTotal: 0
+  currentRoomEnemyDeaths: 0
 --- !u!114 &4869903085959527208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +251,7 @@ MonoBehaviour:
   weaponTypeA: 3
   weaponBPrefab: {fileID: 0}
   weaponTypeB: 4
+  bombWeaponPrefab: {fileID: 7337095122266348320, guid: 7bb97389f1896f94cbaa001218bd40ae, type: 3}
 --- !u!114 &6226975357632161720
 MonoBehaviour:
   m_ObjectHideFlags: 0
