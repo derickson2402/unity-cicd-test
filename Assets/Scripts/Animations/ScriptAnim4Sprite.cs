@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class ScriptAnim4Sprite : MonoBehaviour
@@ -20,13 +21,11 @@ public class ScriptAnim4Sprite : MonoBehaviour
     private float curTime;          // What time it is currently, resets on flip
     private Sprite[] spriteArr;     // Array object holding the a,b,c,d sprites
 
-    public bool active;
-    public int spriteCount;
+    public bool active = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        active = false;
         sr = GetComponent<SpriteRenderer>();
         curTime = 0;
         int numSprites = 0;
@@ -39,6 +38,7 @@ public class ScriptAnim4Sprite : MonoBehaviour
         numSprites = (g != null) ? numSprites + 1 : numSprites;
         numSprites = (h != null) ? numSprites + 1 : numSprites;
         spriteArr = new Sprite[numSprites];
+        Assert.IsFalse(numSprites < 1);
         curSpriteIndex = 0;
         if (a != null) { spriteArr[curSpriteIndex++] = a; }
         if (b != null) { spriteArr[curSpriteIndex++] = b; }
@@ -49,7 +49,6 @@ public class ScriptAnim4Sprite : MonoBehaviour
         if (g != null) { spriteArr[curSpriteIndex++] = g; }
         if (h != null) { spriteArr[curSpriteIndex++] = h; }
 
-        curSpriteIndex = Random.Range(0, spriteCount);
         sr.sprite = spriteArr[curSpriteIndex];
     }
 

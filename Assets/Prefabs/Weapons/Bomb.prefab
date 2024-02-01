@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -8197212531978580994}
   - component: {fileID: 1550470261053700879}
   - component: {fileID: -1869291195518762447}
+  - component: {fileID: -1173354178984731405}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -119,3 +120,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 21300292, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
+--- !u!114 &-1173354178984731405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7337095122266348320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5e2a7adb5b85f4db5e405134bec2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageHP: 0
+  affectPlayer: 0
+  affectEnemy: 0
+  attackDelayFrames: 0
+  spawnOffsetDistance: 0
+  knockBackDistance: 0
+  stunFrames: 0

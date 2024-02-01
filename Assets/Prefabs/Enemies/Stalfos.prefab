@@ -234,7 +234,6 @@ MonoBehaviour:
   g: {fileID: 0}
   h: {fileID: 0}
   active: 0
-  spriteCount: 2
 --- !u!114 &6381753220583550855
 MonoBehaviour:
   m_ObjectHideFlags: 0
