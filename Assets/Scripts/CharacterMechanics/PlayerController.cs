@@ -280,6 +280,11 @@ public class PlayerController : MonoBehaviour
             ModifyRupees(maxRupees);
             ModifyKeys(maxKeys);
             ModifyBombs(maxBombs);
+            if (!weaponsUnlocked.Contains(WeaponType.Bomb))
+            {
+                weaponsUnlocked.Add(WeaponType.Bomb);
+                weaponPrefabs.Add(null);
+            }
         }
         else
         {
