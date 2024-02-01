@@ -244,12 +244,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724dbcfb4f3623a40801d30062f02ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponAPrefab: {fileID: 0}
-  weaponAUsesAmmo: 0
-  weaponAAmmo: 0
+  weaponAPrefab: {fileID: 5278937283722435218, guid: 961cd858afef8ee4599588db1c737b9d, type: 3}
+  weaponTypeA: 3
   weaponBPrefab: {fileID: 0}
-  weaponBUsesAmmo: 0
-  weaponBAmmo: 0
+  weaponTypeB: 4
 --- !u!114 &6226975357632161720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,7 +274,6 @@ MonoBehaviour:
   attackLeft: {fileID: 21300050, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
   attackRight: {fileID: 21300054, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
   active: 0
-  delayBeforeRestart: 2
 --- !u!114 &1423729573196425357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,6 +286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3fff6b2c48e6c45873320962ca6190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sword: {fileID: 0}
+  Bow: {fileID: 0}
+  Boomerang: {fileID: 0}
+  Bomb: {fileID: 0}
 --- !u!114 &3116282824638265271
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,29 +10,50 @@ public class CharacterUsesUI : MonoBehaviour
 {
     WeaponInterface wi; // Reference to the characters weapon interface
 
-    public void setWeaponA(DealsDamage weaponPrefab)
+    public Sprite Sword;
+    public Sprite Bow;
+    public Sprite Boomerang;
+    public Sprite Bomb;
+
+    public void setWeaponA(WeaponType type)
     {
         Image im = GameObject.Find("WeaponAImage").GetComponent<Image>();
-        if (im == null)
+        Sprite s = WeaponTypeToSprite(type);
+        if (s == null)
+        {
+            Debug.Log("Sprite not assigned to weapon type " + type);
+            im.color = Color.black;
+            im.sprite = null;
+        }
+        else if (im == null)
         {
             Debug.Log("Could not find reference to Weapon A UI element");
         }
         else
         {
-            im.sprite = weaponPrefab.GetComponent<ItemUIIcon>().GetIcon();
+            im.color = Color.white;
+            im.sprite = s;
         }
     }
 
-    public void setWeaponB(DealsDamage weaponPrefab)
+    public void setWeaponB(WeaponType type)
     {
         Image im = GameObject.Find("WeaponBImage").GetComponent<Image>();
-        if (im == null)
+        Sprite s = WeaponTypeToSprite(type);
+        if (s == null)
         {
-            Debug.Log("Could not find reference to Weapon B UI element");
+            Debug.Log("Sprite not assigned to weapon type " + type);
+            im.color = Color.black;
+            im.sprite = null;
+        }
+        else if (im == null)
+        {
+            Debug.Log("Could not find reference to Weapon A UI element");
         }
         else
         {
-            im.sprite = weaponPrefab.GetComponent<ItemUIIcon>().GetIcon();
+            im.color = Color.white;
+            im.sprite = s;
         }
     }
 
@@ -46,6 +67,25 @@ public class CharacterUsesUI : MonoBehaviour
         else
         {
             text.text = hp.ToString();
+        }
+    }
+
+    private Sprite WeaponTypeToSprite(WeaponType type)
+    {
+        switch (type)
+        {
+            case WeaponType.None:
+                return null;
+            case WeaponType.Sword:
+                return Sword;
+            case WeaponType.Bomb:
+                return Bomb;
+            case WeaponType.Boomerang:
+                return Boomerang;
+            case WeaponType.Bow:
+                return Bow;
+            default:
+                return null;
         }
     }
 }
