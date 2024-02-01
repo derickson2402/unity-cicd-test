@@ -106,7 +106,7 @@ public class EnemyTypeWallmasterController : MonoBehaviour
         }
         else if ((collision.gameObject.name == "Tile_WALL" || collision.gameObject.name == "Tile_NONE") && grabbedPlayer)
         {
-           GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().returnPlayerToStart();
+           // GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().returnPlayerToStart();
            Destroy(gameObject);
         }
     }

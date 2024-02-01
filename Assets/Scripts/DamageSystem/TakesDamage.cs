@@ -16,6 +16,7 @@ public class TakesDamage : MonoBehaviour
     private bool isStunned;         // Is the object currently stunned?
     private int iFramesRemaining;   // Number of frames invincibility left, at 0 is disabled
     private int stunFramesRemaining;// Number of frames left where controls are disabled
+    private CharacterUsesUI uiRef;  // Characters (Link specifically) will have their health show up in the UI
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,11 @@ public class TakesDamage : MonoBehaviour
         curHP = maxHP;
         stunFramesRemaining = 0;
         iFramesRemaining = 0;
+        uiRef = GetComponent<CharacterUsesUI>();
+        if (uiRef != null )
+        {
+            uiRef.setHealth(curHP);
+        }
     }
 
     void Update()
@@ -60,7 +66,16 @@ public class TakesDamage : MonoBehaviour
             return;
         }
         curHP -= damagePoints;
-        if (curHP <= 0)
+        if (curHP < 0)
+        {
+            curHP = 0;
+        }
+        // Update UI
+        if (uiRef != null)
+        {
+            uiRef.setHealth(curHP);
+        }
+        if (curHP == 0)
         {
             // We have died
             AudioSource.PlayClipAtPoint(deathSoundEffect, Camera.main.transform.position);
@@ -92,6 +107,11 @@ public class TakesDamage : MonoBehaviour
         if (curHP > maxHP)
         {
             curHP = maxHP;
+        }
+        // Update UI
+        if (uiRef != null)
+        {
+            uiRef.setHealth(curHP);
         }
     }
 }

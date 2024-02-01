@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1fb392f0db4ad498de98cdcc6d9a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
 --- !u!114 &2914594022130949357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,12 +223,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724dbcfb4f3623a40801d30062f02ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponA: 0
-  weaponAPrefab: {fileID: 0}
+  weaponAPrefab: {fileID: 1813840800894668663, guid: ece6dd788f2a122449c015c8c372a716, type: 3}
   weaponAUsesAmmo: 0
-  weaponB: 0
+  weaponAAmmo: 0
   weaponBPrefab: {fileID: 0}
   weaponBUsesAmmo: 0
+  weaponBAmmo: 0
 --- !u!114 &412560933461219008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,4 +250,5 @@ MonoBehaviour:
   f: {fileID: 0}
   g: {fileID: 0}
   h: {fileID: 0}
+  active: 0
   spriteCount: 4

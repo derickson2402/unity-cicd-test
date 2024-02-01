@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7298099287942196844}
   - component: {fileID: 6381753220583550855}
   - component: {fileID: 5381262001536537138}
+  - component: {fileID: 2028275948142223627}
   m_Layer: 0
   m_Name: Goriya
   m_TagString: Enemy
@@ -253,3 +254,21 @@ MonoBehaviour:
   attackLeft: {fileID: -1142191504, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
   attackRight: {fileID: -1073015967, guid: 04d3f3c106fc4a24ba4f92af214eda8a, type: 3}
   active: 0
+--- !u!114 &2028275948142223627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522914441871167163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724dbcfb4f3623a40801d30062f02ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponAPrefab: {fileID: 1813840800894668663, guid: 0e2207f1ebb0337458eda94b50952f69, type: 3}
+  weaponAUsesAmmo: 0
+  weaponAAmmo: 0
+  weaponBPrefab: {fileID: 0}
+  weaponBUsesAmmo: 0
+  weaponBAmmo: 0
