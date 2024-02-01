@@ -118,7 +118,11 @@ public class WeaponInterface : MonoBehaviour
             if (!prefabProjectile.multiFireAllowed && projRefs[weapon.name] != null)
             {
                 Debug.Log("Active " + weapon.name + " already on map somewhere");
-                return;
+                // Sword can still be swung
+                if (weapon.name != "Sword")
+                {
+                    return;
+                }
             }
         }
         // What direction are we facing?
@@ -191,7 +195,19 @@ public class WeaponInterface : MonoBehaviour
                 if (health.GetHP() != health.maxHP)
                 {
                     Debug.Log("Mortal player not at full health, swinging sword");
-                    Destroy(weaponObj.GetComponent<Projectile>());
+                    Projectile proj = weaponObj.GetComponent<Projectile>();
+                    if (proj != null)
+                    {
+                        Destroy(proj);
+                    }
+                }
+            }
+            // Allow sword swings while projectile already in air
+            if (projRefs[weaponObj.name] != null) {
+                Projectile proj = weaponObj.GetComponent<Projectile>();
+                if (proj != null)
+                {
+                    Destroy(proj);
                 }
             }
         }

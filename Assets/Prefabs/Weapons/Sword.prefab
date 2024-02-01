@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c397e40e22adcba4d9a6ea8e4bad4e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flySpeed: 2
+  flySpeed: 4
   multiFireAllowed: 0
 --- !u!114 &4245476435595884895
 MonoBehaviour:
