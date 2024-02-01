@@ -6,12 +6,12 @@ using UnityEngine;
 [RequireComponent(typeof(TakesDamage))]
 public class CollectorOfItems : MonoBehaviour
 {
-    private Dictionary<CollectableWeaponTypes, bool> itemsUnlocked;
+    private Dictionary<WeaponType, bool> itemsUnlocked;
 
     private void Awake()
     {
-        itemsUnlocked = new Dictionary<CollectableWeaponTypes, bool>();
-        foreach (CollectableWeaponTypes item in Enum.GetValues(typeof(CollectableWeaponTypes)))
+        itemsUnlocked = new Dictionary<WeaponType, bool>();
+        foreach (WeaponType item in Enum.GetValues(typeof(WeaponType)))
         {
             itemsUnlocked[item] = false;
         }
@@ -19,11 +19,11 @@ public class CollectorOfItems : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Enum.GetValues(typeof(CollectableWeaponTypes));
+        Enum.GetValues(typeof(WeaponType));
     }
 
 
-    public bool IsItemUnlocked(CollectableWeaponTypes itemType)
+    public bool IsItemUnlocked(WeaponType itemType)
     {
         return itemsUnlocked[itemType];
     }

@@ -9,7 +9,9 @@ using UnityEngine.Assertions;
 public class WeaponInterface : MonoBehaviour
 {
     public DealsDamage weaponAPrefab;   // Prefab to use for weaponA
+    public WeaponType weaponTypeA;
     public DealsDamage weaponBPrefab;   // Prefab to use for weaponB
+    public WeaponType weaponTypeB;
 
     private DealsDamage weaponInHand;   // For non-projectiles, can only have 1 weapon actively being used
     private int inHandFrames;           // For non-projectiles, how many frames has the character been attacking
@@ -26,9 +28,8 @@ public class WeaponInterface : MonoBehaviour
         uiRef = GetComponent<CharacterUsesUI>();
         if (uiRef != null )
         {
-            // If these are null the image will just be blank
-            uiRef.setWeaponA(weaponAPrefab);
-            uiRef.setWeaponB(weaponBPrefab);
+            setWeaponA(weaponTypeA, weaponAPrefab);
+            uiRef.setWeaponB(WeaponType.None);
         }
     }
 
@@ -54,9 +55,15 @@ public class WeaponInterface : MonoBehaviour
     public void setWeaponA(DealsDamage weaponPrefab)
     {
         weaponAPrefab = weaponPrefab;
+    }
+
+    public void setWeaponA(WeaponType type, DealsDamage weaponPrefab)
+    {
+        weaponTypeA = type;
+        weaponAPrefab = weaponPrefab;
         if (uiRef != null)
         {
-            uiRef.setWeaponA(weaponPrefab);
+            uiRef.setWeaponA(type);
         }
     }
 
@@ -64,9 +71,15 @@ public class WeaponInterface : MonoBehaviour
     public void setWeaponB(DealsDamage weaponPrefab)
     {
         weaponBPrefab = weaponPrefab;
+    }
+
+    public void setWeaponB(WeaponType type, DealsDamage weaponPrefab)
+    {
+        weaponTypeB = type;
+        weaponBPrefab = weaponPrefab;
         if (uiRef != null)
         {
-            uiRef.setWeaponB(weaponPrefab);
+            uiRef.setWeaponB(type);
         }
     }
 

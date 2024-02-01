@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CollectableWeaponTypes
+public enum WeaponType
 {
-    BOOMERANG,
-    BOMB,
-    BOW,
-    SWORD
+    Boomerang,
+    Bomb,
+    Bow,
+    Sword,
+    None
 }
 
 [RequireComponent(typeof(BoxCollider))]
 public class CollectableWeapon : MonoBehaviour
 {
-    public CollectableWeaponTypes weaponType;
+    public WeaponType weaponType;
     [SerializeField] protected AudioClip soundEffect;
     public DealsDamage weaponPrefab;
 

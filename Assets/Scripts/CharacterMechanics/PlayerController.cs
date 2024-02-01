@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private int maxKeys = 255;
     private int bombCount = 0;
     private int maxBombs = 8;
-    private List<CollectableWeaponTypes> weaponsUnlocked;
+    private List<WeaponType> weaponsUnlocked;
     private List<DealsDamage> weaponPrefabs;
     private int weaponIndex = 0;
 
@@ -35,27 +33,27 @@ public class PlayerController : MonoBehaviour
     {
         GetComponent<ScriptAnim4DirectionWalkPlusAttack>().active = true;
         GetComponent<GenericMovement>().movementEnabled = true;
-        weaponsUnlocked = new List<CollectableWeaponTypes>();
+        weaponsUnlocked = new List<WeaponType>();
         weaponPrefabs = new List<DealsDamage>();
         // Check if we already have a secondary weapon equipped
         WeaponInterface wi = GetComponent<WeaponInterface>();
-        if (wi != null)
-        {
-            string wpnName = wi.weaponBPrefab.name;
-            if (wpnName == "Boomerang")
-            {
-                weaponsUnlocked.Add(CollectableWeaponTypes.BOOMERANG);
-                weaponPrefabs.Add(wi.weaponBPrefab);
-            } else if (wpnName == "Bomb")
-            {
-                weaponsUnlocked.Add(CollectableWeaponTypes.BOMB);
-                weaponPrefabs.Add(wi.weaponBPrefab);
-            } else if (wpnName == "Bow")
-            {
-                weaponsUnlocked.Add(CollectableWeaponTypes.BOW);
-                weaponPrefabs.Add(wi.weaponBPrefab);
-            }
-        }
+        //if (wi != null)
+        //{
+        //    string wpnName = wi.weaponBPrefab.name;
+        //    if (wpnName == "Boomerang")
+        //    {
+        //        weaponsUnlocked.Add(WeaponType.Boomerang);
+        //        weaponPrefabs.Add(wi.weaponBPrefab);
+        //    } else if (wpnName == "Bomb")
+        //    {
+        //        weaponsUnlocked.Add(WeaponType.Bomb);
+        //        weaponPrefabs.Add(wi.weaponBPrefab);
+        //    } else if (wpnName == "Bow")
+        //    {
+        //        weaponsUnlocked.Add(WeaponType.Bow);
+        //        weaponPrefabs.Add(wi.weaponBPrefab);
+        //    }
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -199,7 +197,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    public void PickUpSecondaryWeapon(CollectableWeaponTypes weaponType, AudioClip soundEffect, DealsDamage weaponPrefab)
+    public void PickUpSecondaryWeapon(WeaponType weaponType, AudioClip soundEffect, DealsDamage weaponPrefab)
     {
         Debug.Log(gameObject + " picked up " + weaponType);
         AudioSource.PlayClipAtPoint(soundEffect, Camera.main.transform.position);
@@ -207,13 +205,8 @@ public class PlayerController : MonoBehaviour
         {
             weaponsUnlocked.Add(weaponType);
             weaponPrefabs.Add(weaponPrefab);
-            if (weaponsUnlocked.Count == 1)
-            {
-                weaponIndex = 0;
-                EquipNextSecondaryWeapon();
-            }
         }
-        if (weaponType == CollectableWeaponTypes.BOMB)
+        if (weaponType == WeaponType.Bomb)
         {
             ModifyBombs(1);
         }
@@ -232,7 +225,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
         weaponIndex = (weaponIndex + 1) % weaponsUnlocked.Count;
-        wi.setWeaponB(weaponPrefabs[weaponIndex]);
+        
+        wi.setWeaponB(weaponsUnlocked[weaponIndex], weaponPrefabs[weaponIndex]);
     }
 
     public void UseSecondaryWeapon()
@@ -245,7 +239,7 @@ public class PlayerController : MonoBehaviour
         }
 
         if (weaponsUnlocked.Count == 0) { return; }
-        if (weaponsUnlocked[weaponIndex] == CollectableWeaponTypes.BOMB)
+        if (weaponsUnlocked[weaponIndex] == WeaponType.Bomb)
         {
             if (bombCount > 0)
             {
@@ -257,7 +251,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
-        if (weaponsUnlocked[weaponIndex] == CollectableWeaponTypes.BOW)
+        if (weaponsUnlocked[weaponIndex] == WeaponType.Bow)
         {
             if (rupeeCount > 0)
             {
