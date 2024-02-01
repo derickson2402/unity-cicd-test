@@ -18,6 +18,7 @@ TagManager:
   - Horizontal_Door
   - Vertical_Door
   - Room
+  - AmbushDoor
   layers:
   - Default
   - TransparentFX
