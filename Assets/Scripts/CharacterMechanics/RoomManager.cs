@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.CharacterMechanics;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
-using static Unity.VisualScripting.Metadata;
 
 public class RoomManager : MonoBehaviour
 {
