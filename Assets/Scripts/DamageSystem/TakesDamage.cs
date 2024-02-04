@@ -62,8 +62,14 @@ public class TakesDamage : MonoBehaviour
     // Deal damage to the object, decreasing its health, killing it if it goes below 0
     public void Damage(float damagePoints)
     {
-        if (invincible || iFramesRemaining > 0)
+        if (invincible)
         {
+            Debug.Log(gameObject + " is invincible, not taking damage");
+            return;
+        }
+        if (iFramesRemaining > 0)
+        {
+            Debug.Log(gameObject + " has iFrames active still, not taking damage");
             return;
         }
         curHP -= damagePoints;

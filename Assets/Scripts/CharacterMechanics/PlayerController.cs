@@ -274,6 +274,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Activating God Mode");
             godMode = true;
             GetComponent<TakesDamage>().invincible = true;
+            GetComponent<TakesDamage>().Heal(1000);
             ModifyRupees(maxRupees);
             ModifyKeys(maxKeys);
             ModifyBombs(maxBombs);
