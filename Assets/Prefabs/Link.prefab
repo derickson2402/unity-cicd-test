@@ -277,7 +277,7 @@ MonoBehaviour:
   attackDown: {fileID: 21300048, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
   attackLeft: {fileID: 21300050, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
   attackRight: {fileID: 21300054, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
-  active: 0
+  active: 1
 --- !u!114 &1423729573196425357
 MonoBehaviour:
   m_ObjectHideFlags: 0

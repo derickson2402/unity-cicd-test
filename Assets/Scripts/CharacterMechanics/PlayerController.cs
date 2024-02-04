@@ -35,25 +35,6 @@ public class PlayerController : MonoBehaviour
         GetComponent<GenericMovement>().movementEnabled = true;
         weaponsUnlocked = new List<WeaponType>();
         weaponPrefabs = new List<DealsDamage>();
-        // Check if we already have a secondary weapon equipped
-        WeaponInterface wi = GetComponent<WeaponInterface>();
-        //if (wi != null)
-        //{
-        //    string wpnName = wi.weaponBPrefab.name;
-        //    if (wpnName == "Boomerang")
-        //    {
-        //        weaponsUnlocked.Add(WeaponType.Boomerang);
-        //        weaponPrefabs.Add(wi.weaponBPrefab);
-        //    } else if (wpnName == "Bomb")
-        //    {
-        //        weaponsUnlocked.Add(WeaponType.Bomb);
-        //        weaponPrefabs.Add(wi.weaponBPrefab);
-        //    } else if (wpnName == "Bow")
-        //    {
-        //        weaponsUnlocked.Add(WeaponType.Bow);
-        //        weaponPrefabs.Add(wi.weaponBPrefab);
-        //    }
-        //}
     }
 
     private void OnTriggerEnter(Collider other)

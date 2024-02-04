@@ -26,14 +26,14 @@ public class ScriptAnim4DirectionWalkPlusAttack : MonoBehaviour
     private bool idleMode;              // Are we currently in idle mode (will not change frames)
     private bool onFrame1;              // Are we on frame 1? otherwise on frame 0. All animations are 2 frames max
 
-    public bool active;
+    public bool active = false;
 
     void Start()
     {
-        active = false;
         sr = GetComponent<SpriteRenderer>();
         Assert.IsNotNull(sr);
         curTime = 0;
+        idleMode = true;
         curDirection = GetComponent<GenericMovement>().directionManager.current;
     }
 
