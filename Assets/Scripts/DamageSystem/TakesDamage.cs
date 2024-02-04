@@ -10,6 +10,8 @@ public class TakesDamage : MonoBehaviour
     public bool isEnemy;            // Is this object considered an enemy or a player (used by DealsDamage)
     public int iFrames;             // Number of invincibility frames after taking damage
     public bool boomerangStunOnly;  // Does this thing get killed by boomerangs or just stunned
+    public bool restartLevelOnDeath;// When this character dies, the level will restart
+    public float restartLevelDelay; // How long to delay before restarting the level?
     [SerializeField] protected AudioClip damageSoundEffect;
     [SerializeField] protected AudioClip deathSoundEffect;
 
@@ -87,7 +89,13 @@ public class TakesDamage : MonoBehaviour
             if (gameObject.CompareTag("Player"))
             {
                 AudioSource.PlayClipAtPoint(deathSoundEffect, Camera.main.transform.position);
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                if (restartLevelOnDeath)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                    gameObject.GetComponent<InputManager>().enabled = false;
+                    StartCoroutine(WaitThenRestart());
+                }
+                // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             else
             {
@@ -128,5 +136,11 @@ public class TakesDamage : MonoBehaviour
         {
             uiRef.setHealth(curHP);
         }
+    }
+
+    private IEnumerator WaitThenRestart()
+    {
+        yield return new WaitForSeconds(restartLevelDelay);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
