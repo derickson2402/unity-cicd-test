@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3765567343755456190}
   - component: {fileID: -2269178590694679192}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BombDustEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

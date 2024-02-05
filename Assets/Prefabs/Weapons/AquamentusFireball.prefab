@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1813840800894668663}
   - component: {fileID: 8786563656003369993}
   - component: {fileID: 1006455542159295904}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AquamentusFireball
   m_TagString: Weapon
   m_Icon: {fileID: 0}

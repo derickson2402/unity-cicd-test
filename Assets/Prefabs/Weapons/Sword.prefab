@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5278937283722435218}
   - component: {fileID: 2258032491713988256}
   - component: {fileID: 4245476435595884895}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.20124435, y: 0.6571953, z: 0.2}
+  m_Size: {x: 0.44, y: 0.69, z: 0.2}
   m_Center: {x: -0.0009326935, y: -0.14826834, z: 0}
 --- !u!114 &5278937283722435218
 MonoBehaviour:
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c397e40e22adcba4d9a6ea8e4bad4e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flySpeed: 4
+  flySpeed: 5
   multiFireAllowed: 0
 --- !u!114 &4245476435595884895
 MonoBehaviour:

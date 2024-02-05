@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b94e7bd48c4c2e41a9210939d26d770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenFrames: 0.2
+  timeBetweenFrames: 0.15
   up0: {fileID: 21300004, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
   up1: {fileID: 21300028, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
   down0: {fileID: 21300000, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
