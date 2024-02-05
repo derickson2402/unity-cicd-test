@@ -231,4 +231,9 @@ public class RoomManager : MonoBehaviour
             goriyaAI.SetMirrorMove(move);
         }
     }
+    
+    public GameObject GetCurrentRoom()
+    {
+        return currentRoom;
+    }
 }
