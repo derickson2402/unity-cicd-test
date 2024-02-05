@@ -191,6 +191,8 @@ MonoBehaviour:
   isEnemy: 1
   iFrames: 10
   boomerangStunOnly: 0
+  restartLevelOnDeath: 0
+  restartLevelDelay: 0
   damageSoundEffect: {fileID: 8300000, guid: 85e35dc53d2044249abde32101625874, type: 3}
   deathSoundEffect: {fileID: 8300000, guid: eadd9ddd6caf28f478d3fe5144e381c6, type: 3}
 --- !u!114 &6381753220583550855
@@ -205,7 +207,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00772ac332cedf2459608d839ec5137d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropFreq: 0
-  heartRatio: 1
-  bombRatio: 1
-  rupeeRatio: 1
+  guranteedDropItem: {fileID: 0}
+  dropRate: 4

@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 2914594022130949357}
   - component: {fileID: 5988803650690637642}
   - component: {fileID: 7298099287942196844}
-  - component: {fileID: 6381753220583550855}
   - component: {fileID: 3437271095162832015}
   m_Layer: 0
   m_Name: Keese
@@ -153,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  movementWaitTime: 1
   detectionRadius: 2.5
 --- !u!114 &2914594022130949357
 MonoBehaviour:
@@ -191,6 +191,8 @@ MonoBehaviour:
   isEnemy: 1
   iFrames: 10
   boomerangStunOnly: 0
+  restartLevelOnDeath: 0
+  restartLevelDelay: 0
   damageSoundEffect: {fileID: 8300000, guid: 85e35dc53d2044249abde32101625874, type: 3}
   deathSoundEffect: {fileID: 8300000, guid: eadd9ddd6caf28f478d3fe5144e381c6, type: 3}
 --- !u!114 &7298099287942196844
@@ -212,22 +214,6 @@ MonoBehaviour:
   spawnOffsetDistance: 0
   knockBackDistance: 0
   stunFrames: 0
---- !u!114 &6381753220583550855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 522914441871167163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00772ac332cedf2459608d839ec5137d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dropFreq: 0
-  heartRatio: 1
-  bombRatio: 1
-  rupeeRatio: 1
 --- !u!114 &3437271095162832015
 MonoBehaviour:
   m_ObjectHideFlags: 0
