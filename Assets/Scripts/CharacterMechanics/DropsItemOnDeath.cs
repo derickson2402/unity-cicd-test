@@ -36,7 +36,7 @@ public class DropsItemOnDeath : MonoBehaviour
     public void OnDestroy()
     {
         // Check if we have an existing item to drop, re-enable it
-        if (guranteedDropItem != null)
+        if (obj != null)
         {
             obj.GetComponent<BoxCollider>().enabled = true;
             return;

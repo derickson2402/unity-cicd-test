@@ -60,7 +60,7 @@ public class GoriyaAI : NPCController
         {
             if (mover.movementEnabled)
             {
-                // throw boomerang at player
+                GetComponent<WeaponInterface>().useWeaponA();
             }
             yield return new WaitForSeconds(3);
         }

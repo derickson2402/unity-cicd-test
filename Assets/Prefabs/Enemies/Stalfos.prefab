@@ -252,4 +252,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guranteedDropItem: {fileID: 0}
-  dropRate: 4
+  dropRate: 3

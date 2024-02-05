@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guranteedDropItem: {fileID: 0}
-  dropRate: 3
+  dropRate: 2
 --- !u!114 &5381262001536537138
 MonoBehaviour:
   m_ObjectHideFlags: 0
