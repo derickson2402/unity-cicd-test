@@ -153,8 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   movementWaitTime: 0.1
-  returnToSpawnTime: 3
-  sightDistance: 30
+  returnToSpawnTime: 7
+  sightDistance: 6
   xDeltaThreshold: 0.4
   yDeltaThreshold: 0.4
 --- !u!114 &2914594022130949357
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e130f230a029a084f869da843ea2fafb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 7
+  movementSpeed: 4.5
   activeDeaccelerationFactor: 10
   naturalDeaccelerationFactor: 4
   gridAlignmentDurationSeconds: 0.03

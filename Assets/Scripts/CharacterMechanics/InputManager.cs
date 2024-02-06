@@ -57,7 +57,7 @@ public class InputManager : MonoBehaviour
                 movements.Enqueue(DirectionManager.GetCurrentInputDirection());
             }
             // Other controls
-            if (Input.GetKey(KeyCode.Alpha1))
+            if (Input.GetKey(KeyCode.Alpha1) && !recievingStringInput)
             {
                 player.ActivateCheats();
             }
