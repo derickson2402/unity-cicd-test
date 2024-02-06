@@ -2,49 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockMovement : GenericMovement
+public class BlockMovement : MonoBehaviour
 {
-    Vector3 initial;
+    public float minY = 0.0f;
+    public float maxY = 0.0f;
 
     private void Awake()
     {
-        initial = transform.position;
+        minY = transform.position.y;
+        maxY = transform.position.y + 1;
     }
-    public override void Move(Direction input)
+
+    private void Update()
     {
-        if (!movementEnabled)
+        Vector3 pos = transform.position;
+
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
+
+        transform.position = pos;
+
+        if(pos.y  ==  maxY)
         {
-            rb.velocity = Vector3.zero;
-        }
-        else if(transform.position.y - initial.y >= 2)
-        {
-            movementEnabled = false;
-        }
-        // If player is not trying to change direction, apply velocity normally
-        else if (directionManager.isCurrentDirection(Direction.Up))
-        {
-            rb.velocity = DirectionManager.DirectionToVector3(input) * movementSpeed;
-        }
-        else
-        {
-            // If player is trying to change direction, snap position and change direction
-            Debug.Log("Trying to change directions to " + input);
-            //only snap to grid and change direction if nearly stopped
-            if (rb.velocity.magnitude < changeDirectionThreshold)
-            {
-                // prevent more inputs being made during coroutine
-                movementEnabled = false;
-                rb.velocity = Vector3.zero;
-                Vector3 gridPosition = SnapPositionToGrid(rb.position);
-                StartCoroutine(
-                    CoroutineHelper.MoveCharacterOverTime(transform, rb.position, gridPosition, gridAlignmentDurationSeconds, input));
-            }
-            else
-            {
-                // If player is moving too fast for a direction change, slow down
-                Debug.Log("Slowing down");
-                rb.velocity /= activeDeaccelerationFactor;
-            }
+            minY = maxY;
         }
     }
 }

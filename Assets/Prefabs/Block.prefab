@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 3797166258342153353}
   - component: {fileID: 5847635257364735409}
   - component: {fileID: 8549450333900981393}
-  - component: {fileID: 5118645816768236541}
-  - component: {fileID: -5547667340401223377}
+  - component: {fileID: 3447693414287741138}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -30,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 838944144809134610}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -49.73, y: -43.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -136,7 +135,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5118645816768236541
+--- !u!114 &3447693414287741138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,26 +144,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 838944144809134610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e130f230a029a084f869da843ea2fafb, type: 3}
+  m_Script: {fileID: 11500000, guid: 84bcca9568cc39c488b3fd029e852938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 2
-  activeDeaccelerationFactor: 10
-  naturalDeaccelerationFactor: 4
-  gridAlignmentDurationSeconds: 0.03
-  changeDirectionThreshold: 0.17
-  stopThreshold: 0.0625
-  gridSize: 0.5
-  movementEnabled: 0
---- !u!114 &-5547667340401223377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 838944144809134610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57468ca89344fc44c85bd3a463e86fdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  minY: 0
+  maxY: 0
