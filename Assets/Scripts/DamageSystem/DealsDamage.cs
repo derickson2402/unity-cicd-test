@@ -48,17 +48,18 @@ public class DealsDamage : MonoBehaviour
                     }
                 }
             }
-        }
 
-        // Check if we are a projectile, in which case we should delete ourselves on impact
-        Projectile projectile = GetComponent<Projectile>();
-        if (projectile != null)
-        {
-            if (projectile.InFlight())
+            // Check if we are a projectile, in which case we should delete ourselves on impact
+            Projectile projectile = GetComponent<Projectile>();
+            if (projectile != null)
             {
-                Debug.Log("Projectile destroyed");
-                projectile.PostCollision();
-                Destroy(gameObject);
+                //need special case for enemy projectiles hitting themselves
+                if (projectile.InFlight() && (!(other.isEnemy && !affectEnemy) || other.name == "Tile_WALL"))
+                {
+                    Debug.Log("Projectile destroyed");
+                    projectile.PostCollision();
+                    Destroy(gameObject);
+                }
             }
         }
     }
