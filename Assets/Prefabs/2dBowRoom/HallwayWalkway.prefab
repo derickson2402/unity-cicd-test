@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1320962645149202342}
   - component: {fileID: -3073595703255108820}
-  - component: {fileID: 383244987536734402}
   m_Layer: 0
   m_Name: HallwayWalkway
   m_TagString: Untagged
@@ -85,15 +84,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &383244987536734402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6966167932638052585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1bba0aece21b974aa949b12b12d78af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

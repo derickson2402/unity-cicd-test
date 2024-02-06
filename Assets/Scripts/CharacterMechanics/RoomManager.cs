@@ -153,6 +153,7 @@ public class RoomManager : MonoBehaviour
 
     public void SetRoom(int x, int y)
     {
+        Debug.Log("Setting room to " + x + "," + y);
         SetRoomState(currentRoom, false);
         roomX = x;
         roomY = y;
