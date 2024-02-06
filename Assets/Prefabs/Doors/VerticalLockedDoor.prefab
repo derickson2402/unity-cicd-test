@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2189493163581722424}
   - component: {fileID: 9043725285721949268}
   - component: {fileID: 8890347697919059393}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VerticalLockedDoor
   m_TagString: LockedDoor
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 4779554194198724941}
   - component: {fileID: 2135173140322462949}
   - component: {fileID: 2064098591718427327}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 443228610131798327}
   - component: {fileID: 228053849227634509}
   - component: {fileID: 1913458054080700098}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
