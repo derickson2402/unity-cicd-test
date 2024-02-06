@@ -4,7 +4,7 @@ using UnityEngine;
 public class BladeTrapAI : NPCController
 {
     public float returnToSpawnTime = 3f;
-    public float sightDistance = 15f;
+    public float sightDistance = 6f;
     public float xDeltaThreshold = 0.4f;
     public float yDeltaThreshold = 0.4f;
 
@@ -31,15 +31,6 @@ public class BladeTrapAI : NPCController
         base.Update();
         playerInSight.Update();
         drawSightRay.Update();
-        //if (mover.movementEnabled)
-        //{
-        //    curTime += Time.deltaTime;
-        //    if (curTime >= timeBetweenChecks)
-        //    {
-        //        curTime = 0;
-        //        IsPlayerInSight();
-        //    }
-        //}
     }
 
     private bool IsPlayerInSight()
@@ -104,11 +95,11 @@ public class BladeTrapAI : NPCController
         while (Vector3.Distance(transform.position, initialPosition) > 0.1f)
         {
             // If the enemy spots the player during the return, it stops returning and move towards the player
-            if (IsPlayerInSight() && !hitPlayer)
-            {
-                mover.movementEnabled = true;
-                yield break;
-            }
+            //if (IsPlayerInSight() && !hitPlayer)
+            //{
+            //    mover.movementEnabled = true;
+            //    yield break;
+            //}
 
             float timeSinceStarted = Time.time - startTime;
             float percentageComplete = timeSinceStarted / duration;
@@ -129,11 +120,18 @@ public class BladeTrapAI : NPCController
             if (mover.movementEnabled)
             {
                 boxCollider.enabled = false;
-                while (IsPlayerInSight())
+                bool temp = IsPlayerInSight();
+                while (temp)
                 {
                     mover.Move(nextMove);
                     yield return new WaitForSeconds(0.05f);
                     boxCollider.enabled = true;
+                    Vector3 deltaPos = transform.position - initialPosition;
+                    if (Mathf.Abs(deltaPos.x) > sightDistance || Mathf.Abs(deltaPos.y) > sightDistance)
+                    {
+                        temp = false;
+                        yield return StartCoroutine(ReturnToSpawn(returnToSpawnTime));
+                    }
                 }
                 yield return StartCoroutine(ReturnToSpawn(returnToSpawnTime));
             }
@@ -152,6 +150,10 @@ public class BladeTrapAI : NPCController
             hitPlayer = true;
             StartCoroutine(ReturnToSpawn(returnToSpawnTime));
         }
+        else if (collision.gameObject.tag == "Enemy")
+        {
+            StartCoroutine(ReturnToSpawn(returnToSpawnTime));
+        }
     }
 
     protected override void OnDrawGizmos()
@@ -160,7 +162,7 @@ public class BladeTrapAI : NPCController
         if (drawSightRay.value)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawRay(transform.position, raycastDirection * sightDistance);
+            Gizmos.DrawRay(initialPosition, raycastDirection * sightDistance);
         }
     }
 }
