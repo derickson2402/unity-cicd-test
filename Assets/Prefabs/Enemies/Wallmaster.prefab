@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 4230544938628868366}
   - component: {fileID: 5898871329382514706}
   - component: {fileID: 7414446811954800988}
-  - component: {fileID: 8479018248982319635}
+  - component: {fileID: 7860960290572184318}
   - component: {fileID: 2914594022130949357}
   - component: {fileID: 5988803650690637642}
   - component: {fileID: 6381753220583550855}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wallmaster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -76,9 +76,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 120015055
-  m_SortingLayer: 2
-  m_SortingOrder: 5
+  m_SortingLayerID: 1706663927
+  m_SortingLayer: 1
+  m_SortingOrder: 4
   m_Sprite: {fileID: -451461831, guid: c6fdd95b826a6854fb400a371109cdc3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -109,7 +109,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -130,7 +130,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -138,7 +138,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8479018248982319635
+--- !u!114 &7860960290572184318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,13 +147,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 522914441871167163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fde60efe3a4e6994682151ce41410612, type: 3}
+  m_Script: {fileID: 11500000, guid: bc6689e01017a1745a12156a53d32b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openHandSprite: {fileID: -451461831, guid: c6fdd95b826a6854fb400a371109cdc3, type: 3}
-  closeHandSprite: {fileID: 1093043206, guid: c6fdd95b826a6854fb400a371109cdc3, type: 3}
-  timeBetweenFrames: 0.1
-  downSpeed: 2.5
+  state: 0
+  movementWaitTime: 0.5
+  detectionBoxSize: {x: 4, y: 3.5, z: 1}
+  slowInitialSpeed: 1
+  normalSpeed: 2.5
+  returnToSpawnTime: 3
 --- !u!114 &2914594022130949357
 MonoBehaviour:
   m_ObjectHideFlags: 0

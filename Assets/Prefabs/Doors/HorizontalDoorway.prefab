@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1939576596020245884}
   - component: {fileID: 2227491532747712060}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HorizontalDoorway
   m_TagString: Horizontal_Door
   m_Icon: {fileID: 0}

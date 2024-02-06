@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4071739552478366876}
   - component: {fileID: 4803295005272563469}
   - component: {fileID: 7770700924783176600}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,6 +156,8 @@ MonoBehaviour:
   isEnemy: 1
   iFrames: 0
   boomerangStunOnly: 0
+  restartLevelOnDeath: 0
+  restartLevelDelay: 0
   damageSoundEffect: {fileID: 8300000, guid: 85e35dc53d2044249abde32101625874, type: 3}
   deathSoundEffect: {fileID: 8300000, guid: eadd9ddd6caf28f478d3fe5144e381c6, type: 3}
 --- !u!114 &846139459658061504
@@ -210,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  movementWaitTime: 1
 --- !u!114 &7770700924783176600
 MonoBehaviour:
   m_ObjectHideFlags: 0

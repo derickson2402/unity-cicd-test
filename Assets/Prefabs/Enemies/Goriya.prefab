@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 6381753220583550855}
   - component: {fileID: 5381262001536537138}
   - component: {fileID: 2028275948142223627}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Goriya
   m_TagString: Enemy
   m_Icon: {fileID: 0}

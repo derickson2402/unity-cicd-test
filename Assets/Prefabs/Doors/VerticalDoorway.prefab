@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4063424950014584608}
   - component: {fileID: 5420540448291096631}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VerticalDoorway
   m_TagString: Vertical_Door
   m_Icon: {fileID: 0}
