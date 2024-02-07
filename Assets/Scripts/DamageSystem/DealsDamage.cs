@@ -12,17 +12,17 @@ public class DealsDamage : MonoBehaviour
     public float knockBackDistance; // How far should the affected character be knocked back when hit?
     public int stunFrames;      // How many frames of stun damage does this thing deal?
 
-    private void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {
         ProcessInteraction(collision.collider);
     }
 
-    private void OnTriggerEnter(Collider collider)
+    protected virtual void OnTriggerEnter(Collider collider)
     {
         ProcessInteraction(collider);
     }
 
-    private void ProcessInteraction(Collider collider)
+    protected virtual void ProcessInteraction(Collider collider)
     {
         TakesDamage other = collider.gameObject.GetComponent<TakesDamage>();
         Projectile projectile = GetComponent<Projectile>();

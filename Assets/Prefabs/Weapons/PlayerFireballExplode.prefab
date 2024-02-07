@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4425251874233818837}
   - component: {fileID: 3930422569265256574}
   - component: {fileID: 4039403692779773718}
-  - component: {fileID: 1813840800894668663}
+  - component: {fileID: -6381887863681346130}
   - component: {fileID: 8786563656003369993}
   - component: {fileID: 1006455542159295904}
   - component: {fileID: 2504349097169205521}
@@ -34,7 +34,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 38.881847, y: 3.9874685, z: 0.0872236}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -106,10 +106,10 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 320
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 272
+    m_Bits: 144
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flySpeed: 4
   multiFireAllowed: 1
---- !u!114 &1813840800894668663
+--- !u!114 &-6381887863681346130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,16 +140,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 8464560312874275155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac5e2a7adb5b85f4db5e405134bec2aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ca69bc2904d0ad4f91099d748c56548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageHP: 0.5
-  affectPlayer: 1
-  affectEnemy: 0
+  damageHP: 2
+  affectPlayer: 0
+  affectEnemy: 1
   attackDelayFrames: 0
   spawnOffsetDistance: 1
   knockBackDistance: 0
   stunFrames: 0
+  distanceThreshold: 3
+  timePerSprite: 0.5
+  ExplosionSpritePrefab: {fileID: 2777932165069458364, guid: fba499da8c340944db17f9e5556baa54, type: 3}
+  dustSprites:
+  - {fileID: -1161038345, guid: e631fb4225ba2e64db8867349932b066, type: 3}
+  - {fileID: -1161038345, guid: e631fb4225ba2e64db8867349932b066, type: 3}
+  - {fileID: -1161038345, guid: e631fb4225ba2e64db8867349932b066, type: 3}
 --- !u!114 &8786563656003369993
 MonoBehaviour:
   m_ObjectHideFlags: 0

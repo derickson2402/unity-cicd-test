@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3930422569265256574}
   - component: {fileID: 5916370554612000524}
   - component: {fileID: 4039403692779773718}
-  - component: {fileID: 1813840800894668663}
+  - component: {fileID: 7387160303668488129}
   - component: {fileID: 8786563656003369993}
   - component: {fileID: 1006455542159295904}
   m_Layer: 9
@@ -106,10 +106,10 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 320
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 272
+    m_Bits: 144
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flySpeed: 4
   multiFireAllowed: 1
---- !u!114 &1813840800894668663
+--- !u!114 &7387160303668488129
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,16 +161,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8464560312874275155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac5e2a7adb5b85f4db5e405134bec2aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 07bd21584213d344eb889496e8d36abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageHP: 0.5
-  affectPlayer: 1
-  affectEnemy: 0
+  affectPlayer: 0
+  affectEnemy: 1
   attackDelayFrames: 0
   spawnOffsetDistance: 1
   knockBackDistance: 0
   stunFrames: 0
+  bounceLimit: 6
 --- !u!114 &8786563656003369993
 MonoBehaviour:
   m_ObjectHideFlags: 0

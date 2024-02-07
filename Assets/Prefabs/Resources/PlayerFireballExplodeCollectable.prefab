@@ -135,4 +135,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 5
   soundEffect: {fileID: 8300000, guid: 8160ddcc7fa902442b1b655844416ba2, type: 3}
-  weaponPrefab: {fileID: 1813840800894668663, guid: 52beb7969e0adff41bb6685ae130434a, type: 3}
+  weaponPrefab: {fileID: -6381887863681346130, guid: 52beb7969e0adff41bb6685ae130434a, type: 3}

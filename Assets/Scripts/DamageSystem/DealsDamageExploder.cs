@@ -1,28 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class WeaponTypeBomb : MonoBehaviour
+public class DealsDamageExploder : DealsDamage
 {
     private GameObject[] allEnemies;
     private List<GameObject> enemiesInRange;
-    public float damage;
     public float distanceThreshold;
     public float timePerSprite;
     public GameObject ExplosionSpritePrefab;
     public List<Sprite> dustSprites;
 
-    void Start()
+    protected override void ProcessInteraction(Collider collider)
     {
-        allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Debug.Log("Bomb placed");
-        StartCoroutine(CoroutineHelper.DelayFunction(4, Detonate));
+        Detonate();
     }
 
     void Detonate()
     {
-        Debug.Log("Bomb detonating");
+        Debug.Log("Fireball detonating");
+        allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         enemiesInRange = new List<GameObject>();
         foreach (GameObject enemy in allEnemies)
         {
@@ -34,8 +31,8 @@ public class WeaponTypeBomb : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         foreach (GameObject enemy in enemiesInRange)
         {
-            Debug.Log("Bomb damaging " + enemy.name + " for " + damage);
-            enemy.GetComponent<TakesDamage>().Damage(damage);
+            Debug.Log("Fireball damaging " + enemy.name + " for " + damageHP);
+            enemy.GetComponent<TakesDamage>().Damage(damageHP);
         }
 
         float spriteSize = 1f;
@@ -62,10 +59,13 @@ public class WeaponTypeBomb : MonoBehaviour
         SpriteRenderer r = dustObject.GetComponent<SpriteRenderer>();
         // time interval between sprite switches is timePerSprite
         // total time is 3 * timePerSprite
+        float tempTime = timePerSprite;
         foreach (var t in dustSprites)
         {
             r.sprite = t;
-            yield return new WaitForSeconds(timePerSprite);
+            yield return new WaitForSeconds(tempTime);
+            tempTime -= 0.2f;
+            dustObject.transform.localScale /= 2f;
         }
         Destroy(dustObject);
         Destroy(gameObject);
