@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Windows;
 using Input = UnityEngine.Input;
 
@@ -60,6 +61,10 @@ public class InputManager : MonoBehaviour
             if (Input.GetKey(KeyCode.Alpha1) && !recievingStringInput)
             {
                 player.ActivateCheats();
+            }
+            if (Input.GetKey(KeyCode.Alpha4) && !recievingStringInput)
+            {
+                SceneManager.LoadScene("CustomLevel");
             }
             if (Input.GetKeyDown(KeyCode.Z))
             {
