@@ -152,12 +152,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b6727fb3c7440247a56ecbbc664ca00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreWalls: 0
   state: 1
   movementWaitTime: 0.5
   xMovementLimit: 1
   attackTimeGap: 3
   weapon: {fileID: 8464560312874275155, guid: ece6dd788f2a122449c015c8c372a716, type: 3}
   angleSpread: 12
+  bossScreamAttackNoise: {fileID: 8300000, guid: 3c3131982855d5247a76bcb69100f37f, type: 3}
 --- !u!114 &2914594022130949357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,4 +259,3 @@ MonoBehaviour:
   g: {fileID: 0}
   h: {fileID: 0}
   active: 0
-  spriteCount: 4

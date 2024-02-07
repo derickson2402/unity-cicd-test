@@ -45,9 +45,7 @@ public class PlayerController : MonoBehaviour
 
     public void ReturnPlayerToStart()
     {
-        gameObject.transform.position = new Vector3(39.5f, 5.5f, 0);
-        GetComponent<RoomManager>().mainCamera.gameObject.transform.position = new Vector3(39.5f, 6.5f, -1);
-        GetComponent<RoomManager>().SetRoom(2, 0);
+        GetComponent<RoomManager>().TeleportToRoom(GetComponent<RoomManager>().startX, GetComponent<RoomManager>().startY);
     }
 
     //-----------------------

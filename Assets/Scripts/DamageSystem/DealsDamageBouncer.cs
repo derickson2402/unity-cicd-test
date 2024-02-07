@@ -5,59 +5,56 @@ using UnityEngine;
 public class DealsDamageBouncer : DealsDamage
 {
     public int bounceLimit = 6;
+    public float lifetimeMax;
     private int bounceCount = 0;
     private Rigidbody rb;
+    private float currentLifetime;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
+    void Update()
+    {
+        currentLifetime += Time.deltaTime;
+        if (currentLifetime > lifetimeMax)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     protected override void OnCollisionEnter(Collision collision)
     {
-        return;
+        if (collision.collider.CompareTag("Wall") && bounceCount < bounceLimit)
+        {
+            // bounce logic
+            Vector3 incomingVec = collision.relativeVelocity; // vector direction of incoming object
+            Vector3 normalVec = collision.contacts[0].normal; // collision surface normal
+            rb.velocity = Vector3.Reflect(incomingVec, normalVec).normalized * incomingVec.magnitude; //set the direction of new velocity
+        }
+        else if (bounceCount > bounceLimit)
+        {
+            Projectile projectile = GetComponent<Projectile>();
+            if (projectile.InFlight())
+            {
+                Debug.Log("Projectile destroyed");
+                projectile.PostCollision();
+                Destroy(gameObject);
+            }
+        }
+        bounceCount++;
     }
 
     protected override void OnTriggerEnter(Collider collider)
     {
-        ProcessInteraction(collider);
-    }
-
-    protected override void ProcessInteraction(Collider collider)
-    {
         TakesDamage other = collider.gameObject.GetComponent<TakesDamage>();
-        Projectile projectile = GetComponent<Projectile>();
         if (other != null)
         {
             if ((other.isEnemy && affectEnemy) || (!other.isEnemy && affectPlayer))
             {
                 Debug.Log(gameObject + " pierced " + other);
                 other.Damage(damageHP);
-            }
-        }
-        else
-        {
-            // if wall bounce
-            if (collider.CompareTag("Wall") && bounceCount < bounceLimit)
-            {
-                // bounce logic
-                bounceCount++;
-                Vector3 direction = (collider.gameObject.transform.position - transform.position).normalized;
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, direction, out hit))
-                {
-                    Vector3 reflectedVelocity = Vector3.Reflect(rb.velocity, hit.normal);
-                    rb.velocity = reflectedVelocity;
-                }
-            }
-            else if (bounceCount < bounceLimit)
-            {
-                if (projectile.InFlight())
-                {
-                    Debug.Log("Projectile destroyed");
-                    projectile.PostCollision();
-                    Destroy(gameObject);
-                }
             }
         }
     }

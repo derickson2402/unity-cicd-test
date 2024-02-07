@@ -62,7 +62,7 @@ public class GoriyaAI : NPCController
             {
                 GetComponent<WeaponInterface>().useWeaponA();
             }
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2);
         }
     }
 }
