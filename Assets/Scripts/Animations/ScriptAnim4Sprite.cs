@@ -22,7 +22,6 @@ public class ScriptAnim4Sprite : MonoBehaviour
     private Sprite[] spriteArr;     // Array object holding the a,b,c,d sprites
 
     public bool active = false;
-    public int spriteCount;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +49,7 @@ public class ScriptAnim4Sprite : MonoBehaviour
         if (g != null) { spriteArr[curSpriteIndex++] = g; }
         if (h != null) { spriteArr[curSpriteIndex++] = h; }
 
-        curSpriteIndex = Random.Range(0, spriteCount);
+        curSpriteIndex = Random.Range(0, numSprites);
         sr.sprite = spriteArr[curSpriteIndex];
     }
 
