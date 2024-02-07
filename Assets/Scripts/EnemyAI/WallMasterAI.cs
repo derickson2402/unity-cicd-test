@@ -97,34 +97,6 @@ public class WallmasterAI : NPCController
         yield return null;
     }
 
-    protected override Direction GenerateMoveTowardPosition(Vector3 position)
-    {
-        Vector3 delta = position - transform.position;
-        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
-        {
-            if (delta.x > 0)
-            {
-                return Direction.Right;
-            }
-            else
-            {
-                return Direction.Left;
-            }
-        }
-        else
-        {
-            if (delta.y > 0)
-            {
-                return Direction.Up;
-            }
-            else
-            {
-                return Direction.Down;
-            }
-        }
-        return Direction.None;
-    }
-
     protected override void WanderMove()
     {
         firstMove = true;
