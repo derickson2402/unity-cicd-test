@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 7770700924783176600}
   m_Layer: 8
   m_Name: Gel
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1fb392f0db4ad498de98cdcc6d9a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreWalls: 0
   state: 0
   movementWaitTime: 1
 --- !u!114 &7770700924783176600
