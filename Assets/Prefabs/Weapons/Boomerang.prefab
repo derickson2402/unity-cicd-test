@@ -109,7 +109,7 @@ Rigidbody:
     m_Bits: 449
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -130,7 +130,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -195,7 +195,6 @@ MonoBehaviour:
   g: {fileID: -159454125, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
   h: {fileID: -109148453, guid: 692bce65886c270469706eb4c1a4aced, type: 3}
   active: 1
-  spriteCount: 0
 --- !u!114 &1987987113913266835
 MonoBehaviour:
   m_ObjectHideFlags: 0
