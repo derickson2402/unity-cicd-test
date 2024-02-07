@@ -251,7 +251,7 @@ MonoBehaviour:
   weaponAPrefab: {fileID: 5278937283722435218, guid: 961cd858afef8ee4599588db1c737b9d, type: 3}
   weaponTypeA: 3
   weaponBPrefab: {fileID: 0}
-  weaponTypeB: 4
+  weaponTypeB: 6
   bombWeaponPrefab: {fileID: 7337095122266348320, guid: 7bb97389f1896f94cbaa001218bd40ae, type: 3}
 --- !u!114 &6226975357632161720
 MonoBehaviour:
@@ -295,6 +295,8 @@ MonoBehaviour:
   Bow: {fileID: 21300326, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
   Boomerang: {fileID: 120067907, guid: e631fb4225ba2e64db8867349932b066, type: 3}
   Bomb: {fileID: 21300292, guid: 45afd34443b96473598b76e2b1778b4e, type: 3}
+  FireballBounce: {fileID: -799554993, guid: e631fb4225ba2e64db8867349932b066, type: 3}
+  FireballExplode: {fileID: 21300006, guid: ce94f51f558bd47eca28c0601d6aa21e, type: 3}
 --- !u!114 &1771402601208020913
 MonoBehaviour:
   m_ObjectHideFlags: 0
