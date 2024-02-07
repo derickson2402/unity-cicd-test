@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 856213997101912678, guid: d1fc63e37cbafe142b0089bfef2cd9a9, type: 3}
       propertyPath: m_Name
-      value: Tile_WALL (5) Variant
+      value: Tile_WALL - Internal
+      objectReference: {fileID: 0}
+    - target: {fileID: 856213997101912678, guid: d1fc63e37cbafe142b0089bfef2cd9a9, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 6510462835188115758, guid: d1fc63e37cbafe142b0089bfef2cd9a9, type: 3}
       propertyPath: m_LocalPosition.x
