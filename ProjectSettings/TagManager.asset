@@ -21,6 +21,7 @@ TagManager:
   - AmbushDoor
   - PuzzleDoor
   - Wall
+  - UIControl
   layers:
   - Default
   - TransparentFX
