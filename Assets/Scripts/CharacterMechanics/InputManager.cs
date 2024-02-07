@@ -72,7 +72,24 @@ public class InputManager : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.X))
             {
-                GetComponent<PlayerController>().UseSecondaryWeapon();
+                if (GetComponent<WeaponInterface>().weaponTypeB == WeaponType.FireballBounce ||
+                    GetComponent<WeaponInterface>().weaponTypeB == WeaponType.FireballExplode)
+                {
+                    if (GetComponent<AngleAim>().aiming)
+                    {
+                        GetComponent<AngleAim>().aiming = false;
+                        GetComponent<PlayerController>().UseSecondaryWeapon(GetComponent<AngleAim>().aimDirection);
+                    }
+                    else
+                    {
+                        GetComponent<AngleAim>().aiming = true;
+                        //Expecting another X input to release
+                    }
+                }
+                else
+                {
+                    GetComponent<PlayerController>().UseSecondaryWeapon();
+                }
             }
             else if (Input.GetKeyDown(KeyCode.Space))
             {

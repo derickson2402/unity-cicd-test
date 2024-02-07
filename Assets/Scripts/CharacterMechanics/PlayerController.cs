@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -261,6 +262,19 @@ public class PlayerController : MonoBehaviour
             }
         }
         wi.useWeaponB();
+    }
+
+    internal void UseSecondaryWeapon(Vector3 aimDirection)
+    {
+        WeaponInterface wi = GetComponent<WeaponInterface>();
+        if (wi == null)
+        {
+            Debug.Log("Error getting weaponinterface");
+            return;
+        }
+
+        if (weaponsUnlocked.Count == 0) { return; }
+        wi.useWeaponB(aimDirection);
     }
 
     //-----------------------

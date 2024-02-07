@@ -50,7 +50,7 @@ public class DealsDamageBouncer : DealsDamage
                     rb.velocity = reflectedVelocity;
                 }
             }
-            else
+            else if (bounceCount < bounceLimit)
             {
                 if (projectile.InFlight())
                 {

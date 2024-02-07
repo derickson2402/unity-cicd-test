@@ -179,6 +179,82 @@ public class WeaponInterface : MonoBehaviour
         inHandFrames = 0;
     }
 
+    public void useWeaponB(Vector3 aimDirection)
+    {
+        // If we are already mid attack, do not allow attack
+        if (weaponInHand != null)
+        {
+            Debug.Log(weaponInHand + " already in hand");
+            return;
+        }
+        Assert.IsTrue(weaponBPrefab != null);
+        Debug.Log("Using weapon");
+        // If we are holding a projectile, check if another is allowed to be fired
+        Projectile prefabProjectile = weaponBPrefab.GetComponent<Projectile>();
+        Debug.Log(prefabProjectile);
+        if (prefabProjectile != null)
+        {
+            // Register projectiles to the weaponRefs dict firstly
+            if (!projRefs.ContainsKey(weaponBPrefab.name))
+            {
+                Debug.Log("Adding key " + weaponBPrefab.name);
+                projRefs.Add(weaponBPrefab.name, null);
+            }
+            Debug.Log(prefabProjectile + " multifire: " + prefabProjectile.multiFireAllowed + ", and name is " + weaponBPrefab.name);
+            Debug.Log("Found ref " + (projRefs[weaponBPrefab.name] == null));
+            // Check if we're allowed to fire again
+            if (!prefabProjectile.multiFireAllowed && projRefs[weaponBPrefab.name] != null)
+            {
+                Debug.Log("Active " + weaponBPrefab.name + " already on map somewhere");
+                // Sword can still be swung
+                if (weaponBPrefab.name != "Sword")
+                {
+                    return;
+                }
+            }
+        }
+        // What direction are we facing?
+        Vector3 weaponOffset = weaponBPrefab.spawnOffsetDistance * aimDirection;
+        float degreeAngle = Vector3.Angle(transform.position, aimDirection);
+        Quaternion weaponRot = Quaternion.AngleAxis(degreeAngle, Vector3.forward);
+        // All good, instantiate the object
+        Debug.Log("spawning weapon " + weaponBPrefab.name);
+        DealsDamage weaponObj = Instantiate(weaponBPrefab, GetComponent<Rigidbody>().position + weaponOffset, weaponRot);
+        weaponObj.name = weaponObj.name.Remove(weaponObj.name.Length - 7); // get rid of (cloned) at the end of name, needed for lookups later
+        Assert.IsFalse(weaponObj == null);
+        // Set player/enemy interactions
+        if (weaponObj.name != "Bomb")
+        {
+            TakesDamage health = GetComponent<TakesDamage>();
+            weaponObj.affectEnemy = !health.isEnemy;
+            weaponObj.affectPlayer = health.isEnemy;
+        }
+        // Trigger attack animations if necessary
+        ScriptAnim4DirectionWalkPlusAttack anim = GetComponent<ScriptAnim4DirectionWalkPlusAttack>();
+        if (anim != null)
+        {
+            anim.BeginAttack();
+        }
+        // Freeze the character holding the weapon. Update() will relinquish controls once it is done with delay
+        InputManager inputManager = GetComponent<InputManager>();
+        if (inputManager != null)
+        {
+            Debug.Log("Freezing player controls during weapon attack");
+            inputManager.controlEnabled = false;
+        }
+        GenericMovement gm = GetComponent<GenericMovement>();
+        if (gm != null)
+        {
+            gm.movementEnabled = false;
+        }
+        // Special logic for special weapon mechanics
+        LogicSword(weaponObj);
+        LogicBoomerang(weaponObj);
+        // Weapon is spawned, put it in hand and start countdown. Update() will handle the rest of the logic
+        weaponInHand = weaponObj;
+        inHandFrames = 0;
+    }
+
     // Special logic for master sword, which is only a projectile when at full health
     private void LogicSword(DealsDamage weaponObj)
     {
@@ -241,6 +317,13 @@ public class WeaponInterface : MonoBehaviour
                     // handheld weapon
                     Debug.Log("Destroying weapon in hand " + weaponInHand);
                     Object.Destroy(weaponInHand.gameObject);
+                }
+                else if (weaponTypeB is WeaponType.FireballBounce or WeaponType.FireballExplode)
+                {
+                    // Angled Projectile
+                    Debug.Log("Fired object " + weaponInHand.name);
+                    projRefs[weaponInHand.name] = weaponInHand;
+                    projectile.Shoot(GetComponent<AngleAim>().aimDirection);
                 }
                 else
                 {

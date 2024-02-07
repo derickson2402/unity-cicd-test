@@ -64,7 +64,7 @@ public class DealsDamageExploder : DealsDamage
         {
             r.sprite = t;
             yield return new WaitForSeconds(tempTime);
-            tempTime -= 0.2f;
+            tempTime /= 1.5f;
             dustObject.transform.localScale /= 2f;
         }
         Destroy(dustObject);

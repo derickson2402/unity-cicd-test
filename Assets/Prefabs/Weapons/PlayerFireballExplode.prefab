@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flySpeed: 4
-  multiFireAllowed: 1
+  multiFireAllowed: 0
 --- !u!114 &-6381887863681346130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,8 +150,8 @@ MonoBehaviour:
   spawnOffsetDistance: 1
   knockBackDistance: 0
   stunFrames: 0
-  distanceThreshold: 3
-  timePerSprite: 0.5
+  distanceThreshold: 1.5
+  timePerSprite: 0.4
   ExplosionSpritePrefab: {fileID: 2777932165069458364, guid: fba499da8c340944db17f9e5556baa54, type: 3}
   dustSprites:
   - {fileID: -1161038345, guid: e631fb4225ba2e64db8867349932b066, type: 3}
