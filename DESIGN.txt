@@ -2,4 +2,19 @@ Our team came up with a new mechanic to put in Zelda! We added a new weapon mech
 
 There are two variants, one that bounces off walls and the other that creates a big explosion. But there is a catch to using the new weapons: each shot takes half a heart from the player! The weapons are pretty powerful, but the player has to be careful not to accidentally get themselves killed!
 
-To showcase the new weapons, we created a new custom level (hit the '4' key while playing). There are a few rooms which have the player perform trick shots with the bouncing fireball, and some that have big groups of enemies that are best killed with an explosion. After the tutorial rooms, they are given rooms full of enemies and walls where they can prove their skills!
+Through most of the game, the player must move through most of the level in order to actually hit enemies. With the diagonal shooting mechanism, they can clear a room more quickly without moving. They also can use the bouncing to make combat in rooms with walls easier (think the wallmaster room in the original), and the explosive makes it easier to deal with waves of enemies. With the ammo being the players health though, they must be very careful using the weapon and thus making the game too easy.
+
+To showcase the new weapons, we created a new custom level (hit the '4' key while playing). There are a few rooms which have the player perform trick shots with the bouncing fireball, and some that have big groups of enemies that are best killed with an explosion.
+
+We designed the tutorial rooms very specifically. Each one has a locked door, and the key will only appear after the player eliminates all of the enemies. Then the enemies are placed strategically so that they cannot be hit with a traditional arrow or sword beam, only with a diagonal shot with the new bouncing fireball. It is clear very quickly that the enemies cannot be hit with normal weapons, and the player is only given the normal sword and the new weapons to use. This encourages the player to try the new weapon. During the tutorial rooms, the player is also given several heart pickups to make sure they don't run low on health while trying to use the fireball.
+
+Here are the links to our portfolios. You can read more about the project and give it a play there:
+
+Dan:
+https://danerick.com/
+
+Kevin:
+https://kgruich.github.io/EECS-494-portfolio/
+
+Kaushik:
+https://the-big-k.github.io/eecs494-p1/
