@@ -8,6 +8,8 @@ public enum WeaponType
     Bomb,
     Bow,
     Sword,
+    FireballBounce,
+    FireballExplode,
     None
 }
 
