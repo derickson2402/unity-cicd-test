@@ -12,52 +12,75 @@ public class BlockMovement : MonoBehaviour
     float minY = 0.0f;
     float maxY = 0.0f;
 
-    // Minimum and maximum values for z-coordinate.
-    float minZ = 0.0f;
-    float maxZ = 0.0f;
-
     // Maximum displacements for coordinates.
     public float dispX = 1.0f;
     public float dispY = 1.0f;
-    public float dispZ = 1.0f;
 
+    public bool triggerDoors;
 
-    private void Awake()
+    private Rigidbody rb;
+    private GameObject room;
+    private RoomManager rm;
+
+    private void Start()
     {
         // For convenience.
         Vector3 pos = transform.position;
 
         // Set min and max values of coordinates.
-        (minX, maxX) = (Mathf.Min(pos.x, pos.x + dispX), Mathf.Max(pos.x, pos.x + dispX));
-        (minY, maxY) = (Mathf.Min(pos.y, pos.y + dispY), Mathf.Max(pos.y, pos.y + dispY));
-        (minZ, maxZ) = (Mathf.Min(pos.z, pos.z + dispZ), Mathf.Max(pos.z, pos.z + dispZ));
+        (minX, maxX) = (pos.x - dispX, pos.x + dispX);
+        (minY, maxY) = (pos.y - dispY, pos.y + dispY);
+
+        rm = GameObject.FindGameObjectWithTag("Player").GetComponent<RoomManager>();
+        room = transform.parent.gameObject;
+        rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     private void Update()
     {
+        if (rm.GetCurrentRoom() != room || !rm.roomCleared)
+        {
+            return;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+        }
+
         // For convenience.
         Vector3 pos = transform.position;
 
         // Clamp object position between bounds.
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
-        pos.z = Mathf.Clamp(pos.z, minZ, maxZ);
 
-        // Restrict furether movement if on boundaries.
-        if (pos.x == minX || pos.x == maxX)
+        // Restrict further movement if on boundaries.
+        if (pos.x == minX)
+        {
+            maxX = minX;
+            if (triggerDoors) OpenPuzzleDoors();
+        }
+        if (pos.x == maxX)
         {
             minX = maxX;
+            if (triggerDoors) OpenPuzzleDoors();
         }
-        if (pos.y == minY || pos.y == maxY)
+        if (pos.y == minY)
+        {
+            maxY = minY;
+        }
+        if (pos.y == maxY)
         {
             minY = maxY;
-        }
-        if (pos.z == minZ || pos.z == maxZ)
-        {
-            minZ = maxZ;
         }
 
         // Set object position.
         transform.position = pos;
+    }
+
+    private static void OpenPuzzleDoors()
+    {
+        GameObject.FindGameObjectWithTag("PuzzleDoor").GetComponent<PuzzleDoors>().Open();
     }
 }

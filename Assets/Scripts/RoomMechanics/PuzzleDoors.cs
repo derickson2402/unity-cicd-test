@@ -5,11 +5,20 @@ using UnityEngine;
 
 public class PuzzleDoors : RoomTrait
 {
+    public Sprite openDoor;
+    private BoxCollider boxCollider;
+    private SpriteRenderer spriteRenderer;
+    void Start()
+    {
+        boxCollider = GetComponent<BoxCollider>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     public override void setState(bool state) {}
 
     public void Open()
     {
-        Debug.Log("Changing ambush door state!");
-        GetComponentInChildren<LockedDoor>().openDoor();
+        boxCollider.enabled = false;
+        spriteRenderer.sprite = openDoor;
     }
 }

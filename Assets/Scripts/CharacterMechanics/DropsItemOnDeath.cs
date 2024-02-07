@@ -33,7 +33,7 @@ public class DropsItemOnDeath : MonoBehaviour
     }
 
     // Randomly drop an object based on given parameters
-    public void OnDestroy()
+    public void OnDisable()
     {
         // Check if we have an existing item to drop, re-enable it
         if (obj != null)
