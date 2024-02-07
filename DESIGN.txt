@@ -1,0 +1,5 @@
+Our team came up with a new mechanic to put in Zelda! We added a new weapon mechanic where the player can throw a fireball at an angle. The player normally can only shoot in 4 directions, but by allowing for angles the player can get really creative with how they fight enemies!
+
+There are two variants, one that bounces off walls and the other that creates a big explosion. But there is a catch to using the new weapons: each shot takes half a heart from the player! The weapons are pretty powerful, but the player has to be careful not to accidentally get themselves killed!
+
+To showcase the new weapons, we created a new custom level (hit the '4' key while playing). There are a few rooms which have the player perform trick shots with the bouncing fireball, and some that have big groups of enemies that are best killed with an explosion. After the tutorial rooms, they are given rooms full of enemies and walls where they can prove their skills!
