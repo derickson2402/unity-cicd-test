@@ -14,16 +14,18 @@ public class DealsDamage : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        ProcessInteraction(collision.gameObject.GetComponent<TakesDamage>());
+        ProcessInteraction(collision.collider);
     }
 
     private void OnTriggerEnter(Collider collider)
     {
-        ProcessInteraction(collider.gameObject.GetComponent<TakesDamage>());
+        ProcessInteraction(collider);
     }
 
-    private void ProcessInteraction(TakesDamage other)
+    private void ProcessInteraction(Collider collider)
     {
+        TakesDamage other = collider.gameObject.GetComponent<TakesDamage>();
+        Projectile projectile = GetComponent<Projectile>();
         if (other != null)
         {
             if ((other.isEnemy && affectEnemy) || (!other.isEnemy && affectPlayer))
@@ -47,14 +49,26 @@ public class DealsDamage : MonoBehaviour
                         other.Damage(damageHP);
                     }
                 }
+                // Check if we are a projectile, in which case we should delete ourselves on impact with enemy or player
+                if (projectile != null)
+                {
+                    //need special case for enemy projectiles hitting themselves
+                    if (projectile.InFlight())
+                    {
+                        Debug.Log("Projectile destroyed");
+                        projectile.PostCollision();
+                        Destroy(gameObject);
+                    }
+                }
             }
-
-            // Check if we are a projectile, in which case we should delete ourselves on impact
-            Projectile projectile = GetComponent<Projectile>();
+        }
+        else
+        {
+            // Check if we are a projectile, in which case we should delete ourselves on impact with enemy or player
             if (projectile != null)
             {
                 //need special case for enemy projectiles hitting themselves
-                if (projectile.InFlight() && (!(other.isEnemy && !affectEnemy) || other.name == "Tile_WALL"))
+                if (projectile.InFlight())
                 {
                     Debug.Log("Projectile destroyed");
                     projectile.PostCollision();
