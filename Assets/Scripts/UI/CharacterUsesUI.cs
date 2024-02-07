@@ -8,12 +8,12 @@ using UnityEngine.UI;
 [RequireComponent(typeof(WeaponInterface))]
 public class CharacterUsesUI : MonoBehaviour
 {
-    WeaponInterface wi; // Reference to the characters weapon interface
-
     public Sprite Sword;
     public Sprite Bow;
     public Sprite Boomerang;
     public Sprite Bomb;
+    public Sprite FireballBounce;
+    public Sprite FireballExplode;
 
     public void setWeaponA(WeaponType type)
     {
@@ -84,6 +84,10 @@ public class CharacterUsesUI : MonoBehaviour
                 return Boomerang;
             case WeaponType.Bow:
                 return Bow;
+            case WeaponType.FireballBounce:
+                return FireballBounce;
+            case WeaponType.FireballExplode:
+                return FireballExplode;
             default:
                 return null;
         }
