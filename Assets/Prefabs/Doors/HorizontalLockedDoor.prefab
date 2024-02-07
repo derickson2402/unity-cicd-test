@@ -69,6 +69,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c3f192402387a04091453abbdda9436, type: 3}
+--- !u!1 &290564200718450663 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1457423632412660332, guid: 5c3f192402387a04091453abbdda9436, type: 3}
+  m_PrefabInstance: {fileID: 1166860612818693515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &782297200842594551 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1939576596020245884, guid: 5c3f192402387a04091453abbdda9436, type: 3}
@@ -129,7 +134,7 @@ PrefabInstance:
     - target: {fileID: 8890347697919059393, guid: 879399bea57c0cc4e8c8cb48c94cc659, type: 3}
       propertyPath: doorWay
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 290564200718450663}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 9102254646208109587, guid: 879399bea57c0cc4e8c8cb48c94cc659, type: 3}

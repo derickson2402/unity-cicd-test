@@ -9,6 +9,7 @@ public enum AIState
 
 public class NPCController : MonoBehaviour
 {
+    public bool ignoreWalls;
     public AIState state;
     public float movementWaitTime = 1f;
     protected Vector3 initialPosition;
@@ -55,33 +56,68 @@ public class NPCController : MonoBehaviour
 
     protected virtual Direction GenerateMoveTowardPosition(Vector3 position)
     {
-        (RaycastHit hitUp, RaycastHit hitDown, RaycastHit hitLeft, RaycastHit hitRight) =
-            FourDirectionRayCast(draw4DRaycastGizmos, transform.position, hazardCheckRaycastDistance);
-
-        Vector3 delta = position - transform.position;
-        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+        if (!ignoreWalls)
         {
-            if (delta.x > 0 && (hitRight.collider == null || (hitRight.collider != null && hitRight.collider.gameObject == player)))
+            (RaycastHit hitUp, RaycastHit hitDown, RaycastHit hitLeft, RaycastHit hitRight) =
+                FourDirectionRayCast(draw4DRaycastGizmos, transform.position, hazardCheckRaycastDistance);
+
+            Vector3 delta = position - transform.position;
+            if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
             {
-                return Direction.Right;
+                if (delta.x > 0 && (hitRight.collider == null ||
+                                    (hitRight.collider != null && hitRight.collider.gameObject == player)))
+                {
+                    return Direction.Right;
+                }
+                else if (hitLeft.collider == null ||
+                         (hitLeft.collider != null && hitLeft.collider.gameObject == player))
+                {
+                    return Direction.Left;
+                }
             }
-            else if (hitLeft.collider == null || (hitLeft.collider != null && hitLeft.collider.gameObject == player))
+            else
             {
-                return Direction.Left;
+                if (delta.y > 0 && (hitUp.collider == null ||
+                                    (hitUp.collider != null && hitUp.collider.gameObject == player)))
+                {
+                    return Direction.Up;
+                }
+                else if (hitDown.collider == null ||
+                         (hitDown.collider != null && hitDown.collider.gameObject == player))
+                {
+                    return Direction.Down;
+                }
             }
+
+            return Direction.None;
         }
         else
         {
-            if (delta.y > 0 && (hitUp.collider == null || (hitUp.collider != null && hitUp.collider.gameObject == player)))
+            Vector3 delta = position - transform.position;
+            if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
             {
-                return Direction.Up;
+                if (delta.x > 0)
+                {
+                    return Direction.Right;
+                }
+                else
+                {
+                    return Direction.Left;
+                }
             }
-            else if (hitDown.collider == null || (hitDown.collider != null && hitDown.collider.gameObject == player))
+            else
             {
-                return Direction.Down;
+                if (delta.y > 0)
+                {
+                    return Direction.Up;
+                }
+                else
+                {
+                    return Direction.Down;
+                }
             }
+            return Direction.None;
         }
-        return Direction.None;
     }
 
     protected virtual void WanderMove()

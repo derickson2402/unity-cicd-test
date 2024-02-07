@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5988803650690637642}
   - component: {fileID: 7298099287942196844}
   - component: {fileID: 3437271095162832015}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Keese
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e50c74ca277a9f44a23b20047b95d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreWalls: 0
   state: 0
   movementWaitTime: 1
   detectionRadius: 2.5

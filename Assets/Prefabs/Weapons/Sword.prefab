@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5278937283722435218}
   - component: {fileID: 2258032491713988256}
   - component: {fileID: 4245476435595884895}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Sword
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -105,10 +105,10 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0

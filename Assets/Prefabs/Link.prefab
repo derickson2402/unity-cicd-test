@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 6226975357632161720}
   - component: {fileID: 1423729573196425357}
   - component: {fileID: 1771402601208020913}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Link
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434397218435722383}
   serializedVersion: 4
-  m_Mass: 0.0000001
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -114,12 +114,12 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 34
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!65 &8416929504309330081
@@ -227,11 +227,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 434397218435722383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 473258961764c9a45a7c116610a87e34, type: 3}
+  m_Script: {fileID: 11500000, guid: 209ae2e2e3804e74ab85879311a2d4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
-  startX: 2
+  startX: 0
   startY: 0
   roomCleared: 0
   currentRoomEnemyTotal: 0

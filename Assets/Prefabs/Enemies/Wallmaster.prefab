@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6689e01017a1745a12156a53d32b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreWalls: 1
   state: 0
   movementWaitTime: 0.5
   detectionBoxSize: {x: 4, y: 3.5, z: 1}
