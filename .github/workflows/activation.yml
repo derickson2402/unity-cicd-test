@@ -4,15 +4,11 @@ on: workflow_dispatch
 
 jobs:
   requestManualActivationFile:
-    name: Request manual activation file 🔑
+    name: Get Unity License 🔑
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - uses: webbertakken/unity-request-manual-activation-file@v2
-        id: getManualLicenseFile
+      - name: Unity - Activate
+        uses: game-ci/unity-activate@v2.0.0
 
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Manual Activation File
-          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
